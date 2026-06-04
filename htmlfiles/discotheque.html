@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Discotheque - School Food & Fun Day!</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+    <meta name="description" content="Get ready for QEC Food and Fun Day 2026 Discotheque! Meet the student DJ lineup, view session timings, entry pass prices, and party locations.">
     <!-- Global CSS -->
     <link rel="stylesheet" href="../css/global.css" />
     <style>
@@ -12,9 +12,7 @@
             font-family: var(--font-body);
             background: radial-gradient(circle at top, #12031c 0%, var(--color-bg-darkest) 90%);
         }
-        h1, h2, h3, h4, h5, h6 {
-            font-family: var(--font-heading);
-        }
+        
         .disco-neon-panel {
             background: rgba(20, 5, 30, 0.45);
             backdrop-filter: blur(12px);
@@ -24,95 +22,308 @@
             box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.5), 0 0 30px rgba(168, 85, 247, 0.15);
             transition: var(--transition-smooth);
         }
+        
         .disco-neon-panel:hover {
             border-color: rgba(168, 85, 247, 0.5);
             box-shadow: 0 10px 40px 0 rgba(0, 0, 0, 0.6), 0 0 40px rgba(168, 85, 247, 0.3);
         }
+        
         .info-pill {
             background: rgba(168, 85, 247, 0.08);
             border: 1px solid rgba(168, 85, 247, 0.2);
             border-radius: 12px;
             transition: var(--transition-smooth);
         }
+        
         .info-pill:hover {
             background: rgba(168, 85, 247, 0.15);
             border-color: rgba(168, 85, 247, 0.4);
             transform: translateY(-1px);
         }
+
+        /* Gallery Strip */
+        .gallery-container {
+            margin-bottom: 2rem;
+        }
+        .gallery-strip {
+            display: flex;
+            gap: 1rem;
+            overflow-x: auto;
+            padding: 0.5rem 0.2rem;
+            scrollbar-width: thin;
+        }
+        .gallery-img-wrapper {
+            flex: 0 0 240px;
+            height: 160px;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 2px solid rgba(168, 85, 247, 0.2);
+            transition: var(--transition-smooth);
+        }
+        .gallery-img-wrapper:hover {
+            transform: scale(1.04) translateY(-3px);
+            border-color: rgba(223, 150, 255, 0.7);
+            box-shadow: 0 8px 24px rgba(168, 85, 247, 0.35);
+        }
+        .gallery-img-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* DJ Cards */
+        .dj-grid {
+            display: grid;
+            gap: 1.25rem;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            margin-top: 1.5rem;
+        }
+        .dj-card {
+            background: rgba(20, 5, 30, 0.45);
+            border: 1px solid rgba(168, 85, 247, 0.2);
+            border-radius: 16px;
+            padding: 1.5rem 1rem;
+            text-align: center;
+            transition: var(--transition-smooth);
+        }
+        .dj-card:hover {
+            border-color: rgba(168, 85, 247, 0.5);
+            box-shadow: 0 0 20px rgba(168, 85, 247, 0.25);
+            transform: translateY(-4px);
+        }
+        .dj-avatar-container {
+            width: 64px;
+            height: 64px;
+            background: rgba(168, 85, 247, 0.15);
+            border: 2px solid rgba(168, 85, 247, 0.4);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 0.75rem auto;
+            font-size: 1.5rem;
+            transition: var(--transition-smooth);
+        }
+        .dj-card:hover .dj-avatar-container {
+            background: rgba(168, 85, 247, 0.3);
+            border-color: rgba(223, 150, 255, 0.8);
+            transform: rotate(10deg);
+        }
+        .dj-name {
+            color: var(--color-gold-light);
+            margin-bottom: 0.25rem;
+        }
+        .dj-badge {
+            display: inline-block;
+            font-size: 0.65rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            padding: 0.15rem 0.5rem;
+            border-radius: 99px;
+            margin-bottom: 0.75rem;
+        }
+        .badge-headliner {
+            background: rgba(223, 178, 107, 0.2);
+            border: 1px solid var(--color-gold);
+            color: var(--color-gold-light);
+        }
+        .badge-supporting {
+            background: rgba(168, 85, 247, 0.2);
+            border: 1px solid rgba(168, 85, 247, 0.5);
+            color: #df96ff;
+        }
+        .dj-genre {
+            color: var(--color-text-muted);
+            margin: 0;
+        }
+
+        /* Visual Timeline */
+        .timeline {
+            position: relative;
+            border-left: 2px solid rgba(168, 85, 247, 0.25);
+            padding-left: 1.5rem;
+            margin-left: 0.5rem;
+            margin-top: 1.5rem;
+        }
+        .timeline-item {
+            position: relative;
+            margin-bottom: 1.5rem;
+        }
+        .timeline-item:last-child {
+            margin-bottom: 0;
+        }
+        .timeline-marker {
+            position: absolute;
+            left: calc(-1.5rem - 6px);
+            top: 4px;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: #071210;
+            border: 2px solid rgba(168, 85, 247, 0.8);
+            box-shadow: 0 0 8px rgba(168, 85, 247, 0.8);
+            transition: var(--transition-smooth);
+        }
+        .timeline-item:hover .timeline-marker {
+            background: #df96ff;
+            transform: scale(1.3);
+            box-shadow: 0 0 12px #df96ff;
+        }
+        .timeline-time {
+            font-family: var(--font-heading);
+            font-weight: 700;
+            font-size: 0.8rem;
+            color: var(--color-gold);
+            margin-bottom: 0.15rem;
+        }
+        .timeline-title {
+            font-family: var(--font-heading);
+            font-weight: 600;
+            font-size: 0.95rem;
+            color: var(--color-gold-light);
+            margin: 0;
+        }
+        .timeline-desc {
+            font-size: 0.8rem;
+            color: var(--color-text-muted);
+            margin: 0.2rem 0 0 0;
+        }
     </style>
 </head>
-<body class="px-4 md:px-8 py-4">
+<body data-particles="disco">
 
     <!-- Call Navbar -->
     <div id="navbar"></div>
 
-    <header class="pt-24 text-center mb-12 animate-fade-up">
+    <header class="pt-24 text-center mb-12 scroll-reveal">
         <div class="mb-4 inline-block relative">
-            <div class="absolute inset-0 bg-purple-500/25 blur-lg rounded-full"></div>
+            <div class="absolute inset-0 bg-purple-500" style="opacity: 0.2; filter: blur(24px); border-radius: 50%;"></div>
             <img src="../icons and logos/QECLogoDisco.gif" alt="Discotheque Logo" class="relative mx-auto h-28 w-auto hover:rotate-6 transition-transform duration-300">
         </div>
         <h1 class="text-4xl md:text-5xl font-extrabold tracking-tight mb-3 neon-text-purple font-['Outfit']">The Discotheque</h1>
-        <p class="text-[#a3b8b5] text-sm md:text-base max-w-xl mx-auto mb-4">Lights down, volume up. Lose yourself in the music with our stellar lineup of school DJs!</p>
+        <p class="text-[#a3b8b5] text-sm md:text-base max-w-xl mx-auto mb-4" style="padding: 0 1rem;">Lights down, volume up. Lose yourself in the music with our stellar lineup of school DJs!</p>
         <a href="../htmlfiles/index.html" class="btn-outline text-xs px-4 py-1.5 border-purple-500/50 hover:bg-purple-500/10 hover:border-purple-400 text-purple-200">← Back to Main Page</a>
     </header>
 
-    <main class="max-w-2xl mx-auto mb-16 px-4 animate-fade-up animate-delay-1">
+    <main class="max-w-2xl mx-auto mb-16 px-4 scroll-reveal stagger-1">
         
-        <section class="disco-neon-panel p-6 md:p-8 flex flex-col justify-between">
+        <!-- Photo Gallery Strip -->
+        <section class="gallery-container">
+            <h4 class="font-bold text-xs uppercase tracking-wider text-purple-300 font-['Outfit'] mb-3">Disco Gallery</h4>
+            <div class="gallery-strip">
+                <div class="gallery-img-wrapper">
+                    <img src="../images/DiscoPic1.jpg" alt="Disco Crowd 1">
+                </div>
+                <div class="gallery-img-wrapper">
+                    <img src="../images/DiscoPic2.jpg" alt="Disco DJ Booth">
+                </div>
+                <div class="gallery-img-wrapper">
+                    <img src="../images/DiscoPic3.jpg" alt="Disco Lights">
+                </div>
+            </div>
+        </section>
+
+        <!-- Events & Sessions Details -->
+        <section class="disco-neon-panel p-6 md:p-8 flex flex-col justify-between mb-8">
             <div>
-                <h2 class="text-2xl font-bold neon-text-purple mb-4 font-['Outfit'] border-b border-purple-500/25 pb-2">Event Highlights</h2>
+                <h2 class="text-2xl font-bold neon-text-purple mb-4 font-['Outfit'] border-b pb-2" style="border-color: rgba(168, 85, 247, 0.25);">Event Highlights</h2>
                 <p class="text-sm text-[#a3b8b5] mb-6">Experience professional lighting, heavy bass systems, and curated sets featuring your favorite tracks. Don't miss out on the sessions!</p>
                 
                 <div class="space-y-4">
                     <!-- Session & Pricing -->
                     <div class="info-pill p-4 flex items-start">
-                        <span class="text-2xl mr-3">🎟️</span>
+                        <span class="text-2xl mr-3" style="margin-right: 0.75rem;">🎟️</span>
                         <div>
-                            <h4 class="font-bold text-purple-200 font-['Outfit']">Ticket Passes</h4>
-                            <ul class="list-disc list-inside text-xs text-[#a3b8b5] space-y-1.5 mt-1">
-                                <li><span class="font-bold text-[#dfb26b]">Rs 80:</span> Single Gender Sessions</li>
-                                <li><span class="font-bold text-[#dfb26b]">Rs 100:</span> Grand Mix (Last 2 Co-ed sessions)</li>
+                            <h4 class="font-bold text-purple-200 font-['Outfit']" style="margin: 0;">Ticket Passes</h4>
+                            <ul class="text-xs text-[#a3b8b5]" style="list-style-type: disc; margin: 0.25rem 0 0 0; padding-left: 1.25rem;">
+                                <li style="margin-bottom: 0.25rem;"><span class="font-bold text-gold">Rs 80:</span> Single Gender Sessions</li>
+                                <li><span class="font-bold text-gold">Rs 100:</span> Grand Mix (Last 2 Co-ed sessions)</li>
                             </ul>
-                        </div>
-                    </div>
-
-                    <!-- Timing -->
-                    <div class="info-pill p-4 flex items-center">
-                        <span class="text-2xl mr-3">🕒</span>
-                        <div>
-                            <h4 class="font-bold text-purple-200 font-['Outfit']">Show Time</h4>
-                            <p class="text-xs text-[#a3b8b5] mt-0.5">10:00 AM - 14:00 PM (Rotating hourly entry batches)</p>
                         </div>
                     </div>
 
                     <!-- Location -->
                     <div class="info-pill p-4 flex items-center">
-                        <span class="text-2xl mr-3">📍</span>
+                        <span class="text-2xl mr-3" style="margin-right: 0.75rem;">📍</span>
                         <div>
-                            <h4 class="font-bold text-purple-200 font-['Outfit']">Venue Location</h4>
-                            <p class="text-xs text-[#a3b8b5] mt-0.5">School Main Hall (Specially soundproofed and blacked out)</p>
+                            <h4 class="font-bold text-purple-200 font-['Outfit']" style="margin: 0;">Venue Location</h4>
+                            <p class="text-xs text-[#a3b8b5]" style="margin: 0.25rem 0 0 0;">School Main Hall (Specially soundproofed and blacked out)</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Timeline Schedule -->
+                <div class="mt-8">
+                    <h4 class="font-bold text-xs uppercase tracking-wider text-purple-300 font-['Outfit'] mb-3">Session Schedule</h4>
+                    <div class="timeline">
+                        <div class="timeline-item">
+                            <div class="timeline-marker"></div>
+                            <div class="timeline-time">10:00 AM - 11:00 AM</div>
+                            <h5 class="timeline-title">Boys Session</h5>
+                            <p class="timeline-desc">High-energy EDM and pop mixes for the opening hour.</p>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-marker"></div>
+                            <div class="timeline-time">11:00 AM - 12:00 PM</div>
+                            <h5 class="timeline-title">Girls Session</h5>
+                            <p class="timeline-desc">Upbeat commercial hits, dance, and electronic beats.</p>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-marker"></div>
+                            <div class="timeline-time">12:00 PM - 13:00 PM</div>
+                            <h5 class="timeline-title">Grand Mix (Co-ed) - Part 1</h5>
+                            <p class="timeline-desc">Open floor co-ed session. Massive hip hop and house drops.</p>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-marker"></div>
+                            <div class="timeline-time">13:00 PM - 14:00 PM</div>
+                            <h5 class="timeline-title">Grand Mix (Co-ed) - Part 2</h5>
+                            <p class="timeline-desc">Finale session with lasers, heavy bass, and student favorites.</p>
                         </div>
                     </div>
                 </div>
             </div>
 
             <!-- DJ Spotlight -->
-            <div class="mt-8 pt-6 border-t border-purple-500/20">
+            <div class="mt-8 pt-6 border-t" style="border-color: rgba(168, 85, 247, 0.2);">
                 <h4 class="font-bold text-xs uppercase tracking-wider text-purple-300 font-['Outfit'] mb-3">DJ Lineup</h4>
-                <div class="flex flex-wrap gap-3">
-                    <span class="text-xs bg-purple-500/10 border border-purple-500/30 px-3 py-1.5 rounded-lg text-purple-200 font-semibold">🎧 DJ Avi S</span>
-                    <span class="text-xs bg-purple-500/10 border border-purple-500/30 px-3 py-1.5 rounded-lg text-purple-200 font-semibold">⚡ DJ Yohan</span>
-                    <span class="text-xs bg-purple-500/10 border border-purple-500/30 px-3 py-1.5 rounded-lg text-purple-200 font-semibold">🔥 DJ Tuks</span>
+                <div class="dj-grid">
+                    <!-- DJ Avi S -->
+                    <div class="dj-card">
+                        <div class="dj-avatar-container">🎧</div>
+                        <h5 class="dj-name font-bold text-sm">DJ Avi S</h5>
+                        <span class="dj-badge badge-headliner">Headliner</span>
+                        <p class="dj-genre text-xs">EDM, House, Commercial</p>
+                    </div>
+                    <!-- DJ Yohan -->
+                    <div class="dj-card">
+                        <div class="dj-avatar-container">⚡</div>
+                        <h5 class="dj-name font-bold text-sm">DJ Yohan</h5>
+                        <span class="dj-badge badge-supporting">Supporting</span>
+                        <p class="dj-genre text-xs">Hip Hop, Trap, Afrobeat</p>
+                    </div>
+                    <!-- DJ Tuks -->
+                    <div class="dj-card">
+                        <div class="dj-avatar-container">🔥</div>
+                        <h5 class="dj-name font-bold text-sm">DJ Tuks</h5>
+                        <span class="dj-badge badge-supporting">Supporting</span>
+                        <p class="dj-genre text-xs">Techno & Electronic</p>
+                    </div>
                 </div>
             </div>
         </section>
         
     </main>
 
-    <footer class="text-center py-8 text-[#a3b8b5] border-t border-[#dfb26b]/10 bg-[#071210]/40 max-w-full font-['Outfit'] text-xs">
+    <footer class="text-center py-8 border-t bg-[#071210]/40 max-w-full font-['Outfit'] text-xs" style="color: var(--color-text-muted); border-color: rgba(223, 178, 107, 0.1);">
         <p>&copy; 2026 Queen Elizabeth College. Crafted by QECC Club. All rights reserved.</p>
     </footer>
 
+    <!-- Script imports -->
+    <script src="../javascript/particles.js"></script>
+    <script src="../javascript/scroll-reveal.js"></script>
+    <script src="../javascript/page-transition.js"></script>
     <script src="../javascript/navbar.js"></script>
 </body>
 </html>

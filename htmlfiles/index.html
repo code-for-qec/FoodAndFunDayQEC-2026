@@ -3,63 +3,37 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>School Food & Fun Day!</title>
-
-<!-- Tailwind CSS -->
-<script src="https://cdn.tailwindcss.com"></script>
-<!-- Google Fonts -->
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
-<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet" />
-<!-- Swiper -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
-<!-- Chart.js -->
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-<!-- Firebase SDK -->
-<script src="https://www.gstatic.com/firebasejs/10.11.0/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/10.11.0/firebase-firestore-compat.js"></script>
-
+<title>Queen Elizabeth College - Food & Fun Day 2026</title>
+<meta name="description" content="Official website for QEC Food and Fun Day 2026. Explore attraction schedules, discotheque sessions, gaming events, food stall menu prices, and school activities.">
 <!-- Global CSS -->
 <link rel="stylesheet" href="../css/global.css" />
 <style>
     /* Page specific styling */
-    body {
-        font-family: var(--font-body);
-        background: radial-gradient(circle at top, var(--color-bg-medium) 0%, var(--color-bg-dark) 80%);
+    .hero-container {
+        position: relative;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        padding: 2rem;
+        box-sizing: border-box;
+        overflow: hidden;
     }
-
-    .swiper {
-        width: 100%;
-        padding: 3rem 0;
-        overflow: visible;
+    
+    .hero-overlay {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(180deg, rgba(7, 18, 16, 0.4) 0%, rgba(7, 18, 16, 0.95) 100%);
+        z-index: 2;
     }
-
-    .swiper-slide {
-        width: 420px;
-        max-width: 85vw;
-        height: auto;
-        opacity: 0.35;
-        transform: scale(0.9);
-        transition: var(--transition-smooth);
-    }
-
-    .swiper-slide-active {
-        opacity: 1;
-        transform: scale(1);
-    }
-
-    .swiper-slide img {
-        width: 100%;
-        height: 300px;
-        object-fit: cover;
-        border-radius: 16px;
-        border: 2px solid rgba(223, 178, 107, 0.2);
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-        transition: var(--transition-smooth);
-    }
-
-    .swiper-slide-active:hover img {
-        border-color: var(--color-gold);
-        box-shadow: var(--glow-gold-intense);
+    
+    .hero-content {
+        position: relative;
+        z-index: 3;
+        max-width: 800px;
+        margin-top: 4rem;
     }
 
     /* Timer Styles */
@@ -98,6 +72,7 @@
         font-weight: 800;
         color: var(--color-gold-light);
         line-height: 1;
+        margin: 0;
         font-family: var(--font-heading);
     }
 
@@ -106,229 +81,181 @@
         text-transform: uppercase;
         color: var(--color-text-muted);
         letter-spacing: 0.1em;
+        margin: 0;
         margin-top: 0.2rem;
-    }
-
-    #resultsChart {
-        min-height: 250px;
     }
 </style>
 </head>
 
-<body class="px-4 md:px-8 py-4">
+<body data-particles="home">
 
 <!-- Call Navbar -->
 <div id="navbar"></div>
 
 <!-- Hero Section -->
-<header class="text-center pt-24 pb-12 animate-fade-up">
-    <div class="inline-block relative mb-6">
-        <div class="absolute inset-0 bg-[#dfb26b]/20 blur-xl rounded-full"></div>
-        <img src="../icons and logos/QECLogo.png" alt="Queen Elizabeth College Logo" class="relative mx-auto h-28 w-auto transition-transform duration-500 hover:scale-105" />
+<header class="hero-container">
+    <div class="hero-slider-container">
+        <div class="hero-slide" style="background-image: url('../images/DiscoPic1.jpg');"></div>
+        <div class="hero-slide" style="background-image: url('../images/GamingBanner.png');"></div>
+        <div class="hero-slide" style="background-image: url('../images/FoodBanner.jpeg');"></div>
+        <div class="hero-slide" style="background-image: url('../images/FootballBanner.jpg');"></div>
     </div>
-    <h1 class="text-4xl md:text-6xl font-extrabold mb-3 bg-clip-text text-transparent bg-gradient-to-r from-[#f1d89b] via-[#dfb26b] to-[#b88a44] tracking-tight font-['Outfit']">
-        Food & Fun Day!
-    </h1>
-    <p class="text-lg md:text-xl text-[#a3b8b5] max-w-2xl mx-auto font-medium">
-        Join Queen Elizabeth College for an unforgettable day of excitement, delicious food, and friendly competition!
-    </p>
+    <div class="hero-overlay"></div>
+    
+    <div class="hero-content scroll-reveal">
+        <div class="inline-block relative mb-6">
+            <div class="absolute inset-0 bg-gold" style="opacity: 0.15; filter: blur(24px); border-radius: 50%;"></div>
+            <img src="../icons and logos/QECLogo.png" alt="Queen Elizabeth College Logo" class="relative mx-auto h-28 w-auto transition-transform duration-500 hover:scale-105" />
+        </div>
+        
+        <h1 class="text-4xl md:text-6xl font-extrabold mb-3 typewriter-text tracking-tight font-['Outfit']" style="color: var(--color-gold-light);">
+            Food & Fun Day 2026
+        </h1>
+        
+        <p class="text-lg md:text-xl text-base max-w-2xl mx-auto font-medium mb-8" style="color: var(--color-text-muted); padding: 0 1rem;">
+            Join Queen Elizabeth College on July 9th, 2026 for a legendary day of excitement, delicious food, and friendly competition!
+        </p>
+        
+        <div class="flex flex-wrap justify-center gap-4">
+            <a href="#countdown-section" class="btn-premium">Explore Attractions ↓</a>
+            <a href="../htmlfiles/foodstalls.html" class="btn-outline">Browse Stalls →</a>
+        </div>
+    </div>
 </header>
 
-<main class="max-w-6xl mx-auto space-y-12 pb-12">
+<main class="max-w-6xl mx-auto px-4 py-12 flex flex-col gap-12 pb-12">
 
     <!-- Countdown Widget -->
-    <section class="glass-panel p-8 text-center animate-fade-up animate-delay-1 max-w-4xl mx-auto">
-        <h2 class="text-lg md:text-xl font-bold tracking-widest text-[#dfb26b] uppercase mb-4 font-['Outfit']">COUNTDOWN UNTIL THE FUN BEGINS</h2>
+    <section id="countdown-section" class="glass-panel p-8 text-center scroll-reveal stagger-1 max-w-4xl mx-auto w-full">
+        <h2 class="text-lg md:text-xl font-bold tracking-widest uppercase mb-4 text-gold font-['Outfit']">COUNTDOWN UNTIL THE FUN BEGINS</h2>
         <div class="count-down-values-container">
             <div class="timer-circle"><h3 class="countdown-element days">-</h3><p>days</p></div>
             <div class="timer-circle"><h3 class="countdown-element hours">-</h3><p>hours</p></div>
             <div class="timer-circle"><h3 class="countdown-element minutes">-</h3><p>mins</p></div>
             <div class="timer-circle"><h3 class="countdown-element seconds">-</h3><p>secs</p></div>
         </div>
-        <p class="text-xs text-[#a3b8b5]/70 mt-6 italic font-['Outfit']">Disclaimer: Stall menu items and prices are subject to change.</p>
+        <p class="text-xs mt-6 italic font-['Outfit']" style="color: rgba(163, 184, 181, 0.7);">Disclaimer: Stall menu items and prices are subject to change.</p>
     </section>
 
-    <!-- Swiper Slideshow -->
-    <section class="glass-panel p-8 animate-fade-up animate-delay-2 max-w-5xl mx-auto overflow-hidden">
-        <h2 class="text-2xl md:text-3xl font-extrabold text-center text-[#dfb26b] mb-2 font-['Outfit']">Featured Attractions</h2>
-        <p class="text-center text-[#a3b8b5] mb-6 max-w-lg mx-auto text-sm">Slide through some of the main events and activities lined up for you!</p>
+    <!-- Native Scroll Snap Card Slideshow -->
+    <section class="glass-panel p-8 scroll-reveal stagger-2 max-w-5xl mx-auto w-full overflow-hidden">
+        <h2 class="text-2xl md:text-3xl font-extrabold text-center mb-2 text-gold font-['Outfit']">Featured Attractions</h2>
+        <p class="text-center mb-6 max-w-lg mx-auto text-sm" style="color: var(--color-text-muted);">Swipe or scroll through the main events and activities lined up for you!</p>
         
-        <div class="swiper mySwiper">
-            <div class="swiper-wrapper">
-                <!-- Disco Slide -->
-                <div class="swiper-slide glass-panel overflow-hidden flex flex-col h-full">
-                    <div class="relative overflow-hidden group">
-                        <img src="../images/DiscoPic1.jpg" alt="Discotheque" />
-                        <div class="absolute inset-0 bg-gradient-to-t from-[#071210] to-transparent opacity-60"></div>
-                    </div>
-                    <div class="p-6 flex flex-col flex-grow justify-between text-left">
-                        <div class="mb-4">
-                            <h3 class="text-xl font-bold text-[#dfb26b] mb-2 font-['Outfit']">Discotheque</h3>
-                            <p class="text-xs text-[#a3b8b5] line-clamp-3">Lights down, volume up — rhythm, energetic vibes, and absolute joy await you on the dancefloor.</p>
-                        </div>
-                        <a href="../htmlfiles/discotheque.html" class="btn-premium w-full text-center text-xs py-2 px-4 rounded-full">Enter the Disco</a>
-                    </div>
+        <div class="scroll-snap-row">
+            <!-- Disco Slide -->
+            <div class="scroll-snap-card glass-panel overflow-hidden">
+                <div class="relative overflow-hidden" style="height: 200px;">
+                    <img src="../images/DiscoPic1.jpg" alt="Discotheque" class="w-full h-full object-cover transition-transform duration-500 hover:scale-105" />
+                    <div class="absolute inset-0" style="background: linear-gradient(to top, rgba(7, 18, 16, 0.8) 0%, transparent 100%);"></div>
                 </div>
-                <!-- Gaming Slide -->
-                <div class="swiper-slide glass-panel overflow-hidden flex flex-col h-full">
-                    <div class="relative overflow-hidden group">
-                        <img src="../images/GamingBanner.png" alt="Gaming" />
-                        <div class="absolute inset-0 bg-gradient-to-t from-[#071210] to-transparent opacity-60"></div>
+                <div class="p-6 flex flex-col flex-grow justify-between text-left">
+                    <div class="mb-4">
+                        <h3 class="text-xl font-bold text-gold mb-2 font-['Outfit']">Discotheque</h3>
+                        <p class="text-xs text-sm" style="color: var(--color-text-muted); line-height: 1.5;">Lights down, volume up — rhythm, energetic vibes, and absolute joy await you on the dancefloor.</p>
                     </div>
-                    <div class="p-6 flex flex-col flex-grow justify-between text-left">
-                        <div class="mb-4">
-                            <h3 class="text-xl font-bold text-[#dfb26b] mb-2 font-['Outfit']">Esports & Gaming</h3>
-                            <p class="text-xs text-[#a3b8b5] line-clamp-3">Compete in Tekken and FIFA tournaments. Show off your skills and win amazing grand prizes.</p>
-                        </div>
-                        <a href="../htmlfiles/gaming.html" class="btn-premium w-full text-center text-xs py-2 px-4 rounded-full">Join Tournament</a>
-                    </div>
-                </div>
-                <!-- Football Slide -->
-                <div class="swiper-slide glass-panel overflow-hidden flex flex-col h-full">
-                    <div class="relative overflow-hidden group">
-                        <img src="../images/FootballBanner.jpg" alt="Football Tournament" />
-                        <div class="absolute inset-0 bg-gradient-to-t from-[#071210] to-transparent opacity-60"></div>
-                    </div>
-                    <div class="p-6 flex flex-col flex-grow justify-between text-left">
-                        <div class="mb-4">
-                            <h3 class="text-xl font-bold text-[#dfb26b] mb-2 font-['Outfit']">Football Tournament</h3>
-                            <p class="text-xs text-[#a3b8b5] line-clamp-3">Show your soccer skills and register with your team for our competitive street soccer cup!</p>
-                        </div>
-                        <a href="../htmlfiles/football.html" class="btn-premium w-full text-center text-xs py-2 px-4 rounded-full">View Matches</a>
-                    </div>
-                </div>
-                <!-- Food Slide -->
-                <div class="swiper-slide glass-panel overflow-hidden flex flex-col h-full">
-                    <div class="relative overflow-hidden group">
-                        <img src="../images/FoodBanner.jpeg" alt="Food Stalls" />
-                        <div class="absolute inset-0 bg-gradient-to-t from-[#071210] to-transparent opacity-60"></div>
-                    </div>
-                    <div class="p-6 flex flex-col flex-grow justify-between text-left">
-                        <div class="mb-4">
-                            <h3 class="text-xl font-bold text-[#dfb26b] mb-2 font-['Outfit']">Delicious Food Stalls</h3>
-                            <p class="text-xs text-[#a3b8b5] line-clamp-3">Bold flavors, sizzling menus, and sweet treats from our student and guest vendors.</p>
-                        </div>
-                        <a href="../htmlfiles/foodstalls.html" class="btn-premium w-full text-center text-xs py-2 px-4 rounded-full">Browse Menu</a>
-                    </div>
-                </div>
-                <!-- Activities Slide -->
-                <div class="swiper-slide glass-panel overflow-hidden flex flex-col h-full">
-                    <div class="relative overflow-hidden group">
-                        <img src="../images/ActivitiesBanner.jpg" alt="Activities" />
-                        <div class="absolute inset-0 bg-gradient-to-t from-[#071210] to-transparent opacity-60"></div>
-                    </div>
-                    <div class="p-6 flex flex-col flex-grow justify-between text-left">
-                        <div class="mb-4">
-                            <h3 class="text-xl font-bold text-[#dfb26b] mb-2 font-['Outfit']">Amusement Rides</h3>
-                            <p class="text-xs text-[#a3b8b5] line-clamp-3">Take a ride on the gyroscope, bounce on castles, dive into the ball pit, and play carnival games.</p>
-                        </div>
-                        <a href="../htmlfiles/activities.html" class="btn-premium w-full text-center text-xs py-2 px-4 rounded-full">Explore Activities</a>
-                    </div>
+                    <a href="../htmlfiles/discotheque.html" class="btn-premium text-xs py-2 px-4 rounded-full text-center">Enter the Disco</a>
                 </div>
             </div>
-            <div class="swiper-pagination"></div>
-            <div class="swiper-button-prev"></div>
-            <div class="swiper-button-next"></div>
+            
+            <!-- Gaming Slide -->
+            <div class="scroll-snap-card glass-panel overflow-hidden">
+                <div class="relative overflow-hidden" style="height: 200px;">
+                    <img src="../images/GamingBanner.png" alt="Gaming" class="w-full h-full object-cover transition-transform duration-500 hover:scale-105" />
+                    <div class="absolute inset-0" style="background: linear-gradient(to top, rgba(7, 18, 16, 0.8) 0%, transparent 100%);"></div>
+                </div>
+                <div class="p-6 flex flex-col flex-grow justify-between text-left">
+                    <div class="mb-4">
+                        <h3 class="text-xl font-bold text-gold mb-2 font-['Outfit']">Esports & Gaming</h3>
+                        <p class="text-xs text-sm" style="color: var(--color-text-muted); line-height: 1.5;">Compete in Tekken and FIFA tournaments. Show off your skills and win amazing grand prizes.</p>
+                    </div>
+                    <a href="../htmlfiles/gaming.html" class="btn-premium text-xs py-2 px-4 rounded-full text-center">Join Tournament</a>
+                </div>
+            </div>
+            
+            <!-- Football Slide -->
+            <div class="scroll-snap-card glass-panel overflow-hidden">
+                <div class="relative overflow-hidden" style="height: 200px;">
+                    <img src="../images/FootballBanner.jpg" alt="Football Tournament" class="w-full h-full object-cover transition-transform duration-500 hover:scale-105" />
+                    <div class="absolute inset-0" style="background: linear-gradient(to top, rgba(7, 18, 16, 0.8) 0%, transparent 100%);"></div>
+                </div>
+                <div class="p-6 flex flex-col flex-grow justify-between text-left">
+                    <div class="mb-4">
+                        <h3 class="text-xl font-bold text-gold mb-2 font-['Outfit']">Football Tournament</h3>
+                        <p class="text-xs text-sm" style="color: var(--color-text-muted); line-height: 1.5;">Show your soccer skills and register with your team for our competitive street soccer cup!</p>
+                    </div>
+                    <a href="../htmlfiles/football.html" class="btn-premium text-xs py-2 px-4 rounded-full text-center">View Matches</a>
+                </div>
+            </div>
+            
+            <!-- Food Slide -->
+            <div class="scroll-snap-card glass-panel overflow-hidden">
+                <div class="relative overflow-hidden" style="height: 200px;">
+                    <img src="../images/FoodBanner.jpeg" alt="Food Stalls" class="w-full h-full object-cover transition-transform duration-500 hover:scale-105" />
+                    <div class="absolute inset-0" style="background: linear-gradient(to top, rgba(7, 18, 16, 0.8) 0%, transparent 100%);"></div>
+                </div>
+                <div class="p-6 flex flex-col flex-grow justify-between text-left">
+                    <div class="mb-4">
+                        <h3 class="text-xl font-bold text-gold mb-2 font-['Outfit']">Delicious Food Stalls</h3>
+                        <p class="text-xs text-sm" style="color: var(--color-text-muted); line-height: 1.5;">Bold flavors, sizzling menus, and sweet treats from our student and guest vendors.</p>
+                    </div>
+                    <a href="../htmlfiles/foodstalls.html" class="btn-premium text-xs py-2 px-4 rounded-full text-center">Browse Menu</a>
+                </div>
+            </div>
+            
+            <!-- Activities Slide -->
+            <div class="scroll-snap-card glass-panel overflow-hidden">
+                <div class="relative overflow-hidden" style="height: 200px;">
+                    <img src="../images/ActivitiesBanner.jpg" alt="Activities" class="w-full h-full object-cover transition-transform duration-500 hover:scale-105" />
+                    <div class="absolute inset-0" style="background: linear-gradient(to top, rgba(7, 18, 16, 0.8) 0%, transparent 100%);"></div>
+                </div>
+                <div class="p-6 flex flex-col flex-grow justify-between text-left">
+                    <div class="mb-4">
+                        <h3 class="text-xl font-bold text-gold mb-2 font-['Outfit']">Amusement Rides</h3>
+                        <p class="text-xs text-sm" style="color: var(--color-text-muted); line-height: 1.5;">Take a ride on the gyroscope, bounce on castles, dive into the ball pit, and play carnival games.</p>
+                    </div>
+                    <a href="../htmlfiles/activities.html" class="btn-premium text-xs py-2 px-4 rounded-full text-center">Explore Activities</a>
+                </div>
+            </div>
         </div>
-    </section>
-
-
-    <!-- Voting Section -->
-    <section class="glass-panel p-8 text-center animate-fade-up animate-delay-3 max-w-4xl mx-auto">
-        <h2 class="text-2xl md:text-3xl font-extrabold text-[#dfb26b] mb-2 font-['Outfit']">What Are You Most Excited For?</h2>
-        <p class="text-sm text-[#a3b8b5] mb-6 max-w-md mx-auto">Cast your vote below! Your response helps us prepare the ultimate experience.</p>
-        
-        <div class="flex flex-wrap justify-center gap-3 mb-6">
-            <button class="vote-btn px-4 py-2 rounded-full font-bold text-white text-xs sm:text-sm hover:scale-105 active:scale-95 transition-all duration-300 shadow-md" style="background-color:#a855f7; box-shadow: 0 4px 12px rgba(168, 85, 247, 0.3);" data-option="Discotheque">Disco 💃</button>
-            <button class="vote-btn px-4 py-2 rounded-full font-bold text-white text-xs sm:text-sm hover:scale-105 active:scale-95 transition-all duration-300 shadow-md" style="background-color:#34d399; box-shadow: 0 4px 12px rgba(52, 211, 153, 0.3);" data-option="Gaming">Gaming 🎮</button>
-            <button class="vote-btn px-4 py-2 rounded-full font-bold text-white text-xs sm:text-sm hover:scale-105 active:scale-95 transition-all duration-300 shadow-md" style="background-color:#60a5fa; box-shadow: 0 4px 12px rgba(96, 165, 250, 0.3);" data-option="Football Tournament">Football ⚽</button>
-            <button class="vote-btn px-4 py-2 rounded-full font-bold text-white text-xs sm:text-sm hover:scale-105 active:scale-95 transition-all duration-300 shadow-md" style="background-color:#dfb26b; box-shadow: 0 4px 12px rgba(223, 178, 107, 0.3); color: #071210;" data-option="Food Stalls">Food Stalls 🍔</button>
-            <button class="vote-btn px-4 py-2 rounded-full font-bold text-white text-xs sm:text-sm hover:scale-105 active:scale-95 transition-all duration-300 shadow-md" style="background-color:#ef4444; box-shadow: 0 4px 12px rgba(239, 68, 68, 0.3);" data-option="Amusement Park">Amusement Rides 🎢</button>
-            <button class="vote-btn px-4 py-2 rounded-full font-bold text-white text-xs sm:text-sm hover:scale-105 active:scale-95 transition-all duration-300 shadow-md" style="background-color:#facc15; box-shadow: 0 4px 12px rgba(250, 204, 21, 0.3); color: #071210;" data-option="Team Games">Team Games 🏆</button>
-        </div>
-      
-        <p id="vote-message" class="text-sm font-semibold text-[#dfb26b] mb-4 h-6"></p>
-      
-        <div class="relative w-full h-[250px] md:h-[300px]">
-            <canvas id="resultsChart" class="w-full h-full"></canvas>
-        </div>          
     </section>
 
 </main>
 
-<footer class="text-center py-8 text-[#a3b8b5] border-t border-[#dfb26b]/10 bg-[#071210]/40 max-w-full font-['Outfit'] text-xs">
+<footer class="text-center py-8 border-t bg-[#071210]/40 max-w-full font-['Outfit'] text-xs" style="color: var(--color-text-muted); border-color: rgba(223, 178, 107, 0.1);">
     <p>&copy; 2026 Queen Elizabeth College. Crafted by QECC Club. All rights reserved.</p>
 </footer>
 
-<!-- Swiper and Countdown Scripts -->
-<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+<!-- JavaScript Module Links -->
+<script src="../javascript/splash.js"></script>
+<script src="../javascript/particles.js"></script>
+<script src="../javascript/scroll-reveal.js"></script>
+<script src="../javascript/page-transition.js"></script>
+<script src="../javascript/navbar.js"></script>
+
 <script>
-    // Initialize Swiper with Premium 3D Coverflow Effect
-    const swiper = new Swiper('.mySwiper', {
-        effect: 'coverflow',
-        grabCursor: true,
-        centeredSlides: true,
-        slidesPerView: 'auto',
-        coverflowEffect: {
-            rotate: 25,
-            stretch: 0,
-            depth: 100,
-            modifier: 1.2,
-            slideShadows: true,
-        },
-        loop: true,
-        autoplay: { 
-            delay: 4500, 
-            disableOnInteraction: false 
-        },
-        speed: 800,
-        pagination: { 
-            el: '.swiper-pagination', 
-            clickable: true 
-        },
-        navigation: { 
-            nextEl: '.swiper-button-next', 
-            prevEl: '.swiper-button-prev' 
-        },
-    });
-
-    // Dynamic Countdown (Generates a target date 180 days in the future so the timer is always active during review)
-    let dest = new Date();
-    dest.setDate(dest.getDate() + 180);
-    dest.setHours(8, 0, 0, 0);
-    let destTime = dest.getTime();
+    // Hardcoded Countdown until July 9, 2026 at 08:00 AM
+    const destTime = new Date('2026-07-09T08:00:00').getTime();
     
-    // Store in localStorage if we want a stable target date, or just keep it shifting
-    if (!localStorage.getItem('eventTargetDate')) {
-        localStorage.setItem('eventTargetDate', destTime);
-    } else {
-        destTime = parseInt(localStorage.getItem('eventTargetDate'));
-        // If target date is in the past, reset it for another 180 days
-        if (destTime < new Date().getTime()) {
-            destTime = new Date().getTime() + (180 * 24 * 60 * 60 * 1000);
-            localStorage.setItem('eventTargetDate', destTime);
-        }
-    }
-
     const countdownTimer = setInterval(() => {
-        let now = new Date().getTime();
-        let diff = destTime - now;
+        const now = new Date().getTime();
+        const diff = destTime - now;
         
         if (diff <= 0) {
             clearInterval(countdownTimer);
             document.querySelector('.count-down-values-container').style.display = 'none';
-            document.querySelector('.text-center.mb-6').innerHTML = `
-                <h2 class="text-2xl font-extrabold text-[#dfb26b] font-['Outfit'] animate-float">THE EVENT HAS STARTED!</h2>
+            document.getElementById('countdown-section').querySelector('h2').innerHTML = `
+                <h2 class="text-2xl font-extrabold text-gold font-['Outfit'] animate-float" style="color: var(--color-gold);">THE EVENT HAS STARTED!</h2>
             `;
             return;
         }
         
-        let d = Math.floor(diff / (1000 * 60 * 60 * 24));
-        let h = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-        let m = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-        let s = Math.floor((diff % (1000 * 60)) / 1000);
+        const d = Math.floor(diff / (1000 * 60 * 60 * 24));
+        const h = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const m = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+        const s = Math.floor((diff % (1000 * 60)) / 1000);
         
-        let elements = document.getElementsByClassName("countdown-element");
+        const elements = document.getElementsByClassName("countdown-element");
         if (elements.length >= 4) {
             elements[0].innerHTML = d.toString().padStart(2, '0');
             elements[1].innerHTML = h.toString().padStart(2, '0');
@@ -337,183 +264,6 @@
         }
     }, 1000);
 </script>
-
-<!-- Voting and Chart script with Dual LocalStorage & Firebase sync -->
-<script>
-    // Firebase Config (Last year's project keys)
-    const firebaseConfig = {
-        apiKey: "AIzaSyDuy-_Hc8j5DN2obgUT3YZr3tzZqCwgPDI",
-        authDomain: "food-and-fun-day-qec.firebaseapp.com",
-        projectId: "food-and-fun-day-qec",
-        storageBucket: "food-and-fun-day-qec.appspot.com",
-        messagingSenderId: "671943551617",
-        appId: "1:671943551617:web:d6100074046c1f114e3b80"
-    };
-
-    let db = null;
-    let isFirebaseReady = false;
-
-    // Try initializing Firebase
-    try {
-        if (typeof firebase !== 'undefined') {
-            firebase.initializeApp(firebaseConfig);
-            db = firebase.firestore();
-            isFirebaseReady = true;
-            console.log("Firebase initialized successfully.");
-        }
-    } catch (e) {
-        console.warn("Firebase initialization failed, falling back to Local Storage database:", e);
-    }
-
-    const chartCtx = document.getElementById('resultsChart').getContext('2d');
-    const voteMessage = document.getElementById('vote-message');
-    const categories = ["Discotheque", "Gaming", "Football Tournament", "Food Stalls", "Amusement Park", "Team Games"];
-
-    // Default starting counts for local storage mock database
-    const defaultLocalCounts = {
-        "Discotheque": 54,
-        "Gaming": 88,
-        "Football Tournament": 42,
-        "Food Stalls": 120,
-        "Amusement Park": 65,
-        "Team Games": 31
-    };
-
-    // Load initial vote data from localStorage if empty
-    if (!localStorage.getItem('qecc_votes_db')) {
-        localStorage.setItem('qecc_votes_db', JSON.stringify(defaultLocalCounts));
-    }
-
-    // ChartJS Setup
-    const voteChart = new Chart(chartCtx, {
-        type: 'bar',
-        data: {
-            labels: categories,
-            datasets: [{
-                label: 'Votes',
-                data: [0, 0, 0, 0, 0, 0],
-                backgroundColor: [
-                    'rgba(168, 85, 247, 0.75)', // Disco purple
-                    'rgba(52, 211, 153, 0.75)',  // Gaming emerald
-                    'rgba(96, 165, 250, 0.75)',  // Football blue
-                    'rgba(223, 178, 107, 0.75)', // Food gold
-                    'rgba(239, 68, 68, 0.75)',   // Amusement red
-                    'rgba(250, 204, 21, 0.75)'   // Team yellow
-                ],
-                borderColor: [
-                    '#a855f7', '#34d399', '#60a5fa', '#dfb26b', '#ef4444', '#facc15'
-                ],
-                borderWidth: 1.5,
-                borderRadius: 8
-            }]
-        },
-        options: {
-            indexAxis: 'y',
-            responsive: true,
-            maintainAspectRatio: false,
-            scales: {
-                x: {
-                    beginAtZero: true,
-                    ticks: {
-                        color: '#a3b8b5',
-                        font: { family: 'Outfit', size: 12 }
-                    },
-                    grid: { color: 'rgba(223, 178, 107, 0.08)' }
-                },
-                y: {
-                    ticks: {
-                        color: '#ede0cb',
-                        font: { family: 'Outfit', size: 12, weight: 'bold' }
-                    },
-                    grid: { display: false }
-                }
-            },
-            plugins: {
-                legend: { display: false }
-            }
-        }
-    });
-
-    // Function to retrieve vote counts
-    function fetchVotes() {
-        if (isFirebaseReady) {
-            db.collection("votes").get().then(snapshot => {
-                let counts = { ...defaultLocalCounts };
-                snapshot.forEach(doc => {
-                    counts[doc.id] = doc.data().count || 0;
-                });
-                updateChartData(counts);
-                // Keep local storage database in sync
-                localStorage.setItem('qecc_votes_db', JSON.stringify(counts));
-            }).catch(err => {
-                console.error("Firebase fetch error, loading from local cache:", err);
-                loadLocalVotes();
-            });
-        } else {
-            loadLocalVotes();
-        }
-    }
-
-    function loadLocalVotes() {
-        const stored = localStorage.getItem('qecc_votes_db');
-        if (stored) {
-            updateChartData(JSON.parse(stored));
-        }
-    }
-
-    function updateChartData(counts) {
-        voteChart.data.datasets[0].data = categories.map(cat => counts[cat] || 0);
-        voteChart.update();
-    }
-
-    // Initialize chart display
-    fetchVotes();
-
-    // Vote button handling
-    document.querySelectorAll('.vote-btn').forEach(button => {
-        button.addEventListener('click', () => {
-            const option = button.dataset.option;
-            
-            if (localStorage.getItem('hasVoted')) {
-                voteMessage.textContent = "You have already cast your vote! 🗳️";
-                return;
-            }
-
-            // 1. Update Local Storage Database first for instant feedback
-            let localDB = JSON.parse(localStorage.getItem('qecc_votes_db') || '{}');
-            localDB[option] = (localDB[option] || 0) + 1;
-            localStorage.setItem('qecc_votes_db', JSON.stringify(localDB));
-            localStorage.setItem('hasVoted', 'true');
-            
-            // Render local updates instantly
-            updateChartData(localDB);
-            voteMessage.textContent = "Thank you for voting! 🎉";
-
-            // 2. Sync to Firebase if available
-            if (isFirebaseReady) {
-                const voteRef = db.collection("votes").doc(option);
-                db.runTransaction(tx => {
-                    return tx.get(voteRef).then(doc => {
-                        const newCount = doc.exists ? doc.data().count + 1 : 1;
-                        tx.set(voteRef, { count: newCount });
-                    });
-                }).then(() => {
-                    console.log("Firebase successfully synced.");
-                    fetchVotes(); // Pull latest overall figures
-                }).catch(err => {
-                    console.warn("Failed to sync vote to Firebase, cached locally:", err);
-                });
-            }
-        });
-    });
-
-    // Check if user has already voted
-    if (localStorage.getItem('hasVoted')) {
-        voteMessage.textContent = "Thanks for voting! Your results are updated.";
-    }
-</script>
-
-<script src="../javascript/navbar.js"></script>
 
 </body>
 </html>
