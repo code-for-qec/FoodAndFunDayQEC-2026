@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Discotech - School Food & Fun Day!</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Righteous&display=swap" rel="stylesheet">
+    <style>
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 12px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #1a3330;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #2b564f;
+            border: 2px solid #d5ab6d;
+            border-radius: 6px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #336b63;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideUp {
+            from { 
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to { 
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes titleGlow {
+            0% { 
+                text-shadow: 0 0 5px rgba(213, 171, 109, 0.3),
+                            0 0 10px rgba(213, 171, 109, 0.2);
+            }
+            50% { 
+                text-shadow: 0 0 10px rgba(213, 171, 109, 0.5),
+                            0 0 20px rgba(213, 171, 109, 0.3),
+                            0 0 30px rgba(213, 171, 109, 0.2);
+            }
+            100% { 
+                text-shadow: 0 0 5px rgba(213, 171, 109, 0.3),
+                            0 0 10px rgba(213, 171, 109, 0.2);
+            }
+        }
+
+        .animate-fade-in {
+            opacity: 0;
+            animation: fadeIn 0.8s ease-out forwards;
+        }
+
+        .animate-slide-up {
+            opacity: 0;
+            transform: translateY(20px);
+            animation: slideUp 0.8s ease-out forwards;
+        }
+
+        .disco-card {
+            background: rgba(26, 51, 48, 0.3);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(213, 171, 109, 0.3);
+            opacity: 1;
+        }
+
+        .disco-info-box {
+            background: rgba(43, 86, 79, 0.4);
+            border: 1px solid rgba(213, 171, 109, 0.4);
+            padding: 0.75rem 1rem;
+            border-radius: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .disco-info-box:last-child {
+            margin-bottom: 0;
+        }
+
+        .disco-title {
+            opacity: 1;
+            color: #d5ab6d;
+            text-shadow: 0 0 10px rgba(213, 171, 109, 0.5), 0 0 20px rgba(213, 171, 109, 0.3), 0 0 30px rgba(213, 171, 109, 0.2);
+        }
+
+        .delay-100 { animation-delay: 0.1s; }
+        .delay-200 { animation-delay: 0.2s; }
+        .delay-300 { animation-delay: 0.3s; }
+        .delay-400 { animation-delay: 0.4s; }
+        .delay-500 { animation-delay: 0.5s; }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0a1413;
+            color: #e8d5b5;
+            background-image: 
+                linear-gradient(rgba(10, 20, 19, 0.97), rgba(10, 20, 19, 0.97)),
+                repeating-linear-gradient(
+                    0deg,
+                    transparent,
+                    transparent 2px,
+                    rgba(213, 171, 109, 0.05) 2px,
+                    rgba(213, 171, 109, 0.05) 4px
+                );
+        }
+
+        h1, h2, h3 {
+            font-family: 'Righteous', 'Inter', sans-serif;
+        }
+
+        .disco-text {
+            color: #f0e0c5;
+        }
+
+        .back-button {
+            background: rgba(26, 51, 48, 0.5);
+            border: 1px solid rgba(213, 171, 109, 0.5);
+            transition: all 0.3s ease;
+        }
+
+        .back-button:hover {
+            background: rgba(213, 171, 109, 0.2);
+            border-color: #d5ab6d;
+        }
+
+        .main-content {
+            opacity: 0;
+            transform: translateY(20px);
+            animation: slideUp 0.8s ease-out 0.4s forwards;
+        }
+
+        .header-item {
+            margin-bottom: 1.5rem;
+        }
+
+        .header-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .disco-banner {
+            position: relative;
+            background-image: url('../images/DiscoPic2.jpg');
+            background-size: cover;
+            background-position: center 30%;
+            overflow: hidden;
+        }
+        .disco-banner::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: inherit;
+            filter: blur(2px);
+            z-index: 1;
+        }
+        .disco-banner::after {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: linear-gradient(120deg, rgba(40,0,50,0.85), rgba(20,40,35,0.8));
+            filter: blur(2px);
+            z-index: 2;
+        }
+        .disco-banner > * {
+            position: relative;
+            z-index: 3;
+        }
+
+        /* Ensure navbar font size is consistent */
+        #navbar a {
+            font-size: 16px !important; /* Consistent fixed font size for links */
+        }
+    </style>
+</head>
+<body class="p-4">
+
+    <!-- Call Navbar -->
+    <div id="navbar"></div>
+
+    <header class="pt-20 text-center mb-12">
+        <div class="header-item animate-slide-up delay-100">
+            <img src="../icons and logos/QECLogoDisco.gif" alt="Queen Elizabeth College Logo" class="mx-auto h-24 w-auto">
+        </div>
+        <div class="header-item animate-slide-up delay-200">
+            <h1 class="text-4xl font-bold disco-title">Discotheque</h1>
+        </div>
+        <div class="header-item animate-slide-up delay-300">
+            <a href="../htmlfiles/index.html" class="back-button inline-block px-4 py-1.5 text-[#e8d5b5] rounded-md">← Back to Main Page</a>
+        </div>
+    </header>
+
+    <main class="max-w-2xl mx-auto disco-card disco-banner p-8 rounded-lg">
+        <div class="main-content">
+            <h2 class="text-2xl font-bold mb-4 disco-title">Join us for an incredible disco experience!</h2>
+            <div class="space-y-6 disco-text">
+                <p class="text-lg mb-4">Get ready for an unforgettable dance featuring Avi S, Yohan and Tuks!</p>
+
+                <div class="mt-6 disco-info-box flex items-start">
+                    <span class="h-6 w-6 mr-3 text-[#d5ab6d] flex-shrink-0 flex items-center justify-center text-xl font-bold">
+                        €
+                    </span>
+                    <div>
+                        <h3 class="font-bold text-[#d5ab6d] mb-2">Prices:</h3>
+                        <ul class="list-disc list-inside space-y-2">
+                            <li>Rs80 (single gender session)</li>
+                            <li>Rs100 (Last 2 sessions)</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="flex items-center disco-info-box">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-3 text-[#d5ab6d] flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                    <div class="flex items-center w-full">
+                        <h3 class="font-bold text-[#d5ab6d] mr-2">Time:</h3>
+                        <p>10:00 - 14:00</p>
+                    </div>
+                </div>
+
+                <div class="flex items-center disco-info-box">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-3 text-[#d5ab6d] flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.828 0l-4.243-4.243a8 8 0 1111.314 0z" />
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                    </svg>
+                    <div class="flex items-center w-full">
+                        <h3 class="font-bold text-[#d5ab6d] mr-2">Location:</h3>
+                        <p>Hall</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="text-center mt-8 animate-fade-in delay-500" style="color: #d5ab6d;">
+        <p>&copy; 2025 Queen Elizabeth College. All rights reserved.</p>
+    </footer>
+    <script src="../javascript/navbar.js"></script>
+</body>
+</html> 
