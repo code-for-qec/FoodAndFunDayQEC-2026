@@ -7,11 +7,10 @@ Website for Queen Elizabeth College's Food and Fun Day 2026 event. Re-designed f
 - **3D Coverflow Slide**: Parallax-scrolling attraction slides.
 - **Live Interactive Poll**: Real-time voting widget with an automated Local Storage cache fallback if Firebase is offline.
 - **Dynamic Food & Activities Filtering**: Real-time text search and category chips (Meals, Snacks, Drinks, Desserts) for instant filtering of event vendors.
-- **Ticket Booking Simulator**: Select pass tiers (Standard, Premium, VIP), adjust quantities, calculate total costs, and generate customized mock passes with a pseudo-random HTML5 canvas QR Code.
 - **Theme Sub-pages**:
-  - **Discotheque**: Club neon theme with rotating schedule lists and song requests.
-  - **Gaming Arena**: Cyberpunk terminal layout, schedule guides, and competitor registration.
-  - **Football Cup**: Tournament scoreboard loader and prefilled team registrations.
+  - **Discotheque**: Club neon theme with rotating schedule lists.
+  - **Gaming Arena**: Cyberpunk terminal layout and tournament schedule guides.
+  - **Football Cup**: Tournament scoreboard loader and registration link.
 
 ---
 
@@ -22,10 +21,9 @@ Website for Queen Elizabeth College's Food and Fun Day 2026 event. Re-designed f
 ├── htmlfiles/
 │   ├── index.html            # Landing / Hero page
 │   ├── foodstalls.html       # Food menu lists with search & category filters
-│   ├── tickets.html          # Interactive Ticket booking simulator
-│   ├── discotheque.html      # Discotheque info and song requests widget
-│   ├── gaming.html           # Esports tournament schedule and pre-registration
-│   ├── football.html         # Tournament scoreboard and form pre-fill redirector
+│   ├── discotheque.html      # Discotheque info and schedule
+│   ├── gaming.html           # Esports tournament schedule and guidelines
+│   ├── football.html         # Tournament scoreboard and registration link
 │   ├── activities.html       # Rides, amusement parks, and attractions lists
 │   ├── stall_info.json       # JSON database for foods and activities
 │   └── football_schedule.json# JSON database for tournament matches

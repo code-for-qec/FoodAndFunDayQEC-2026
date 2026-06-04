@@ -46,37 +46,6 @@
             transform: scale(1.02);
             box-shadow: 0 0 15px rgba(132, 251, 243, 0.2);
         }
-        .gaming-input {
-            width: 100%;
-            background: rgba(0, 0, 0, 0.6);
-            border: 2px solid rgba(132, 251, 243, 0.4);
-            color: #84fbf3;
-            padding: 0.75rem 1rem;
-            border-radius: 4px;
-            font-family: var(--font-retro);
-            font-size: 10px;
-            transition: var(--transition-smooth);
-        }
-        .gaming-input:focus {
-            outline: none;
-            border-color: #84fbf3;
-            box-shadow: 0 0 10px rgba(132, 251, 243, 0.4);
-        }
-        .gaming-btn {
-            background: #84fbf3;
-            color: #071210;
-            border: 2px solid #84fbf3;
-            padding: 0.75rem 1.5rem;
-            font-weight: bold;
-            cursor: pointer;
-            transition: var(--transition-smooth);
-            text-shadow: none;
-        }
-        .gaming-btn:hover {
-            background: transparent;
-            color: #84fbf3;
-            box-shadow: 0 0 15px rgba(132, 251, 243, 0.5);
-        }
     </style>
 </head>
 <body class="px-4 md:px-8 py-4">
@@ -94,85 +63,92 @@
         <a href="../htmlfiles/index.html" class="back-button border-cyan-400 hover:bg-cyan-500/10">← RETURN</a>
     </header>
 
-    <main class="max-w-5xl mx-auto grid md:grid-cols-12 gap-8 mb-16 px-4">
+    <main class="max-w-4xl mx-auto space-y-8 mb-16 px-4 animate-fade-up animate-delay-1">
         
-        <!-- Left: Game Details (7 Cols) -->
-        <section class="gaming-panel p-6 md:p-8 md:col-span-7 space-y-8 animate-fade-up animate-delay-1">
-            <div>
-                <h2 class="text-base text-cyan-200 border-b-2 border-cyan-500/30 pb-2 mb-6">// FEATURED TITLES</h2>
-                
-                <div class="space-y-6">
-                    <!-- FIFA -->
-                    <div class="game-card-pixel p-4 flex flex-col sm:flex-row gap-4 items-center">
-                        <img src="../icons and logos/FifaLogo.png" alt="FIFA Logo" class="w-16 h-16 object-contain image-rendering-pixelated">
-                        <div class="flex-grow text-center sm:text-left">
-                            <h3 class="text-sm font-bold text-white mb-2">FIFA 2K26 CUP</h3>
-                            <p class="text-[10px] text-[#a3b8b5] mb-2">Challenge peers and showcase soccer tactics.</p>
-                            <div class="text-[9px] text-[#dfb26b]">
-                                [ DATE: 27-28 MAY ] &bull; [ LOCATION: PHYSICS LAB ]
-                            </div>
+        <!-- Featured Games -->
+        <section class="gaming-panel p-6 md:p-8">
+            <h2 class="text-sm text-cyan-200 border-b-2 border-cyan-500/30 pb-2 mb-6">// FEATURED TITLES</h2>
+            
+            <div class="grid md:grid-cols-2 gap-6">
+                <!-- FIFA -->
+                <div class="game-card-pixel p-4 flex flex-col sm:flex-row gap-4 items-center">
+                    <img src="../icons and logos/FifaLogo.png" alt="FIFA Logo" class="w-16 h-16 object-contain image-rendering-pixelated">
+                    <div class="flex-grow text-center sm:text-left">
+                        <h3 class="text-xs font-bold text-white mb-2">FIFA 2K26 CUP</h3>
+                        <p class="text-[10px] text-[#a3b8b5] mb-2">Challenge peers and showcase soccer tactics.</p>
+                        <div class="text-[8px] text-[#dfb26b]">
+                            [ DATE: 27-28 MAY ] &bull; [ LOCATION: PHYSICS LAB ]
                         </div>
                     </div>
-                    
-                    <!-- TEKKEN -->
-                    <div class="game-card-pixel p-4 flex flex-col sm:flex-row gap-4 items-center">
-                        <img src="../icons and logos/TekkenAnim.gif" alt="Tekken Animation" class="w-16 h-16 object-contain">
-                        <div class="flex-grow text-center sm:text-left">
-                            <h3 class="text-sm font-bold text-white mb-2">TEKKEN 8 FIGHT</h3>
-                            <p class="text-[10px] text-[#a3b8b5] mb-2">Intense 1v1 bracket battles. Combos ready.</p>
-                            <div class="text-[9px] text-[#dfb26b]">
-                                [ DATE: 27-28 MAY ] &bull; [ ENTRY: RS 150 ]
-                            </div>
+                </div>
+                
+                <!-- TEKKEN -->
+                <div class="game-card-pixel p-4 flex flex-col sm:flex-row gap-4 items-center">
+                    <img src="../icons and logos/TekkenAnim.gif" alt="Tekken Animation" class="w-16 h-16 object-contain">
+                    <div class="flex-grow text-center sm:text-left">
+                        <h3 class="text-xs font-bold text-white mb-2">TEKKEN 8 FIGHT</h3>
+                        <p class="text-[10px] text-[#a3b8b5] mb-2">Intense 1v1 bracket battles. Combos ready.</p>
+                        <div class="text-[8px] text-[#dfb26b]">
+                            [ DATE: 27-28 MAY ] &bull; [ ENTRY: RS 150 ]
                         </div>
                     </div>
                 </div>
             </div>
+        </section>
 
-            <!-- Prizes & Brackets -->
-            <div class="grid sm:grid-cols-2 gap-6 pt-4 border-t border-cyan-500/25">
-                <div>
-                    <h3 class="text-xs text-cyan-300 mb-3">> PRIZE POOL</h3>
-                    <ul class="space-y-2 text-[9px] text-white">
+        <!-- Rules, Prizes, and Schedule -->
+        <div class="grid md:grid-cols-2 gap-8">
+            <!-- Tournament Guide -->
+            <section class="gaming-panel p-6 space-y-6">
+                <h2 class="text-xs text-cyan-200 border-b border-cyan-500/25 pb-2 mb-4">// TOURNAMENT INFO</h2>
+                
+                <div class="space-y-4 text-[10px]">
+                    <div class="flex justify-between border-b border-cyan-500/10 pb-2">
+                        <span class="text-cyan-300">ENTRY FEE</span>
+                        <span class="text-white">Rs 150</span>
+                    </div>
+                    <div class="flex justify-between border-b border-cyan-500/10 pb-2">
+                        <span class="text-cyan-300">LOCATION</span>
+                        <span class="text-white">Physics Lab</span>
+                    </div>
+                    <div class="flex justify-between border-b border-cyan-500/10 pb-2">
+                        <span class="text-cyan-300">DATES</span>
+                        <span class="text-white">27 & 28 May</span>
+                    </div>
+                </div>
+
+                <div class="pt-2">
+                    <h3 class="text-[10px] text-cyan-300 mb-2">> PRIZE POOL</h3>
+                    <ul class="space-y-1.5 text-[9px] text-white list-disc list-inside">
                         <li>1ST: <span class="text-[#dfb26b]">10H PC VOUCHER</span></li>
                         <li>2ND: <span class="text-[#dfb26b]">5H PC VOUCHER</span></li>
                         <li>3RD: <span class="text-[#dfb26b]">2H PC VOUCHER</span></li>
                     </ul>
                 </div>
+            </section>
+
+            <!-- Play & Schedules -->
+            <section class="gaming-panel p-6 space-y-6">
+                <h2 class="text-xs text-cyan-200 border-b border-cyan-500/25 pb-2 mb-4">// FREE PLAY & SCHED</h2>
+                
                 <div>
-                    <h3 class="text-xs text-cyan-300 mb-3">> FREE PLAY</h3>
-                    <ul class="space-y-2 text-[9px] text-white">
-                        <li>PC STATIONS OPEN: 10:00+</li>
-                        <li>CO-OP RATE: Rs 100/PAIR</li>
-                        <li>LATE TICKET: Rs 200/PAIR</li>
+                    <h3 class="text-[10px] text-cyan-300 mb-2">> FREE PLAY DATA</h3>
+                    <ul class="space-y-1.5 text-[9px] text-[#a3b8b5] list-disc list-inside">
+                        <li>PCs open starting at 10:00 AM</li>
+                        <li>Rs 100/pair (Rs 50 per player)</li>
+                        <li>Last minute tickets: Rs 200/pair</li>
                     </ul>
                 </div>
-            </div>
-        </section>
 
-        <!-- Right: Register & Live Bracket (5 Cols) -->
-        <section class="gaming-panel p-6 md:col-span-5 space-y-8 animate-fade-up animate-delay-2">
-            <!-- Registration Simulator -->
-            <div>
-                <h2 class="text-xs text-cyan-200 border-b border-cyan-500/25 pb-2 mb-4">// PRE-REGISTER</h2>
-                <form id="gamerForm" class="space-y-3">
-                    <input type="text" id="gamerTag" placeholder="GAMER TAG" class="gaming-input" required />
-                    <select id="gameChoice" class="gaming-input">
-                        <option value="FIFA 2K26">FIFA 2K26</option>
-                        <option value="TEKKEN 8">TEKKEN 8</option>
-                    </select>
-                    <button type="submit" class="gaming-btn w-full text-[10px]">REGISTER PLAYER</button>
-                </form>
-                <p id="regMessage" class="text-[9px] text-[#dfb26b] mt-3 h-4 text-center"></p>
-            </div>
-
-            <!-- Live Standings -->
-            <div>
-                <h2 class="text-xs text-cyan-200 border-b border-cyan-500/25 pb-2 mb-4">// LIVE BRACKET</h2>
-                <ul id="competitorsList" class="space-y-2.5 max-h-[220px] overflow-y-auto pr-1">
-                    <!-- Dynamically populated -->
-                </ul>
-            </div>
-        </section>
+                <div class="pt-2">
+                    <h3 class="text-[10px] text-cyan-300 mb-2">> MATCH TIMELINE</h3>
+                    <ul class="space-y-1.5 text-[9px] text-[#a3b8b5] list-disc list-inside">
+                        <li><span class="text-white">27 May:</span> Preliminary & Semi Finals</li>
+                        <li><span class="text-white">28 May:</span> Grand Finals</li>
+                    </ul>
+                </div>
+            </section>
+        </div>
         
     </main>
 
@@ -180,64 +156,6 @@
         <p>&copy; 2026 Queen Elizabeth College. Crafted by QECC Club. All rights reserved.</p>
     </footer>
 
-    <!-- Interactive script -->
-    <script>
-        const gamerForm = document.getElementById('gamerForm');
-        const gamerTag = document.getElementById('gamerTag');
-        const gameChoice = document.getElementById('gameChoice');
-        const regMessage = document.getElementById('regMessage');
-        const competitorsList = document.getElementById('competitorsList');
-
-        // Seed gamer tags
-        let competitors = [
-            { tag: "PX_MASTER", game: "FIFA 2K26", rank: "1ST" },
-            { tag: "COMBO_KING", game: "TEKKEN 8", rank: "2ND" },
-            { tag: "NINJA_SLAYER", game: "TEKKEN 8", rank: "3RD" }
-        ];
-
-        function renderCompetitors() {
-            competitorsList.innerHTML = '';
-            competitors.forEach((c, idx) => {
-                const li = document.createElement('li');
-                li.className = 'flex justify-between items-center bg-black/40 p-2.5 rounded border border-cyan-500/10 hover:border-cyan-500/30 transition-colors';
-                li.innerHTML = `
-                    <div>
-                        <p class="text-[10px] font-bold text-white">${c.tag}</p>
-                        <p class="text-[8px] text-[#a3b8b5]">${c.game}</p>
-                    </div>
-                    <span class="text-[#dfb26b] font-bold text-[9px]">[ ${c.rank} ]</span>
-                `;
-                competitorsList.appendChild(li);
-            });
-        }
-
-        gamerForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            const tagVal = gamerTag.value.trim().toUpperCase();
-            const gameVal = gameChoice.value;
-            
-            if (tagVal) {
-                // Check if already registered
-                if (competitors.some(c => c.tag === tagVal)) {
-                    regMessage.textContent = "ERROR: TAG ALREADY IN USE";
-                    return;
-                }
-                
-                competitors.push({
-                    tag: tagVal,
-                    game: gameVal,
-                    rank: "REGD"
-                });
-                
-                gamerTag.value = '';
-                regMessage.textContent = "SUCCESS: SLOT SECURED!";
-                renderCompetitors();
-                setTimeout(() => regMessage.textContent = '', 2500);
-            }
-        });
-
-        renderCompetitors();
-    </script>
     <script src="../javascript/navbar.js"></script>
 </body>
 </html>

@@ -9,7 +9,6 @@ document.addEventListener("DOMContentLoaded", function () {
     const isFootball = currentPage.includes('football.html');
     const isFood = currentPage.includes('foodstalls.html');
     const isActivities = currentPage.includes('activities.html');
-    const isTickets = currentPage.includes('tickets.html');
 
     // Translucent glassmorphic background for navbar
     const navbarBgClass = 'bg-[#0b1a18]/85 backdrop-blur-md border-b border-[#dfb26b]/20';
@@ -69,11 +68,6 @@ document.addEventListener("DOMContentLoaded", function () {
                 Activities
               </a>
             </li>
-            <li class="pl-2">
-              <a href="../htmlfiles/tickets.html" class="flex items-center gap-1.5 px-4 py-2 bg-gradient-to-r from-[#f1d89b] to-[#dfb26b] text-[#071210] rounded-full font-bold shadow-md hover:scale-105 transition-all duration-300 ${isTickets ? 'ring-2 ring-[#dfb26b]' : ''}">
-                🎟️ Book Tickets
-              </a>
-            </li>
           </ul>          
         </div>
 
@@ -113,11 +107,6 @@ document.addEventListener("DOMContentLoaded", function () {
                 <a href="../htmlfiles/activities.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg ${isActivities ? 'text-[#dfb26b] bg-[#dfb26b]/10' : 'hover:text-white hover:bg-[#dfb26b]/5'}">
                   <img src="../icons and logos/QECLogoActivitiesNoText.png" alt="Activities Icon" class="h-7 w-7 object-contain" />
                   Activities
-                </a>
-              </li>
-              <li class="mt-2">
-                <a href="../htmlfiles/tickets.html" class="flex items-center justify-center gap-2 w-full py-3 bg-gradient-to-r from-[#f1d89b] to-[#dfb26b] text-[#071210] rounded-full font-bold shadow-md">
-                  🎟️ Book Tickets
                 </a>
               </li>
           </ul>   

@@ -56,10 +56,9 @@
         <a href="../htmlfiles/index.html" class="btn-outline text-xs px-4 py-1.5 border-purple-500/50 hover:bg-purple-500/10 hover:border-purple-400 text-purple-200">← Back to Main Page</a>
     </header>
 
-    <main class="max-w-4xl mx-auto grid md:grid-cols-12 gap-8 mb-16 px-4">
+    <main class="max-w-2xl mx-auto mb-16 px-4 animate-fade-up animate-delay-1">
         
-        <!-- Left: Party Info (7 Cols) -->
-        <section class="disco-neon-panel p-6 md:p-8 md:col-span-7 flex flex-col justify-between animate-fade-up animate-delay-1">
+        <section class="disco-neon-panel p-6 md:p-8 flex flex-col justify-between">
             <div>
                 <h2 class="text-2xl font-bold neon-text-purple mb-4 font-['Outfit'] border-b border-purple-500/25 pb-2">Event Highlights</h2>
                 <p class="text-sm text-[#a3b8b5] mb-6">Experience professional lighting, heavy bass systems, and curated sets featuring your favorite tracks. Don't miss out on the sessions!</p>
@@ -99,30 +98,13 @@
 
             <!-- DJ Spotlight -->
             <div class="mt-8 pt-6 border-t border-purple-500/20">
-                <h4 class="font-bold text-xs uppercase tracking-wider text-purple-300 font-['Outfit'] mb-3">DJ Spotlight</h4>
-                <div class="flex gap-4">
-                    <span class="text-sm bg-purple-500/10 border border-purple-500/30 px-3 py-1.5 rounded-lg text-purple-200 font-semibold">🎧 DJ Avi S</span>
-                    <span class="text-sm bg-purple-500/10 border border-purple-500/30 px-3 py-1.5 rounded-lg text-purple-200 font-semibold">⚡ DJ Yohan</span>
-                    <span class="text-sm bg-purple-500/10 border border-purple-500/30 px-3 py-1.5 rounded-lg text-purple-200 font-semibold">🔥 DJ Tuks</span>
+                <h4 class="font-bold text-xs uppercase tracking-wider text-purple-300 font-['Outfit'] mb-3">DJ Lineup</h4>
+                <div class="flex flex-wrap gap-3">
+                    <span class="text-xs bg-purple-500/10 border border-purple-500/30 px-3 py-1.5 rounded-lg text-purple-200 font-semibold">🎧 DJ Avi S</span>
+                    <span class="text-xs bg-purple-500/10 border border-purple-500/30 px-3 py-1.5 rounded-lg text-purple-200 font-semibold">⚡ DJ Yohan</span>
+                    <span class="text-xs bg-purple-500/10 border border-purple-500/30 px-3 py-1.5 rounded-lg text-purple-200 font-semibold">🔥 DJ Tuks</span>
                 </div>
             </div>
-        </section>
-
-        <!-- Right: Song Request Panel (5 Cols) -->
-        <section class="disco-neon-panel p-6 md:col-span-5 animate-fade-up animate-delay-2">
-            <h2 class="text-xl font-bold neon-text-purple mb-4 font-['Outfit'] border-b border-purple-500/25 pb-2">Request A Song 🎵</h2>
-            <p class="text-xs text-[#a3b8b5] mb-4">Want to hear your favorite track live? Enter the song details below and upvote others!</p>
-            
-            <form id="songRequestForm" class="space-y-3 mb-6">
-                <input type="text" id="songTitle" placeholder="Song Title" class="w-full bg-[#071210]/60 border border-purple-500/30 rounded-lg p-2.5 text-xs text-[#ede0cb] focus:outline-none focus:border-purple-400 focus:ring-1 focus:ring-purple-400" required />
-                <input type="text" id="songArtist" placeholder="Artist Name" class="w-full bg-[#071210]/60 border border-purple-500/30 rounded-lg p-2.5 text-xs text-[#ede0cb] focus:outline-none focus:border-purple-400 focus:ring-1 focus:ring-purple-400" required />
-                <button type="submit" class="w-full py-2.5 bg-gradient-to-r from-purple-600 to-indigo-600 text-white rounded-lg font-bold text-xs uppercase hover:brightness-110 hover:shadow-[0_0_15px_rgba(168,85,247,0.4)] transition-all">Submit Request</button>
-            </form>
-
-            <h3 class="font-bold text-xs tracking-wider text-purple-300 uppercase mb-3 font-['Outfit']">Trending Requests</h3>
-            <ul id="requestsList" class="space-y-2 max-h-[220px] overflow-y-auto pr-1">
-                <!-- Dynamically populated -->
-            </ul>
         </section>
         
     </main>
@@ -131,76 +113,6 @@
         <p>&copy; 2026 Queen Elizabeth College. Crafted by QECC Club. All rights reserved.</p>
     </footer>
 
-    <!-- Interactive JS logic -->
-    <script>
-        const songForm = document.getElementById('songRequestForm');
-        const songTitle = document.getElementById('songTitle');
-        const songArtist = document.getElementById('songArtist');
-        const requestsList = document.getElementById('requestsList');
-
-        // Seed requests
-        let requests = [
-            { id: 1, title: "Blinding Lights", artist: "The Weeknd", votes: 42 },
-            { id: 2, title: "Industry Baby", artist: "Lil Nas X & Jack Harlow", votes: 29 },
-            { id: 3, title: "Love Nwantiti", artist: "CKay", votes: 18 }
-        ];
-
-        function renderRequests() {
-            requests.sort((a, b) => b.votes - a.votes);
-            requestsList.innerHTML = '';
-            requests.forEach(req => {
-                const li = document.createElement('li');
-                li.className = 'flex justify-between items-center bg-[#071210]/40 p-2.5 rounded-lg border border-purple-500/10 hover:border-purple-500/25 transition-colors';
-                li.innerHTML = `
-                    <div class="min-w-0 flex-1">
-                        <p class="text-xs font-bold text-[#ede0cb] truncate">${req.title}</p>
-                        <p class="text-[10px] text-[#a3b8b5] truncate">${req.artist}</p>
-                    </div>
-                    <button class="upvote-btn flex items-center gap-1 bg-purple-500/10 hover:bg-purple-500/20 text-purple-300 border border-purple-500/20 hover:border-purple-500/40 px-2 py-1 rounded text-[10px] font-bold transition-all" data-id="${req.id}">
-                        ▲ <span>${req.votes}</span>
-                    </button>
-                `;
-                requestsList.appendChild(li);
-            });
-
-            // Re-bind upvote clicks
-            document.querySelectorAll('.upvote-btn').forEach(btn => {
-                btn.addEventListener('click', () => {
-                    const id = parseInt(btn.dataset.id);
-                    const item = requests.find(r => r.id === id);
-                    if (item) {
-                        item.votes++;
-                        // Animation bounce effect on vote click
-                        btn.style.transform = 'scale(1.15)';
-                        setTimeout(() => btn.style.transform = 'scale(1)', 150);
-                        renderRequests();
-                    }
-                });
-            });
-        }
-
-        // Handle submissions
-        songForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            const title = songTitle.value.trim();
-            const artist = songArtist.value.trim();
-            
-            if (title && artist) {
-                const newReq = {
-                    id: Date.now(),
-                    title: title,
-                    artist: artist,
-                    votes: 1
-                };
-                requests.push(newReq);
-                songForm.reset();
-                renderRequests();
-            }
-        });
-
-        // Initialize display
-        renderRequests();
-    </script>
     <script src="../javascript/navbar.js"></script>
 </body>
 </html>

@@ -28,29 +28,7 @@
             border-color: rgba(223, 178, 107, 0.4);
             box-shadow: 0 10px 40px 0 rgba(0, 0, 0, 0.5), 0 0 25px rgba(16, 185, 129, 0.1);
         }
-        .tab-btn {
-            font-family: var(--font-heading);
-            font-weight: 600;
-            transition: var(--transition-smooth);
-        }
-        .form-input {
-            width: 100%;
-            background: rgba(7, 18, 16, 0.6);
-            border: 1.5px solid rgba(223, 178, 107, 0.2);
-            color: var(--color-cream);
-            padding: 0.75rem 1rem;
-            border-radius: 10px;
-            font-size: 0.9rem;
-            transition: var(--transition-smooth);
-        }
-        .form-input:focus {
-            outline: none;
-            border-color: var(--color-gold);
-            box-shadow: var(--glow-gold);
-        }
     </style>
-    <!-- Alpine.js for tab functionality -->
-    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 </head>
 <body class="px-4 md:px-8 py-4">
 
@@ -67,89 +45,63 @@
         <a href="../htmlfiles/index.html" class="btn-outline text-xs px-4 py-1.5">← Back to Main Page</a>
     </header>
 
-    <main class="max-w-6xl mx-auto grid md:grid-cols-12 gap-8 mb-16 px-4">
+    <main class="max-w-4xl mx-auto space-y-8 mb-16 px-4 animate-fade-up animate-delay-1">
         
-        <!-- Left Column: Details & Schedule (7 Cols) -->
-        <div class="md:col-span-7 space-y-8 animate-fade-up animate-delay-1">
-            
-            <!-- Tournament Overview -->
-            <section class="stadium-panel p-6 md:p-8">
-                <h2 class="text-2xl font-bold text-[#dfb26b] mb-4 font-['Outfit'] border-b border-[#dfb26b]/10 pb-2">Tournament Rules</h2>
-                <div class="grid sm:grid-cols-3 gap-4 mb-6 text-center">
-                    <div class="p-3 bg-[#071210]/40 rounded-xl border border-[#dfb26b]/10">
-                        <span class="text-xl block mb-1">👥</span>
-                        <span class="text-[10px] uppercase text-[#a3b8b5] block">Format</span>
-                        <span class="font-bold text-sm text-[#ede0cb]">6-a-side Match</span>
-                    </div>
-                    <div class="p-3 bg-[#071210]/40 rounded-xl border border-[#dfb26b]/10">
-                        <span class="text-xl block mb-1">💰</span>
-                        <span class="text-[10px] uppercase text-[#a3b8b5] block">Entry Fee</span>
-                        <span class="font-bold text-sm text-[#ede0cb]">Rs 150 / Team</span>
-                    </div>
-                    <div class="p-3 bg-[#071210]/40 rounded-xl border border-[#dfb26b]/10">
-                        <span class="text-xl block mb-1">📍</span>
-                        <span class="text-[10px] uppercase text-[#a3b8b5] block">Location</span>
-                        <span class="font-bold text-sm text-[#ede0cb]">Football Field</span>
-                    </div>
+        <!-- Rules & Info -->
+        <section class="stadium-panel p-6 md:p-8">
+            <h2 class="text-2xl font-bold text-[#dfb26b] mb-4 font-['Outfit'] border-b border-[#dfb26b]/10 pb-2">Tournament Overview</h2>
+            <div class="grid sm:grid-cols-3 gap-4 mb-6 text-center">
+                <div class="p-3 bg-[#071210]/40 rounded-xl border border-[#dfb26b]/10">
+                    <span class="text-xl block mb-1">👥</span>
+                    <span class="text-[10px] uppercase text-[#a3b8b5] block">Format</span>
+                    <span class="font-bold text-sm text-[#ede0cb]">6-a-side Match</span>
                 </div>
-                <p class="text-sm text-[#a3b8b5] leading-relaxed">
-                    Group stages lead directly into knockout brackets. Each game lasts 15 minutes (7 mins per half, 1 min break). Teams must be ready with matching shirts/bibs. Standard football boots or sneakers are required.
+                <div class="p-3 bg-[#071210]/40 rounded-xl border border-[#dfb26b]/10">
+                    <span class="text-xl block mb-1">💰</span>
+                    <span class="text-[10px] uppercase text-[#a3b8b5] block">Entry Fee</span>
+                    <span class="font-bold text-sm text-[#ede0cb]">Rs 150 / Team</span>
+                </div>
+                <div class="p-3 bg-[#071210]/40 rounded-xl border border-[#dfb26b]/10">
+                    <span class="text-xl block mb-1">📍</span>
+                    <span class="text-[10px] uppercase text-[#a3b8b5] block">Location</span>
+                    <span class="font-bold text-sm text-[#ede0cb]">Football Field</span>
+                </div>
+            </div>
+            <p class="text-sm text-[#a3b8b5] leading-relaxed">
+                Group stages lead directly into knockout brackets. Each game lasts 15 minutes (7 mins per half, 1 min break). Teams must be ready with matching shirts/bibs. Standard football boots or sneakers are required.
+            </p>
+        </section>
+
+        <!-- Register Link Section -->
+        <section class="stadium-panel p-6 md:p-8">
+            <h2 class="text-2xl font-bold text-[#dfb26b] mb-3 font-['Outfit']">Register Your Team</h2>
+            <div class="flex flex-col md:flex-row items-center justify-between gap-6">
+                <p class="text-sm text-[#a3b8b5] leading-relaxed flex-1">
+                    Ready to showcase your team's skills? Click the button to register for the football tournament. 
+                    You'll be taken to the official registration Google Form where you can submit your squad details.
                 </p>
-            </section>
+                <a href="https://docs.google.com/forms/d/e/1FAIpQLSd4R9flbFLRYlhWioT5SjqJWeZzWigF5SpOO6duQFvuDIbWFg/viewform" 
+                   target="_blank" 
+                   class="btn-premium py-3 px-8 text-xs font-bold uppercase tracking-wider rounded-lg text-center whitespace-nowrap">
+                    Register Now →
+                </a>
+            </div>
+        </section>
 
-            <!-- Schedule & Brackets with Alpine Tabs -->
-            <section class="stadium-panel p-6 md:p-8">
-                <h2 class="text-2xl font-bold text-[#dfb26b] mb-4 font-['Outfit']">Group Standings & Fixtures</h2>
-                
-                <div x-data="{ activeTab: 'Group A' }" class="mt-4">
-                    <!-- Tab Buttons -->
-                    <div id="tabButtonsContainer" class="flex flex-wrap gap-2 border-b border-[#dfb26b]/10 pb-3 mb-6">
-                        <!-- Populated by JS -->
-                    </div>
-                    
-                    <!-- Tab Contents -->
-                    <div id="tabContentsContainer" class="space-y-3">
-                        <!-- Populated by JS -->
-                    </div>
-                </div>
-            </section>
-        </div>
-
-        <!-- Right Column: Pre-Register Form (5 Cols) -->
-        <section class="stadium-panel p-6 md:col-span-5 animate-fade-up animate-delay-2 flex flex-col justify-between">
+        <!-- Schedule & Fixtures tabs -->
+        <section class="stadium-panel p-6 md:p-8">
+            <h2 class="text-2xl font-bold text-[#dfb26b] mb-4 font-['Outfit']">Group Stage Matches & Schedule</h2>
+            
             <div>
-                <h2 class="text-xl font-bold text-[#dfb26b] mb-4 font-['Outfit'] border-b border-[#dfb26b]/10 pb-2">Pre-Register Team</h2>
-                <p class="text-xs text-[#a3b8b5] mb-6">Securing a slot is simple. Fill out your squad details here, and click submit to fill out the official school registry.</p>
+                <!-- Tab Buttons -->
+                <div id="tabButtonsContainer" class="flex flex-wrap gap-2 border-b border-[#dfb26b]/10 pb-3 mb-6">
+                    <!-- Populated by JS -->
+                </div>
                 
-                <form id="teamForm" class="space-y-4">
-                    <div>
-                        <label class="block text-[10px] uppercase tracking-wider text-[#dfb26b] mb-1.5 font-bold font-['Outfit']">Team Name</label>
-                        <input type="text" id="teamName" class="form-input" placeholder="e.g. Real QEC FC" required />
-                    </div>
-                    
-                    <div class="grid grid-cols-2 gap-3">
-                        <div>
-                            <label class="block text-[10px] uppercase tracking-wider text-[#dfb26b] mb-1.5 font-bold font-['Outfit']">Captain Name</label>
-                            <input type="text" id="captainName" class="form-input" placeholder="Captain Fullname" required />
-                        </div>
-                        <div>
-                            <label class="block text-[10px] uppercase tracking-wider text-[#dfb26b] mb-1.5 font-bold font-['Outfit']">Contact Phone</label>
-                            <input type="tel" id="phoneNumber" class="form-input" placeholder="5XXXXXXX" pattern="^5[0-9]{7}$" required />
-                        </div>
-                    </div>
-
-                    <!-- Players (1 Captain + 5 players = 6 players) -->
-                    <div class="pt-3">
-                        <label class="block text-[10px] uppercase tracking-wider text-[#dfb26b] mb-1.5 font-bold font-['Outfit']">Squad Players (Names)</label>
-                        <div id="playersContainer" class="space-y-2">
-                            <!-- JS Inject fields -->
-                        </div>
-                    </div>
-                    
-                    <button type="submit" id="submitBtn" class="btn-premium w-full text-xs font-bold py-3 rounded-lg uppercase tracking-wider mt-4">
-                        Submit Team Registration
-                    </button>
-                </form>
+                <!-- Tab Contents -->
+                <div id="tabContentsContainer" class="space-y-3">
+                    <!-- Populated by JS -->
+                </div>
             </div>
         </section>
 
@@ -161,17 +113,6 @@
 
     <!-- Script loading and registration processing -->
     <script>
-        // Set up player name fields dynamically (1 captain is defined separately, so we collect 5 more players to hit the 6 format limit)
-        const playersContainer = document.getElementById('playersContainer');
-        for (let i = 1; i <= 5; i++) {
-            const div = document.createElement('div');
-            div.className = 'relative';
-            div.innerHTML = `
-                <input type="text" id="player${i}" class="form-input" placeholder="Player ${i + 1} Name" required />
-            `;
-            playersContainer.appendChild(div);
-        }
-
         // Load schedule JSON data
         let scheduleData = {};
         
@@ -245,63 +186,6 @@
                 });
             });
         }
-
-        // Form Registration action prefill
-        const regForm = document.getElementById('teamForm');
-        const submitBtn = document.getElementById('submitBtn');
-
-        regForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            
-            const teamName = document.getElementById('teamName').value.trim();
-            const captainName = document.getElementById('captainName').value.trim();
-            const phoneNumber = document.getElementById('phoneNumber').value.trim();
-            
-            // Collect other players
-            const players = [];
-            for (let i = 1; i <= 5; i++) {
-                players.push(document.getElementById(`player${i}`).value.trim());
-            }
-
-            // Form data preparation
-            const formData = {
-                teamName,
-                captainName,
-                phoneNumber,
-                players: players.join(', '),
-                registrationDate: new Date().toLocaleString()
-            };
-
-            submitBtn.disabled = true;
-            submitBtn.textContent = 'Preparing Form...';
-
-            try {
-                // Link Google Forms URL with Prefill Parameter Keys from last year
-                const googleFormUrl = new URL('https://docs.google.com/forms/d/e/1FAIpQLSd4R9flbFLRYlhWioT5SjqJWeZzWigF5SpOO6duQFvuDIbWFg/viewform');
-                
-                googleFormUrl.searchParams.append('entry.1126285018', formData.teamName); 
-                googleFormUrl.searchParams.append('entry.763680894', formData.captainName);
-                googleFormUrl.searchParams.append('entry.853776659', formData.phoneNumber);
-                googleFormUrl.searchParams.append('entry.1734828375', formData.players);
-                googleFormUrl.searchParams.append('entry.1569200132', formData.registrationDate);
-
-                // Open new tab
-                const newWindow = window.open(googleFormUrl.toString(), '_blank');
-                if (!newWindow) {
-                    alert("Popup blocker active! Please allow popups or copy this link to submit your pre-filled form:\n\n" + googleFormUrl.toString());
-                } else {
-                    alert("Form prepared! Please verify details and click Submit on the Google Form tab.");
-                }
-                
-                regForm.reset();
-            } catch (err) {
-                console.error("Redirection failure:", err);
-                alert("Failed to compile form. Please register manually.");
-            } finally {
-                submitBtn.disabled = false;
-                submitBtn.textContent = 'Submit Team Registration';
-            }
-        });
 
         // Initialize
         loadSchedule();
