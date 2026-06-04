@@ -33,7 +33,6 @@ Website for Queen Elizabeth College's Food and Fun Day 2026 event. Re-designed f
 │   └── navbar.js             # Global responsive navbar injector
 ├── images/                   # Asset photos
 ├── icons and logos/          # Graphics and logs
-├── server.py                 # Lightweight development server
 └── README.md                 # Project guide
 ```
 
@@ -41,10 +40,10 @@ Website for Queen Elizabeth College's Food and Fun Day 2026 event. Re-designed f
 
 ## 🚀 Local Development
 To run the website locally on your computer:
-1. Make sure you have Git and Python installed.
+1. Make sure you have Python installed.
 2. Open your terminal in this repository directory and run:
    ```bash
-   python server.py
+   python -m http.server 8000
    ```
 3. Open your browser and go to:
    ```text
