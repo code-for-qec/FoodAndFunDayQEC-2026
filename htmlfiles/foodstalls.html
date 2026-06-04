@@ -5,116 +5,71 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Food Stalls - School Food & Fun Day!</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Caveat:wght@400;700&family=Fredoka:wght@400;500;600&display=swap" rel="stylesheet">
+    <!-- Global CSS -->
+    <link rel="stylesheet" href="../css/global.css" />
     <style>
-        /* Custom Scrollbar */
-        ::-webkit-scrollbar {
-            width: 12px;
-        }
-        ::-webkit-scrollbar-track {
-            background: #1a3330;
-        }
-        ::-webkit-scrollbar-thumb {
-            background: #2b564f;
-            border: 2px solid #d5ab6d;
-            border-radius: 6px;
-        }
-        ::-webkit-scrollbar-thumb:hover {
-            background: #336b63;
-        }
-
         body {
-            font-family: 'Caveat', cursive;
-            font-weight: 700;
-            background-color: #1a3330;
-            color: #e8d5b5;
-            font-size: 1.1em;
+            font-family: var(--font-body);
+            background: radial-gradient(circle at top, var(--color-bg-medium) 0%, var(--color-bg-dark) 80%);
         }
-
-        h1, h2, h3, .font-bold {
-            font-family: 'Caveat', cursive;
-            font-weight: 700;
-        }
-
-        .stall-card {
-            background: rgba(43, 86, 79, 0.6);
-            border: 2px solid #d5ab6d;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-            transition: all 0.3s ease;
-        }
-
-        .stall-card:hover {
-            background: rgba(51, 107, 99, 0.85);
-            transform: translateY(-4px);
-            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
-        }
-
-        .price-tag {
-            background: #d5ab6d;
-            color: #1a3330;
-            font-weight: 600;
-            border: none;
-            padding: 0.25rem 0.75rem;
-            border-radius: 9999px;
-            font-size: 0.875rem;
-        }
-
-        .fade-in {
-            opacity: 0;
-            transform: translateY(10px);
-            animation: fadeInUp 0.6s ease forwards;
-        }
-
-        @keyframes fadeInUp {
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        #errorDetails {
-            background: rgba(220, 38, 38, 0.1);
-            border: 1px solid rgba(220, 38, 38, 0.5);
-            padding: 1rem;
-            margin: 1rem 0;
-            border-radius: 0.5rem;
-            white-space: pre-wrap;
-            font-family: monospace;
-        }
-
-        /* Ensure navbar font size is consistent */
-        #navbar a {
-            font-size: 22px !important; /* Consistent fixed font size for links */
+        h1, h2, h3, h4, h5, h6 {
+            font-family: var(--font-heading);
         }
     </style>
 </head>
-<body class="p-4">
+<body class="px-4 md:px-8 py-4">
 
     <!-- Call Navbar -->
     <div id="navbar"></div>
 
-    <header class="pt-20 text-center mb-8">
-        <div class="mb-6">
-            <img src="../icons and logos/QECLogoFood.png" alt="Queen Elizabeth College Logo" class="mx-auto h-24 w-auto">
+    <header class="pt-24 text-center mb-8 animate-fade-up">
+        <div class="mb-4 inline-block relative">
+            <div class="absolute inset-0 bg-[#dfb26b]/20 blur-lg rounded-full"></div>
+            <img src="../icons and logos/QECLogoFood.png" alt="Queen Elizabeth College Logo" class="relative mx-auto h-24 w-auto hover:scale-105 transition-transform duration-300">
         </div>
-        <h1 class="text-4xl font-bold tracking-wide mb-2" style="color: #d5ab6d;">Food Stalls</h1>
-        <a href="../htmlfiles/index.html" class="inline-block px-4 py-1.5 text-[#e8d5b5] border border-[#d5ab6d] rounded-md hover:bg-[#d5ab6d] hover:text-[#1a3330] transition duration-300">← Back to Main Page</a>
+        <h1 class="text-4xl md:text-5xl font-extrabold tracking-tight mb-3 bg-clip-text text-transparent bg-gradient-to-r from-[#f1d89b] via-[#dfb26b] to-[#b88a44]">Food Stalls Menu</h1>
+        <p class="text-[#a3b8b5] text-sm md:text-base max-w-xl mx-auto mb-4">Explore a variety of mouthwatering meals, snacks, and refreshing drinks prepared for you.</p>
+        <a href="../htmlfiles/index.html" class="btn-outline text-xs px-4 py-1.5">← Back to Main Page</a>
     </header>
 
-    <main class="max-w-4xl mx-auto space-y-6">
-        <div id="stallsGrid" class="grid gap-6 md:grid-cols-2">
+    <!-- Search & Filter Area -->
+    <div class="max-w-4xl mx-auto mb-8 px-4 animate-fade-up animate-delay-1">
+        <div class="search-input-container mb-5">
+            <input type="text" id="searchInput" class="search-input" placeholder="Search for food stalls or menu items (e.g. Saucisse, Alouda, Noodles)..." />
+            <svg class="search-icon w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+            </svg>
+        </div>
+        
+        <div class="filter-container" id="filterContainer">
+            <button class="filter-chip active" data-category="all">All Food 🍽️</button>
+            <button class="filter-chip" data-category="meals">Meals 🍛</button>
+            <button class="filter-chip" data-category="snacks">Snacks 🍟</button>
+            <button class="filter-chip" data-category="desserts">Desserts 🍦</button>
+            <button class="filter-chip" data-category="drinks">Drinks 🥤</button>
+        </div>
+    </div>
+
+    <main class="max-w-5xl mx-auto space-y-6 px-4 mb-16">
+        <div id="stallsGrid" class="grid gap-6 md:grid-cols-2 animate-fade-up animate-delay-2">
             <!-- Stalls will be dynamically inserted here -->
         </div>
         <div id="errorDetails" style="display: none;"></div>
+        <div id="noResultsMessage" class="hidden text-center py-12 glass-panel">
+            <p class="text-xl text-[#a3b8b5] font-['Outfit']">No food stalls match your search or filter criteria. 🔍</p>
+            <button id="resetSearchBtn" class="btn-premium mt-4 text-xs py-2 px-6">Reset Search</button>
+        </div>
     </main>
 
-    <footer class="text-center mt-8 mb-4" style="color: #d5ab6d;">
-        <p class="font-bold">&copy; 2025 Queen Elizabeth College. All rights reserved.</p>
+    <footer class="text-center py-8 text-[#a3b8b5] border-t border-[#dfb26b]/10 bg-[#071210]/40 max-w-full font-['Outfit'] text-xs">
+        <p>&copy; 2026 Queen Elizabeth College. Crafted by QECC Club. All rights reserved.</p>
     </footer>
 
     <script>
         function formatFieldName(fieldName) {
             if (fieldName === 'team_members') return 'Team Members';
+            if (fieldName === 'flavours') return 'Flavours Available';
+            if (fieldName === 'curries_available') return 'Curries Included';
             return fieldName
                 .replace(/_/g, ' ')
                 .replace(/([A-Z])/g, ' $1')
@@ -136,41 +91,37 @@
 
             // Check if there are product sections
             if (sections && sections.length > 0) {
-                html += `<h3 class="font-bold mb-2">Menu:</h3>`; // Use 'Menu' for food sections
                 sections.forEach((section, index) => {
                     html += `
-                        <h4 class="font-bold mt-3 mb-2 text-[#d5ab6d]">${section.title}:</h4>
-                        <ul class="space-y-2">
-                            ${section.items.map(item => `
-                                <li class="flex items-center">
-                                    <img src="../images/bulletpointcrown.png" alt="•" class="w-4 h-4 mr-2 flex-shrink-0" style="filter: brightness(1.2);">
-                                    <div class="flex justify-between items-center w-full">
-                                        <span>${item.name}</span>
-                                        <span class="price-tag ml-2 text-center">${item.price}</span>
-                                    </div>
-                                </li>
-                            `).join('')}
-                        </ul>
+                        <div class="mb-4">
+                            <h4 class="font-bold text-sm tracking-wide text-[#dfb26b] uppercase mb-2 font-['Outfit']">${section.title}</h4>
+                            <ul class="space-y-2">
+                                ${section.items.map(item => `
+                                    <li class="flex items-center justify-between py-1 border-b border-[#dfb26b]/5 last:border-0">
+                                        <div class="flex items-center">
+                                            <img src="../images/bulletpointcrown.png" alt="•" class="w-3.5 h-3.5 mr-2 flex-shrink-0 opacity-80" style="filter: brightness(1.2);">
+                                            <span class="text-[#ede0cb] text-sm">${item.name}</span>
+                                        </div>
+                                        <span class="price-tag-gold text-xs">${item.price}</span>
+                                    </li>
+                                `).join('')}
+                            </ul>
+                        </div>
                     `;
-                    // Add a separator line after each section, except the last one
-                    if (index < sections.length - 1) {
-                        html += `<div class="border-t border-[#d5ab6d] my-4 opacity-50"></div>`;
-                    }
                 });
             }
             // Fallback to original product rendering if no sections are defined
             else if (products && products.length > 0) {
                 html += `
-                    <div>
-                        <h3 class="font-bold mb-2">Menu:</h3>
+                    <div class="mb-4">
                         <ul class="space-y-2">
                             ${products.map(product => `
-                                <li class="flex items-center">
-                                    <img src="../images/bulletpointcrown.png" alt="•" class="w-4 h-4 mr-2 flex-shrink-0" style="filter: brightness(1.2);">
-                                    <div class="flex justify-between items-center w-full">
-                                        <span>${product.name}</span>
-                                        <span class="price-tag ml-2 text-center">${product.price}</span>
+                                <li class="flex items-center justify-between py-1 border-b border-[#dfb26b]/5 last:border-0">
+                                    <div class="flex items-center">
+                                        <img src="../images/bulletpointcrown.png" alt="•" class="w-3.5 h-3.5 mr-2 flex-shrink-0 opacity-80" style="filter: brightness(1.2);">
+                                        <span class="text-[#ede0cb] text-sm">${product.name}</span>
                                     </div>
+                                    <span class="price-tag-gold text-xs">${product.price}</span>
                                 </li>
                             `).join('')}
                         </ul>
@@ -180,10 +131,170 @@
             return html;
         }
 
+        let allFoodStalls = [];
+        let activeCategory = 'all';
+
+        function getStallCategories(name, products, sections) {
+            const categories = [];
+            const lowerName = name.toLowerCase();
+            
+            // Check based on stall name
+            if (lowerName.includes("pain") || lowerName.includes("noodles") || lowerName.includes("puri") || lowerName.includes("bouilli") || lowerName.includes("sinwa")) {
+                categories.push("meals");
+            }
+            if (lowerName.includes("chips") || lowerName.includes("pastries") || lowerName.includes("snack") || lowerName.includes("boutik")) {
+                categories.push("snacks");
+            }
+            if (lowerName.includes("juice") || lowerName.includes("drinks") || lowerName.includes("alouda") || lowerName.includes("mojito")) {
+                categories.push("drinks");
+            }
+            if (lowerName.includes("ice cream") || lowerName.includes("pastries") || lowerName.includes("boutik")) {
+                categories.push("desserts");
+            }
+            
+            // Deep check in products/items if category is empty
+            const checkItemName = (itemName) => {
+                const lowerItem = itemName.toLowerCase();
+                if (lowerItem.includes("samosa") || lowerItem.includes("gato") || lowerItem.includes("chips") || lowerItem.includes("candy") || lowerItem.includes("crackers") || lowerItem.includes("croissant") || lowerItem.includes("marshmallow")) {
+                    if (!categories.includes("snacks")) categories.push("snacks");
+                }
+                if (lowerItem.includes("alouda") || lowerItem.includes("mojito") || lowerItem.includes("drink") || lowerItem.includes("juice")) {
+                    if (!categories.includes("drinks")) categories.push("drinks");
+                }
+                if (lowerItem.includes("cream") || lowerItem.includes("sweet") || lowerItem.includes("marshmallow") || lowerItem.includes("candy")) {
+                    if (!categories.includes("desserts")) categories.push("desserts");
+                }
+                if (lowerItem.includes("mine") || lowerItem.includes("noodle") || lowerItem.includes("puri") || lowerItem.includes("pain") || lowerItem.includes("poulet") || lowerItem.includes("saucisse")) {
+                    if (!categories.includes("meals")) categories.push("meals");
+                }
+            };
+
+            if (products) {
+                products.forEach(p => checkItemName(p.name));
+            }
+            if (sections) {
+                sections.forEach(s => {
+                    checkItemName(s.title);
+                    if (s.items) s.items.forEach(i => checkItemName(i.name));
+                });
+            }
+
+            // Fallback
+            if (categories.length === 0) {
+                categories.push("meals"); // default
+            }
+
+            return categories;
+        }
+
+        function filterAndRenderStalls() {
+            const searchQuery = document.getElementById('searchInput').value.toLowerCase().trim();
+            const stallsGrid = document.getElementById('stallsGrid');
+            const noResultsMessage = document.getElementById('noResultsMessage');
+
+            const filtered = allFoodStalls.filter(stall => {
+                // 1. Category Filter
+                if (activeCategory !== 'all' && !stall.categories.includes(activeCategory)) {
+                    return false;
+                }
+                
+                // 2. Search Text Filter
+                if (searchQuery !== '') {
+                    const matchName = stall.name.toLowerCase().includes(searchQuery);
+                    const matchLocation = stall.location && stall.location.toLowerCase().includes(searchQuery);
+                    
+                    let matchMenu = false;
+                    if (stall.products) {
+                        matchMenu = stall.products.some(p => p.name.toLowerCase().includes(searchQuery));
+                    }
+                    if (!matchMenu && stall.sections) {
+                        matchMenu = stall.sections.some(s => {
+                            if (s.title.toLowerCase().includes(searchQuery)) return true;
+                            return s.items && s.items.some(i => i.name.toLowerCase().includes(searchQuery));
+                        });
+                    }
+                    
+                    return matchName || matchLocation || matchMenu;
+                }
+
+                return true;
+            });
+
+            // Handle Empty Results
+            if (filtered.length === 0) {
+                stallsGrid.classList.add('hidden');
+                noResultsMessage.classList.remove('hidden');
+                return;
+            } else {
+                stallsGrid.classList.remove('hidden');
+                noResultsMessage.classList.add('hidden');
+            }
+
+            // Clear Grid and Render cards
+            stallsGrid.innerHTML = '';
+            filtered.forEach((stall, idx) => {
+                const card = document.createElement('div');
+                card.className = `glass-card rounded-2xl p-6 flex flex-col justify-between hover:scale-[1.02] transition-all duration-300 animate-fade-up`;
+                card.style.animationDelay = `${idx * 0.05}s`;
+
+                // Category badges HTML
+                const badgesHTML = stall.categories.map(cat => {
+                    const icons = { meals: '🍛', snacks: '🍟', desserts: '🍦', drinks: '🥤' };
+                    return `<span class="bg-[#dfb26b]/10 text-[#dfb26b] text-[10px] px-2 py-0.5 rounded uppercase tracking-wider font-bold mr-1 border border-[#dfb26b]/20">${icons[cat] || ''} ${cat}</span>`;
+                }).join('');
+
+                let html = `
+                    <div>
+                        <div class="flex flex-wrap items-center justify-between gap-2 mb-4">
+                            <h2 class="text-2xl font-bold tracking-tight text-[#dfb26b] font-['Outfit']">${stall.name}</h2>
+                            <div class="flex flex-wrap">${badgesHTML}</div>
+                        </div>
+                        <div class="space-y-4">
+                `;
+
+                // Render menu items
+                if ((stall.products && stall.products.length > 0) || (stall.sections && stall.sections.length > 0)) {
+                    html += renderProducts(stall.products, stall.sections);
+                }
+
+                // Render extra details (like curries or flavours)
+                Object.entries(stall).forEach(([field, value]) => {
+                    if (['name', 'products', 'sections', 'location', 'time', 'categories'].includes(field)) return;
+                    if (!value || (Array.isArray(value) && value.length === 0) || value === '') return;
+                    
+                    html += `
+                        <div class="mt-3 p-3 bg-[#071210]/40 rounded-lg border border-[#dfb26b]/10">
+                            <h5 class="font-bold text-xs tracking-wider text-[#dfb26b] uppercase mb-1 font-['Outfit']">${formatFieldName(field)}</h5>
+                            <p class="text-xs text-[#a3b8b5]">${renderFieldValue(value)}</p>
+                        </div>
+                    `;
+                });
+
+                html += `
+                        </div>
+                    </div>
+                    
+                    <!-- Stall Footer metadata -->
+                    <div class="mt-6 pt-4 border-t border-[#dfb26b]/10 flex flex-wrap justify-between items-center text-xs text-[#a3b8b5] gap-2 font-['Outfit']">
+                        <div>
+                            <span class="font-bold text-[#dfb26b]">🕒 Hours:</span> 
+                            <span>${stall.time || 'TBD'}</span>
+                        </div>
+                        <div>
+                            <span class="font-bold text-[#dfb26b]">📍 Location:</span> 
+                            <span>${stall.location || 'TBD'}</span>
+                        </div>
+                    </div>
+                `;
+
+                card.innerHTML = html;
+                stallsGrid.appendChild(card);
+            });
+        }
+
         async function loadStalls() {
             const errorDetails = document.getElementById('errorDetails');
             try {
-                console.log('Attempting to fetch stall_info.json...');
                 const response = await fetch('stall_info.json?' + new Date().getTime(), {
                     headers: {
                         'Cache-Control': 'no-cache, no-store, must-revalidate',
@@ -191,117 +302,70 @@
                         'Expires': '0'
                     }
                 });
-                console.log('Response status:', response.status);
-                console.log('Response headers:', response.headers);
 
                 if (!response.ok) {
                     throw new Error(`HTTP error! status: ${response.status}`);
                 }
 
                 const stalls = await response.json();
-                console.log('Successfully loaded stalls:', stalls);
-                console.log('Number of stalls loaded:', stalls.length);
-
-                const stallsGrid = document.getElementById('stallsGrid');
-                console.log('Stalls grid element found:', !!stallsGrid);
-
                 const nonFoodStalls = ['Gaming Room', 'Disco', '<s>9D Cinema</s> (CANCELLED)', 'Escape Room', 
                     'Karaoke', 'Outdoor laser tag', 'Bouncy Castle', 'Football', 
                     'Tug of War', 'Beauty Parlour', 'Carnival Games', 'Gyroscope', 'Ball Pit'];
-                const foodStalls = stalls.filter(stall => !nonFoodStalls.includes(stall.name));
-                console.log('Number of food stalls after filtering:', foodStalls.length);
-                console.log('Food stalls:', foodStalls);
+                
+                // Keep only food stalls and inject categories dynamically
+                allFoodStalls = stalls
+                    .filter(stall => !nonFoodStalls.includes(stall.name))
+                    .map(stall => {
+                        return {
+                            ...stall,
+                            categories: getStallCategories(stall.name, stall.products, stall.sections)
+                        };
+                    });
 
-                if (foodStalls.length === 0) {
+                if (allFoodStalls.length === 0) {
                     throw new Error('No food stalls found after filtering');
                 }
 
-                // Clear existing content
-                stallsGrid.innerHTML = '';
+                // Render all stalls initially
+                filterAndRenderStalls();
 
-                foodStalls.forEach((stall, index) => {
-                    console.log(`Processing stall ${index + 1}:`, stall.name);
-                    const stallCard = document.createElement('div');
-                    stallCard.className = 'stall-card rounded-lg p-6 fade-in';
-
-                    let html = `
-                        <h2 class="text-2xl font-bold mb-3 text-[#d5ab6d] text-center">${stall.name}</h2>
-                        <div class="space-y-4">
-                    `;
-
-                    // MODIFIED: Updated condition to check for both products AND sections
-                    // MODIFIED: Pass both stall.products and stall.sections to renderProducts
-                    if ((stall.products && stall.products.length > 0) || (stall.sections && stall.sections.length > 0)) {
-                        console.log(`Adding products/sections for ${stall.name}:`, stall.products || stall.sections);
-                        html += renderProducts(stall.products, stall.sections);
-                    }
-
-                    // MODIFIED: Added 'sections' to the exclusion list
-                    // Add other fields except name, products, sections, location, and time
-                    let hasExtraInfo = false;
-                    Object.entries(stall).forEach(([field, value]) => {
-                        if (['name', 'products', 'sections', 'location', 'time'].includes(field)) return;
-                        if (!value || (Array.isArray(value) && value.length === 0) || value === '') return;
-                        hasExtraInfo = true;
-                        console.log(`Adding extra info for ${stall.name}:`, field, value);
-
-                        html += `
-                            <div>
-                                <h3 class="font-bold mb-1">${formatFieldName(field)}:</h3>
-                                <p>${renderFieldValue(value)}</p>
-                            </div>
-                        `;
-                    });
-
-                    // MODIFIED: Updated condition for separation line
-                    // Add separation line only if there's content above and below
-                    if (((stall.products && stall.products.length > 0) || (stall.sections && stall.sections.length > 0) || hasExtraInfo) && (stall.location || stall.time)) {
-                        html += `<div class="border-t border-[#d5ab6d] my-4 opacity-50"></div>`;
-                    }
-
-                    // Add time and location below the line (time always first)
-                    if (stall.time) {
-                        console.log(`Adding time for ${stall.name}:`, stall.time);
-                        html += `
-                            <div>
-                                <h3 class="font-bold mb-1">Time:</h3>
-                                <p>${stall.time}</p>
-                            </div>
-                        `;
-                    }
-                    if (stall.location) {
-                        console.log(`Adding location for ${stall.name}:`, stall.location);
-                        html += `
-                            <div>
-                                <h3 class="font-bold mb-1">Location:</h3>
-                                <p>${stall.location}</p>
-                            </div>
-                        `;
-                    }
-
-                    html += `</div>`;
-                    stallCard.innerHTML = html;
-                    stallsGrid.appendChild(stallCard);
-                    console.log(`Finished processing stall ${index + 1}:`, stall.name);
-                });
             } catch (error) {
                 console.error('Error loading stall information:', error);
                 errorDetails.style.display = 'block';
-                errorDetails.innerHTML = `Error loading stall information:\n${error.message}\n\nPlease try the following:\n1. Make sure stall_info.json exists in the same folder as foodstalls.html\n2. Check if the JSON file is properly formatted\n3. Try refreshing the page`;
+                errorDetails.innerHTML = `Error loading stall information:\n${error.message}\n\nPlease verify stall_info.json is in place and properly structured.`;
 
                 document.getElementById('stallsGrid').innerHTML = `
-                    <div class="col-span-2 text-center p-6 stall-card">
-                        <p class="text-xl">Unable to load stall information. Please check the error details below.</p>
+                    <div class="col-span-2 text-center p-8 glass-panel border-red-500/20">
+                        <p class="text-lg text-red-400 font-['Outfit']">Unable to load food stall menus at this time. Please check your connection or contact the developers.</p>
                     </div>
                 `;
             }
         }
 
-        // Add error handling for the load event
+        // Setup Interactive Search & Filter Event Listeners
         window.addEventListener('load', () => {
-            console.log('Page loaded, attempting to load stalls...');
-            loadStalls().catch(error => {
-                console.error('Error in load event:', error);
+            loadStalls().then(() => {
+                // Search Input Listen
+                document.getElementById('searchInput').addEventListener('input', filterAndRenderStalls);
+                
+                // Reset Button Listen
+                document.getElementById('resetSearchBtn').addEventListener('click', () => {
+                    document.getElementById('searchInput').value = '';
+                    filterAndRenderStalls();
+                });
+
+                // Filter Chip Buttons Listen
+                document.querySelectorAll('.filter-chip').forEach(btn => {
+                    btn.addEventListener('click', (e) => {
+                        // Toggle active class
+                        document.querySelectorAll('.filter-chip').forEach(c => c.classList.remove('active'));
+                        btn.classList.add('active');
+                        
+                        // Update activeCategory and filter
+                        activeCategory = btn.dataset.category;
+                        filterAndRenderStalls();
+                    });
+                });
             });
         });
     </script>

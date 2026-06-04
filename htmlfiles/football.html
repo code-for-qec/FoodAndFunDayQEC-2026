@@ -1,430 +1,311 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Football Tournament - School Food & Fun Day!</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Staatliches&display=swap" rel="stylesheet">
-
-  <style>
-    body {
-      font-family: 'Inter', sans-serif;
-      background-color: #1a3330;
-      color: #e8d5b5;
-    }
-
-    h1, h2, h3 {
-      font-family: 'Staatliches', 'Inter', sans-serif;
-    }
-
-    ::-webkit-scrollbar {
-      width: 12px;
-    }
-
-    ::-webkit-scrollbar-track {
-      background: #1a3330;
-    }
-
-    ::-webkit-scrollbar-thumb {
-      background: #2b564f;
-      border: 2px solid #d5ab6d;
-      border-radius: 6px;
-    }
-
-    ::-webkit-scrollbar-thumb:hover {
-      background: #336b63;
-    }
-
-    @keyframes fade-in {
-      from { opacity: 0; }
-      to { opacity: 1; }
-    }
-
-    .animate-fade-in {
-      animation: fade-in 1s ease forwards;
-    }
-
-    @keyframes slide-in {
-      from { transform: translateY(30px); opacity: 0; }
-      to { transform: translateY(0); opacity: 1; }
-    }
-
-    .animate-slide-in {
-      animation: slide-in 1s ease forwards;
-    }
-
-  </style>
-
-  <!-- Alpine.js for tab functionality ;) -->
-<script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
-
-  <!-- Firebase SDK -->
-  <script src="https://www.gstatic.com/firebasejs/10.11.0/firebase-app-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/10.11.0/firebase-database-compat.js"></script>
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Football Tournament - School Food & Fun Day!</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Global CSS -->
+    <link rel="stylesheet" href="../css/global.css" />
+    <style>
+        body {
+            font-family: var(--font-body);
+            background: radial-gradient(circle at top, #0c2017 0%, var(--color-bg-darkest) 90%);
+        }
+        h1, h2, h3, h4, h5, h6 {
+            font-family: var(--font-heading);
+        }
+        .stadium-panel {
+            background: rgba(12, 38, 25, 0.45);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(223, 178, 107, 0.2);
+            border-radius: 16px;
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.4);
+            transition: var(--transition-smooth);
+        }
+        .stadium-panel:hover {
+            border-color: rgba(223, 178, 107, 0.4);
+            box-shadow: 0 10px 40px 0 rgba(0, 0, 0, 0.5), 0 0 25px rgba(16, 185, 129, 0.1);
+        }
+        .tab-btn {
+            font-family: var(--font-heading);
+            font-weight: 600;
+            transition: var(--transition-smooth);
+        }
+        .form-input {
+            width: 100%;
+            background: rgba(7, 18, 16, 0.6);
+            border: 1.5px solid rgba(223, 178, 107, 0.2);
+            color: var(--color-cream);
+            padding: 0.75rem 1rem;
+            border-radius: 10px;
+            font-size: 0.9rem;
+            transition: var(--transition-smooth);
+        }
+        .form-input:focus {
+            outline: none;
+            border-color: var(--color-gold);
+            box-shadow: var(--glow-gold);
+        }
+    </style>
+    <!-- Alpine.js for tab functionality -->
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 </head>
-<body class="p-4">
+<body class="px-4 md:px-8 py-4">
 
-  <!-- Call Navbar -->
-  <div id="navbar"></div>
+    <!-- Call Navbar -->
+    <div id="navbar"></div>
 
-  <header class="pt-20 text-center mb-10 transition-opacity duration-700 ease-in opacity-0 animate-fade-in">
-    <img src="../icons and logos/QECLogoFootball.webp" alt="Queen Elizabeth College Logo" class="mx-auto h-20 md:h-24 w-auto mb-4">
-    <h1 class="text-4xl md:text-5xl font-bold text-[#d5ab6d] mb-2 tracking-tight">Football Tournament</h1>
-    <a href="../htmlfiles/index.html" class="inline-block px-4 py-1.5 text-[#e8d5b5] border border-[#d5ab6d] rounded-md hover:bg-[#d5ab6d] hover:text-[#1a3330] transition duration-300">← Back to Main Page</a>
-  </header>
+    <header class="pt-24 text-center mb-10 animate-fade-up">
+        <div class="mb-4 inline-block relative">
+            <div class="absolute inset-0 bg-emerald-500/20 blur-lg rounded-full"></div>
+            <img src="../icons and logos/QECLogoFootball.webp" alt="Football Logo" class="relative mx-auto h-24 w-auto hover:rotate-6 transition-transform duration-300">
+        </div>
+        <h1 class="text-4xl md:text-5xl font-extrabold tracking-tight mb-2 bg-clip-text text-transparent bg-gradient-to-r from-[#f1d89b] via-[#dfb26b] to-[#b88a44]">Football Tournament</h1>
+        <p class="text-[#a3b8b5] text-sm md:text-base max-w-xl mx-auto mb-4">Show your skills, represent your class, and claim the ultimate crown on the field!</p>
+        <a href="../htmlfiles/index.html" class="btn-outline text-xs px-4 py-1.5">← Back to Main Page</a>
+    </header>
 
-  
-  <main class="max-w-3xl mx-auto bg-[#2b564f] p-6 md:p-8 rounded-xl border-2 border-[#d5ab6d] shadow-xl transition-transform duration-700 ease-in-out transform animate-slide-in mb-10">
+    <main class="max-w-6xl mx-auto grid md:grid-cols-12 gap-8 mb-16 px-4">
+        
+        <!-- Left Column: Details & Schedule (7 Cols) -->
+        <div class="md:col-span-7 space-y-8 animate-fade-up animate-delay-1">
+            
+            <!-- Tournament Overview -->
+            <section class="stadium-panel p-6 md:p-8">
+                <h2 class="text-2xl font-bold text-[#dfb26b] mb-4 font-['Outfit'] border-b border-[#dfb26b]/10 pb-2">Tournament Rules</h2>
+                <div class="grid sm:grid-cols-3 gap-4 mb-6 text-center">
+                    <div class="p-3 bg-[#071210]/40 rounded-xl border border-[#dfb26b]/10">
+                        <span class="text-xl block mb-1">👥</span>
+                        <span class="text-[10px] uppercase text-[#a3b8b5] block">Format</span>
+                        <span class="font-bold text-sm text-[#ede0cb]">6-a-side Match</span>
+                    </div>
+                    <div class="p-3 bg-[#071210]/40 rounded-xl border border-[#dfb26b]/10">
+                        <span class="text-xl block mb-1">💰</span>
+                        <span class="text-[10px] uppercase text-[#a3b8b5] block">Entry Fee</span>
+                        <span class="font-bold text-sm text-[#ede0cb]">Rs 150 / Team</span>
+                    </div>
+                    <div class="p-3 bg-[#071210]/40 rounded-xl border border-[#dfb26b]/10">
+                        <span class="text-xl block mb-1">📍</span>
+                        <span class="text-[10px] uppercase text-[#a3b8b5] block">Location</span>
+                        <span class="font-bold text-sm text-[#ede0cb]">Football Field</span>
+                    </div>
+                </div>
+                <p class="text-sm text-[#a3b8b5] leading-relaxed">
+                    Group stages lead directly into knockout brackets. Each game lasts 15 minutes (7 mins per half, 1 min break). Teams must be ready with matching shirts/bibs. Standard football boots or sneakers are required.
+                </p>
+            </section>
 
-    
-    <section class="mb-8">
-      <h2 class="text-2xl md:text-3xl font-semibold text-[#d5ab6d] mb-4">Get Ready to Compete</h2>
-      <p class="text-base md:text-lg leading-relaxed">
-        Join us on the pitch for an action-packed tournament. Whether you're a fierce striker or a casual kicker, everyone's welcome.
-      </p>
-    </section>
+            <!-- Schedule & Brackets with Alpine Tabs -->
+            <section class="stadium-panel p-6 md:p-8">
+                <h2 class="text-2xl font-bold text-[#dfb26b] mb-4 font-['Outfit']">Group Standings & Fixtures</h2>
+                
+                <div x-data="{ activeTab: 'Group A' }" class="mt-4">
+                    <!-- Tab Buttons -->
+                    <div id="tabButtonsContainer" class="flex flex-wrap gap-2 border-b border-[#dfb26b]/10 pb-3 mb-6">
+                        <!-- Populated by JS -->
+                    </div>
+                    
+                    <!-- Tab Contents -->
+                    <div id="tabContentsContainer" class="space-y-3">
+                        <!-- Populated by JS -->
+                    </div>
+                </div>
+            </section>
+        </div>
 
+        <!-- Right Column: Pre-Register Form (5 Cols) -->
+        <section class="stadium-panel p-6 md:col-span-5 animate-fade-up animate-delay-2 flex flex-col justify-between">
+            <div>
+                <h2 class="text-xl font-bold text-[#dfb26b] mb-4 font-['Outfit'] border-b border-[#dfb26b]/10 pb-2">Pre-Register Team</h2>
+                <p class="text-xs text-[#a3b8b5] mb-6">Securing a slot is simple. Fill out your squad details here, and click submit to fill out the official school registry.</p>
+                
+                <form id="teamForm" class="space-y-4">
+                    <div>
+                        <label class="block text-[10px] uppercase tracking-wider text-[#dfb26b] mb-1.5 font-bold font-['Outfit']">Team Name</label>
+                        <input type="text" id="teamName" class="form-input" placeholder="e.g. Real QEC FC" required />
+                    </div>
+                    
+                    <div class="grid grid-cols-2 gap-3">
+                        <div>
+                            <label class="block text-[10px] uppercase tracking-wider text-[#dfb26b] mb-1.5 font-bold font-['Outfit']">Captain Name</label>
+                            <input type="text" id="captainName" class="form-input" placeholder="Captain Fullname" required />
+                        </div>
+                        <div>
+                            <label class="block text-[10px] uppercase tracking-wider text-[#dfb26b] mb-1.5 font-bold font-['Outfit']">Contact Phone</label>
+                            <input type="tel" id="phoneNumber" class="form-input" placeholder="5XXXXXXX" pattern="^5[0-9]{7}$" required />
+                        </div>
+                    </div>
 
-    <section class="mb-8">
-      <h3 class="text-xl font-semibold text-[#e8d5b5] mb-3">Event Details:</h3>
-      <ul class="list-disc list-inside text-sm md:text-base space-y-2 ml-4">
-        <li><strong>Team Format:</strong> 6 players per team</li>
-        <li><strong>Registration Fee:</strong> Rs150 per team</li>
-        <li><strong>Location:</strong> Football Field</li>
-      </ul>
-    </section>
-
-    
-    <section>
-      <h3 class="text-xl font-semibold text-[#e8d5b5] mb-3">Tournament Format:</h3>
-      <p class="text-sm md:text-base leading-relaxed">
-        Group stages will lead into knockout rounds. Each game lasts 15 minutes with a 2-minute halftime. Make sure to wear your team kit and proper footwear.
-      </p>
-    </section>
-
-  </main>
-
-  <!--Register your team-->
-  <section class="max-w-3xl mx-auto bg-[#2b564f] p-8 md:p-10 rounded-xl border-2 border-[#d5ab6d] shadow-xl transition-transform duration-700 ease-in-out transform animate-slide-in">
-    <h2 class="text-2xl md:text-3xl font-semibold text-[#d5ab6d] mb-8 text-center">Register Your Team</h2>
-    
-    <div class="flex flex-col md:flex-row items-center gap-6">
-      <p class="text-[#e8d5b5] text-lg leading-relaxed flex-1">
-        Ready to showcase your team's skills? Click the button to register for the football tournament. 
-        You'll be taken to a Google Form where you can provide your team details.
-      </p>
-      
-      <a href="https://docs.google.com/forms/d/e/1FAIpQLSd4R9flbFLRYlhWioT5SjqJWeZzWigF5SpOO6duQFvuDIbWFg/viewform" 
-         target="_blank" 
-         class="inline-block bg-[#d5ab6d] text-[#1a3330] font-semibold py-4 px-10 rounded-lg hover:bg-[#e8d5b5] transition duration-300 transform hover:scale-105 hover:shadow-lg text-lg whitespace-nowrap">
-        Register Now →
-      </a>
-    </div>
-  </section>
-
-  <section class="max-w-3xl mx-auto mt-12 bg-[#2b564f] p-4 md:p-8 rounded-xl border-2 border-[#d5ab6d]">
-    <h2 class="text-2xl md:text-3xl font-semibold text-[#d5ab6d] mb-6">Group Stage Matches & Schedule</h2>
-  
-    <!-- Alpine.js Tab Implementation -->
-    <div x-data="{ activeTab: 1 }">
-  
-      
-      <!-- Tab Buttons will be dynamically inserted here -->
-      <div id="tabButtonsContainer" class="flex flex-row flex-wrap justify-center mb-6 gap-2 sm:gap-3 border-b-2 border-[#d5ab6d] overflow-x-auto"></div>
-  
-      <!-- Tab Contents will be dynamically inserted here -->
-      <div id="tabContentsContainer"></div>
-
-    </div>
-  </section>
-  
-  
-
-  <!-- Footer -->
-  <footer class="text-center mt-10 text-sm text-[#d5ab6d]">
-    <p>&copy; 2025 Queen Elizabeth College. All rights reserved.</p>
-  </footer>
-
-  <script src="../javascript/navbar.js"></script>
-  <script>
-    async function loadSchedule() {
-        try {
-            const response = await fetch('../htmlfiles/football_schedule.json?' + new Date().getTime(), {
-                headers: {
-                    'Cache-Control': 'no-cache, no-store, must-revalidate',
-                    'Pragma': 'no-cache',
-                    'Expires': '0'
-                }
-            });
-
-            if (!response.ok) {
-                throw new Error(`HTTP error! status: ${response.status}`);
-            }
-
-            const schedule = await response.json();
-            console.log('Successfully loaded schedule:', schedule);
-
-            const tabButtonsContainer = document.getElementById('tabButtonsContainer');
-            const tabContentsContainer = document.getElementById('tabContentsContainer');
-
-            // Clear existing content
-            tabButtonsContainer.innerHTML = '';
-            tabContentsContainer.innerHTML = '';
-
-            let tabIndex = 1;
-            for (const groupName in schedule) {
-                const matches = schedule[groupName];
-
-                // Create tab button HTML string
-                const buttonHtml = `
-                    <button
-                        x-bind:class="{
-                            'text-[#d5ab6d] border-b-2 border-[#d5ab6d]': activeTab === ${tabIndex},
-                            'bg-[#1a3330] text-[#d5ab6d] font-bold': activeTab === ${tabIndex}
-                        }"
-                        @click="activeTab = ${tabIndex}"
-                        class="text-white py-1 px-3 sm:py-2 sm:px-4 md:py-4 md:px-6 focus:outline-none transform transition duration-300 ease-in-out hover:text-[#d5ab6d] hover:scale-105 hover:underline text-sm sm:text-base md:text-lg">
-                        ${groupName}
+                    <!-- Players (1 Captain + 5 players = 6 players) -->
+                    <div class="pt-3">
+                        <label class="block text-[10px] uppercase tracking-wider text-[#dfb26b] mb-1.5 font-bold font-['Outfit']">Squad Players (Names)</label>
+                        <div id="playersContainer" class="space-y-2">
+                            <!-- JS Inject fields -->
+                        </div>
+                    </div>
+                    
+                    <button type="submit" id="submitBtn" class="btn-premium w-full text-xs font-bold py-3 rounded-lg uppercase tracking-wider mt-4">
+                        Submit Team Registration
                     </button>
-                `;
-                tabButtonsContainer.innerHTML += buttonHtml; // Append button HTML
+                </form>
+            </div>
+        </section>
 
-                // Create tab content HTML string
-                let contentHtml = `
-                    <div x-show="activeTab === ${tabIndex}" x-transition class="space-y-3">
-                `;
+    </main>
 
-                matches.forEach(match => {
-                    contentHtml += `
-                        <div class="flex flex-col sm:flex-row justify-between text-[#e8d5b5] hover:bg-[#1a3330] p-2 rounded-lg hover:scale-105 transition">
-                            <div class="font-semibold text-sm md:text-base">${match.teams}</div>
-                            <div class="text-sm md:text-base mt-1 sm:mt-0">${match.time}</div>
+    <footer class="text-center py-8 text-[#a3b8b5] border-t border-[#dfb26b]/10 bg-[#071210]/40 max-w-full font-['Outfit'] text-xs">
+        <p>&copy; 2026 Queen Elizabeth College. Crafted by QECC Club. All rights reserved.</p>
+    </footer>
+
+    <!-- Script loading and registration processing -->
+    <script>
+        // Set up player name fields dynamically (1 captain is defined separately, so we collect 5 more players to hit the 6 format limit)
+        const playersContainer = document.getElementById('playersContainer');
+        for (let i = 1; i <= 5; i++) {
+            const div = document.createElement('div');
+            div.className = 'relative';
+            div.innerHTML = `
+                <input type="text" id="player${i}" class="form-input" placeholder="Player ${i + 1} Name" required />
+            `;
+            playersContainer.appendChild(div);
+        }
+
+        // Load schedule JSON data
+        let scheduleData = {};
+        
+        async function loadSchedule() {
+            try {
+                const response = await fetch('football_schedule.json?' + new Date().getTime());
+                if (!response.ok) throw new Error("Schedule load error");
+                
+                scheduleData = await response.json();
+                renderSchedule();
+            } catch (err) {
+                console.error("Fixture loading failed:", err);
+                document.getElementById('tabContentsContainer').innerHTML = '<p class="text-red-400 text-xs">Error loading football fixtures.</p>';
+            }
+        }
+
+        function renderSchedule() {
+            const buttonsContainer = document.getElementById('tabButtonsContainer');
+            const contentsContainer = document.getElementById('tabContentsContainer');
+            
+            buttonsContainer.innerHTML = '';
+            contentsContainer.innerHTML = '';
+
+            let idx = 0;
+            for (const groupName in scheduleData) {
+                const activeClass = idx === 0 ? 'active' : '';
+                
+                // Button
+                const btn = document.createElement('button');
+                btn.className = `filter-chip ${activeClass}`;
+                btn.setAttribute('data-tab', groupName);
+                btn.textContent = groupName;
+                buttonsContainer.appendChild(btn);
+
+                // Content
+                const contentDiv = document.createElement('div');
+                contentDiv.id = `tab-content-${groupName.replace(/\s+/g, '')}`;
+                contentDiv.className = `space-y-2.5 ${idx === 0 ? '' : 'hidden'}`;
+                
+                let matchesHTML = '';
+                scheduleData[groupName].forEach(match => {
+                    matchesHTML += `
+                        <div class="flex justify-between items-center bg-[#071210]/40 p-3.5 rounded-xl border border-[#dfb26b]/10 hover:border-[#dfb26b]/35 transition-colors">
+                            <span class="font-bold text-sm text-[#ede0cb] font-['Outfit']">${match.teams}</span>
+                            <span class="price-tag-gold text-xs">🕒 ${match.time}</span>
                         </div>
                     `;
                 });
-
-                contentHtml += `
-                    </div>
-                `;
-                tabContentsContainer.innerHTML += contentHtml; // Append content HTML
-
-                tabIndex++;
+                
+                contentDiv.innerHTML = matchesHTML;
+                contentsContainer.appendChild(contentDiv);
+                idx++;
             }
 
-            // Re-initialize Alpine.js on the new content
-            if (window.Alpine) {
-                window.Alpine.initTree(tabContentsContainer);
-                // Also re-initialize buttons container if necessary, though tabs x-data is higher up
-                // window.Alpine.initTree(tabButtonsContainer);
+            // Bind Tab Clicks
+            document.querySelectorAll('#tabButtonsContainer button').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    document.querySelectorAll('#tabButtonsContainer button').forEach(c => c.classList.remove('active'));
+                    btn.classList.add('active');
+
+                    const targetTab = btn.getAttribute('data-tab');
+                    for (const groupName in scheduleData) {
+                        const divId = `tab-content-${groupName.replace(/\s+/g, '')}`;
+                        const div = document.getElementById(divId);
+                        if (groupName === targetTab) {
+                            div.classList.remove('hidden');
+                        } else {
+                            div.classList.add('hidden');
+                        }
+                    }
+                });
+            });
+        }
+
+        // Form Registration action prefill
+        const regForm = document.getElementById('teamForm');
+        const submitBtn = document.getElementById('submitBtn');
+
+        regForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            const teamName = document.getElementById('teamName').value.trim();
+            const captainName = document.getElementById('captainName').value.trim();
+            const phoneNumber = document.getElementById('phoneNumber').value.trim();
+            
+            // Collect other players
+            const players = [];
+            for (let i = 1; i <= 5; i++) {
+                players.push(document.getElementById(`player${i}`).value.trim());
             }
 
-        } catch (error) {
-            console.error('Error loading football schedule:', error);
-            // Optionally display an error message on the page
-            document.getElementById('tabContentsContainer').innerHTML = '<p class="text-red-500">Error loading schedule. Please try again later.</p>';
-        }
-    }
+            // Form data preparation
+            const formData = {
+                teamName,
+                captainName,
+                phoneNumber,
+                players: players.join(', '),
+                registrationDate: new Date().toLocaleString()
+            };
 
-    // Load the schedule when the page loads
-    document.addEventListener('DOMContentLoaded', loadSchedule);
-</script>
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Preparing Form...';
 
-<!-- Form script -->
-<script>
-  const form = document.getElementById("teamForm");
-  const submitBtn = document.getElementById("submitBtn");
-  const playersContainer = document.getElementById("playersContainer");
-  let isSubmitting = false;
+            try {
+                // Link Google Forms URL with Prefill Parameter Keys from last year
+                const googleFormUrl = new URL('https://docs.google.com/forms/d/e/1FAIpQLSd4R9flbFLRYlhWioT5SjqJWeZzWigF5SpOO6duQFvuDIbWFg/viewform');
+                
+                googleFormUrl.searchParams.append('entry.1126285018', formData.teamName); 
+                googleFormUrl.searchParams.append('entry.763680894', formData.captainName);
+                googleFormUrl.searchParams.append('entry.853776659', formData.phoneNumber);
+                googleFormUrl.searchParams.append('entry.1734828375', formData.players);
+                googleFormUrl.searchParams.append('entry.1569200132', formData.registrationDate);
 
-  // Function to create player input field
-  function createPlayerField(index) {
-    const div = document.createElement('div');
-    div.className = 'player-field';
-    div.innerHTML = `
-      <label for="player${index + 1}" class="block mb-2 text-sm font-medium text-[#e8d5b5]">Player ${index + 1}</label>
-      <input type="text" id="player${index + 1}" name="player${index + 1}" required minlength="2" maxlength="50" 
-        class="w-full p-2 rounded-md bg-[#1a3330] text-[#e8d5b5] border border-[#d5ab6d] focus:outline-none focus:ring-2 focus:ring-[#d5ab6d]" 
-        placeholder="Enter player's full name" />
-    `;
-    return div;
-  }
-
-  // Add 5 player fields
-  for (let i = 1; i <= 5; i++) {
-    playersContainer.appendChild(createPlayerField(i));
-  }
-
-  form.addEventListener("submit", async function (e) {
-    e.preventDefault();
-    
-    if (isSubmitting) return;
-    
-    // Validate phone number format
-    const phoneNumber = document.getElementById("phoneNumber").value;
-    if (!phoneNumber.match(/^5[0-9]{7}$/)) {
-      alert("Please enter a valid phone number starting with 5 followed by 7 digits");
-      return;
-    }
-
-    // Collect all player names
-    const players = [];
-    for (let i = 1; i <= 5; i++) {
-      const playerName = document.getElementById(`player${i}`).value.trim();
-      if (!playerName) {
-        alert(`Please enter a name for Player ${i}`);
-        return;
-      }
-      players.push(playerName);
-    }
-
-    if (!confirm("Are you sure you want to submit this registration?")) {
-      return;
-    }
-
-    isSubmitting = true;
-    submitBtn.disabled = true;
-    submitBtn.innerHTML = '<span class="inline-block animate-spin mr-2">⟳</span> Preparing...';
-
-    const formData = {
-      teamName: document.getElementById("teamName").value.trim(),
-      captainName: document.getElementById("captainName").value.trim(),
-      phoneNumber: phoneNumber,
-      players: players,
-      registrationDate: new Date().toLocaleString()
-    };
-
-    try {
-      // Create the Google Form URL with pre-filled data
-      const googleFormUrl = new URL('https://docs.google.com/forms/d/e/1FAIpQLSd4R9flbFLRYlhWioT5SjqJWeZzWigF5SpOO6duQFvuDIbWFg/viewform?usp=dialog/');
-      
-      // Log the form data for debugging
-      console.log('Form Data:', formData);
-      
-      // Add the pre-filled data as URL parameters
-      googleFormUrl.searchParams.append('entry.1126285018', formData.teamName); 
-      googleFormUrl.searchParams.append('entry.763680894', formData.captainName);
-      googleFormUrl.searchParams.append('entry.853776659', formData.phoneNumber);
-      googleFormUrl.searchParams.append('entry.1734828375', formData.players.join(', '));
-      googleFormUrl.searchParams.append('entry.1569200132', formData.registrationDate);
-      
-      // Log the final URL for debugging
-      console.log('Google Form URL:', googleFormUrl.toString());
-      
-      // Open the pre-filled Google Form in a new tab
-      const newWindow = window.open(googleFormUrl.toString(), '_blank');
-      
-      if (!newWindow) {
-        throw new Error('Popup was blocked. Please allow popups for this site.');
-      }
-      
-      // Show success message
-      alert("Please review and submit the pre-filled registration form.");
-      form.reset();
-      
-    } catch (error) {
-      console.error("Form preparation error:", error);
-      alert(`Error: ${error.message || "Failed to prepare registration. Please try again later."}`);
-    } finally {
-      isSubmitting = false;
-      submitBtn.disabled = false;
-      submitBtn.innerHTML = 'Submit Registration';
-    }
-  });
-
-  // Add input validation feedback
-  const inputs = form.querySelectorAll('input');
-  inputs.forEach(input => {
-    input.addEventListener('input', function() {
-      if (this.validity.valid) {
-        this.classList.remove('border-red-500');
-        this.classList.add('border-[#d5ab6d]');
-      } else {
-        this.classList.remove('border-[#d5ab6d]');
-        this.classList.add('border-red-500');
-      }
-    });
-  });
-</script>
-
-<!-- Create a menu item to run the sync -->
-<script>
-  function onOpen() {
-    const ui = SpreadsheetApp.getUi();
-    ui.createMenu('Firebase Sync')
-      .addItem('Sync Firestore Data', 'syncFirestoreToSheets')
-      .addItem('Test Connection', 'testConnection')
-      .addToUi();
-  }
-
-  // Test function to verify the menu is working
-  function testConnection() {
-    const ui = SpreadsheetApp.getUi();
-    ui.alert('Test', 'If you can see this, the menu is working!', ui.ButtonSet.OK);
-  }
-
-  // Function to sync Firestore data to Sheets
-  function syncFirestoreToSheets() {
-    const ui = SpreadsheetApp.getUi();
-    try {
-      // Get the active spreadsheet and sheet
-      const sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
-      
-      // Clear existing data (optional)
-      sheet.clear();
-      
-      // Add headers
-      sheet.getRange(1, 1, 1, 6).setValues([[
-        "Timestamp",
-        "Team Name",
-        "Captain Name",
-        "Phone Number",
-        "Players",
-        "Status"
-      ]]);
-      
-      // Get all registrations from Firestore
-      const url = `https://firestore.googleapis.com/v1/projects/${firebaseConfig.projectId}/databases/(default)/documents/football_registrations`;
-      const options = {
-        method: 'GET',
-        headers: {
-          'Authorization': 'Bearer ' + ScriptApp.getOAuthToken()
-        }
-      };
-      
-      const response = UrlFetchApp.fetch(url, options);
-      const data = JSON.parse(response.getContentText());
-      
-      // Add data to sheet
-      let row = 2;
-      if (data.documents) {
-        data.documents.forEach(doc => {
-          const fields = doc.fields;
-          sheet.getRange(row, 1, 1, 6).setValues([[
-            new Date(fields.registrationDate.timestampValue),
-            fields.teamName.stringValue,
-            fields.captainName.stringValue,
-            fields.phoneNumber.stringValue,
-            fields.players.arrayValue.values.map(p => p.stringValue).join(", "),
-            fields.status.stringValue
-          ]]);
-          row++;
+                // Open new tab
+                const newWindow = window.open(googleFormUrl.toString(), '_blank');
+                if (!newWindow) {
+                    alert("Popup blocker active! Please allow popups or copy this link to submit your pre-filled form:\n\n" + googleFormUrl.toString());
+                } else {
+                    alert("Form prepared! Please verify details and click Submit on the Google Form tab.");
+                }
+                
+                regForm.reset();
+            } catch (err) {
+                console.error("Redirection failure:", err);
+                alert("Failed to compile form. Please register manually.");
+            } finally {
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'Submit Team Registration';
+            }
         });
-      }
-      
-      // Format the sheet
-      sheet.autoResizeColumns(1, 6);
-      sheet.getRange(1, 1, 1, 6).setFontWeight('bold');
-      
-      ui.alert('Success', 'Data synced successfully!', ui.ButtonSet.OK);
-      
-    } catch(error) {
-      Logger.log('Error syncing data: ' + error.toString());
-      ui.alert('Error', 'Failed to sync data: ' + error.toString(), ui.ButtonSet.OK);
-    }
-  }
-</script>
+
+        // Initialize
+        loadSchedule();
+    </script>
+    <script src="../javascript/navbar.js"></script>
 </body>
 </html>

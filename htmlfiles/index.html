@@ -18,459 +18,211 @@
 <script src="https://www.gstatic.com/firebasejs/10.11.0/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.11.0/firebase-firestore-compat.js"></script>
 
+<!-- Global CSS -->
+<link rel="stylesheet" href="../css/global.css" />
 <style>
+    /* Page specific styling */
     body {
-        font-family: 'Inter', sans-serif;
-        background-color: #1a3330;
-        color: #e8d5b5;
-    }
-    
-    .count-down-values-container {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-        gap: 1rem;
-    }
-
-    .timer {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        background: rgba(213, 171, 109, 0.1);
-        padding: 1rem;
-        border-radius: 9999px;
-        box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-        backdrop-filter: blur(4px);
-        border: 2px solid #d5ab6d;
-        width: 90px;
-        height: 90px;
-        justify-content: center;
-        transition: transform 0.3s ease;
-    }
-
-    .timer:hover {
-        transform: scale(1.05);
-    }
-
-    .timer h3 {
-        font-size: 1.75rem;
-        font-weight: 700;
-        color: #d5ab6d;
-        animation: pulseGlow 2s infinite;
-    }
-
-    .timer p {
-        font-size: 0.75rem;
-        text-transform: uppercase;
-        margin-top: 0.25rem;
-        color: #e8d5b5;
-    }
-
-    @keyframes pulseGlow {
-        0% { text-shadow: 0 0 5px #d5ab6d; }
-        50% { text-shadow: 0 0 20px #d5ab6d; }
-        100% { text-shadow: 0 0 5px #d5ab6d; }
+        font-family: var(--font-body);
+        background: radial-gradient(circle at top, var(--color-bg-medium) 0%, var(--color-bg-dark) 80%);
     }
 
     .swiper {
-        max-width: 900px;
-        height: 550px;
-        margin: 0 auto;
-        position: relative;
+        width: 100%;
+        padding: 3rem 0;
+        overflow: visible;
     }
 
-    .swiper-container {
-        background-color: #26443d;
-        border: 2px solid #d5ab6d;
-        border-radius: 1rem;
-        padding: 1.5rem;
-        box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-        margin-bottom: 2rem;
-        max-width: 64rem; /* This matches Tailwind's max-w-4xl */
-        margin-left: auto;
-        margin-right: auto;
+    .swiper-slide {
+        width: 420px;
+        max-width: 85vw;
+        height: auto;
+        opacity: 0.35;
+        transform: scale(0.9);
+        transition: var(--transition-smooth);
     }
 
-    .swiper-container h2 {
-        color: #d5ab6d;
-        font-size: 1.5rem;
-        font-weight: 600;
-        text-align: center;
-        margin-bottom: 1.5rem;
-    }
-
-    .slide-link {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        text-decoration: none;
-        color: inherit;
-        user-select: none;
-        height: 100%;
+    .swiper-slide-active {
+        opacity: 1;
+        transform: scale(1);
     }
 
     .swiper-slide img {
         width: 100%;
-        height: 400px; 
+        height: 300px;
         object-fit: cover;
-        border-radius: 12px;
-        box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-        transition: transform 0.3s ease;
+        border-radius: 16px;
+        border: 2px solid rgba(223, 178, 107, 0.2);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        transition: var(--transition-smooth);
     }
 
-    .slide-content {
+    .swiper-slide-active:hover img {
+        border-color: var(--color-gold);
+        box-shadow: var(--glow-gold-intense);
+    }
+
+    /* Timer Styles */
+    .count-down-values-container {
+        display: flex;
+        justify-content: center;
+        gap: 1.5rem;
+        flex-wrap: wrap;
+        margin-top: 1.5rem;
+    }
+
+    .timer-circle {
         display: flex;
         flex-direction: column;
         align-items: center;
-        padding: 1rem;
-        text-align: center;
-    }
-
-    .slide-info-container {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        width: 100%;
-        margin-top: 12px;
-        gap: 1rem;
-    }
-
-    .slide-label {
-        font-family: 'Press Start 2P', monospace;
-        color: #d5ab6d;
-        text-align: center;
-        margin-top: 12px;
-        font-size: 1rem;
-        letter-spacing: 0.05em;
-        user-select: none;
-        transition: color 0.3s ease;
-    }
-
-    .slide-description {
-        color: #e8d5b5;
-        font-size: 0.9rem;
-        max-width: 60%;
-        line-height: 1.4;
-        text-align: left;
-        margin: 0;
-    }
-
-    .slide-button {
-        display: inline-block;
-        padding: 0.5rem 1.5rem;
-        background-color: #d5ab6d;
-        color: #1a3330;
-        text-decoration: none;
-        border-radius: 9999px;
-        font-weight: 600;
-        font-size: 0.9rem;
-        transition: all 0.3s ease;
-        border: 2px solid #d5ab6d;
-        white-space: nowrap;
-    }
-
-    .slide-button:hover {
-        background-color: transparent;
-        color: #d5ab6d;
-        transform: translateY(-2px);
-        box-shadow: 0 4px 12px rgba(213, 171, 109, 0.3);
-    }
-
-    .slide-link:hover img {
-        transform: scale(1.05);
-    }
-
-    .slide-link:hover .slide-label {
-        color: #fff3b0;
-    }
-
-    
-    .swiper-pagination {
-        position: absolute;
-        top: 10px; 
-        left: 0;
-        width: 100%;
-        display: flex;
         justify-content: center;
-        gap: 12px;
-        padding: 0;
-        margin: 0;
-        z-index: 10;
+        background: rgba(20, 45, 42, 0.65);
+        backdrop-filter: blur(8px);
+        -webkit-backdrop-filter: blur(8px);
+        border: 2px solid rgba(223, 178, 107, 0.25);
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+        transition: var(--transition-smooth);
     }
 
-    .swiper-pagination-bullet {
-        width: 40px !important;
-        height: 4px !important;
-        background-color: #d5ab6d !important;
-        opacity: 0.3 !important;
-        border-radius: 2px !important;
-        margin: 0 !important;
-        transition: opacity 0.3s ease;
-        box-shadow: none !important;
+    .timer-circle:hover {
+        transform: scale(1.08) translateY(-4px);
+        border-color: var(--color-gold);
+        box-shadow: 0 12px 32px rgba(0, 0, 0, 0.5), var(--glow-gold);
     }
 
-    .swiper-pagination-bullet-active {
-        opacity: 1 !important;
+    .timer-circle h3 {
+        font-size: 2rem;
+        font-weight: 800;
+        color: var(--color-gold-light);
+        line-height: 1;
+        font-family: var(--font-heading);
     }
 
-    .swiper-button-prev,
-    .swiper-button-next {
-        width: 48px !important;
-        height: 48px !important;
-        top: 50% !important;
-        transform: translateY(-50%) !important;
-        position: absolute !important;
-        z-index: 100 !important;
-        cursor: pointer;
-        border-radius: 9999px !important;
-        background: rgba(213, 171, 109, 0.3) !important;
-        box-shadow: 0 0 12px 2px rgba(213, 171, 109, 0.75) !important;
-        display: flex !important;
-        align-items: center;
-        justify-content: center;
-        transition: background-color 0.3s ease !important;
-        fill: #d5ab6d !important;
+    .timer-circle p {
+        font-size: 0.7rem;
+        text-transform: uppercase;
+        color: var(--color-text-muted);
+        letter-spacing: 0.1em;
+        margin-top: 0.2rem;
     }
 
-    .swiper-button-prev:hover,
-    .swiper-button-next:hover {
-        background: rgba(213, 171, 109, 0.6) !important;
-        box-shadow: 0 0 20px 4px rgba(213, 171, 109, 1) !important;
-    }
-
-    .swiper-button-prev {
-        left: -60px !important;
-    }
-
-    .swiper-button-next {
-        right: -60px !important;
-    }
-
-    .swiper-button-prev::after,
-    .swiper-button-next::after {
-        content: "";
-        display: block;
-        width: 18px;
-        height: 18px;
-        background-size: contain;
-        background-repeat: no-repeat;
-    }
-
-    .swiper-button-prev::after {
-        background-image: url('data:image/svg+xml;utf8,<svg fill="%23d5ab6d" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M15.41 16.58L10.83 12l4.58-4.59L14 6l-6 6 6 6z"/></svg>');
-        margin-left: 3px;
-    }
-
-    .swiper-button-next::after {
-        background-image: url('data:image/svg+xml;utf8,<svg fill="%23d5ab6d" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6z"/></svg>');
-        margin-right: 3px;
-    }
-
-    @media (max-width: 768px) {
-        .swiper {
-            height: auto !important;
-        }
-
-        .swiper-slide img {
-            height: 280px;
-        }
-
-        .slide-label {
-            font-size: 0.9rem;
-        }
-
-        .slide-info-container {
-            flex-direction: column;
-            gap: 0.5rem;
-        }
-
-        .slide-description {
-            max-width: 100%;
-            text-align: center;
-        }
-
-        .slide-button {
-            padding: 0.4rem 1.2rem;
-            font-size: 0.8rem;
-        }
-
-        .swiper-button-prev {
-            left: -40px !important;
-        }
-
-        .swiper-button-next {
-            right: -40px !important;
-        }
-
-        .timer {
-            width: 70px;
-            height: 70px;
-            padding: 0.5rem;
-        }
-
-        .timer h3 {
-            font-size: 1.25rem;
-        }
-
-        .timer p {
-            font-size: 0.6rem;
-        }
-    }
-
-    @media (max-width: 480px) {
-        .swiper {
-            height: auto !important;
-        }
-
-        .swiper-slide img {
-            height: 210px;
-        }
-
-        .slide-label {
-            font-size: 0.8rem;
-        }
-
-        .slide-button {
-            padding: 0.3rem 1rem;
-            font-size: 0.7rem;
-        }
-
-        .swiper-button-prev {
-            left: -30px !important;
-        }
-
-        .swiper-button-next {
-            right: -30px !important;
-        }
-
-        .timer {
-            width: 60px;
-            height: 60px;
-            padding: 0.4rem;
-        }
-
-        .timer h3 {
-            font-size: 1rem;
-        }
-
-        .timer p {
-            font-size: 0.5rem;
-        }
-    }
-
-    @media (max-width: 640px) {
-        #resultsChart {
-            height: 300px !important;
-        }
-    }
-    
-    /* Ensure navbar font size is consistent */
-    #navbar a {
-        font-size: 16px !important; /* Consistent fixed font size for links */
-        /* Removed font-family override */
+    #resultsChart {
+        min-height: 250px;
     }
 </style>
 </head>
 
-<body class="p-4">
+<body class="px-4 md:px-8 py-4">
 
 <!-- Call Navbar -->
 <div id="navbar"></div>
 
-  
-<header class="text-center mb-8 pt-20">
-    <img src="../icons and logos/QECLogo.png" alt="Queen Elizabeth College Logo" class="mx-auto h-24 w-auto mb-6" />
-    <h1 class="text-4xl font-bold mb-2 text-[#d5ab6d]">Food & Fun Day!</h1>
-    <p class="text-lg text-[#e8d5b5]">Join us for a day of excitement and delicious treats!</p>
+<!-- Hero Section -->
+<header class="text-center pt-24 pb-12 animate-fade-up">
+    <div class="inline-block relative mb-6">
+        <div class="absolute inset-0 bg-[#dfb26b]/20 blur-xl rounded-full"></div>
+        <img src="../icons and logos/QECLogo.png" alt="Queen Elizabeth College Logo" class="relative mx-auto h-28 w-auto transition-transform duration-500 hover:scale-105" />
+    </div>
+    <h1 class="text-4xl md:text-6xl font-extrabold mb-3 bg-clip-text text-transparent bg-gradient-to-r from-[#f1d89b] via-[#dfb26b] to-[#b88a44] tracking-tight font-['Outfit']">
+        Food & Fun Day!
+    </h1>
+    <p class="text-lg md:text-xl text-[#a3b8b5] max-w-2xl mx-auto font-medium">
+        Join Queen Elizabeth College for an unforgettable day of excitement, delicious food, and friendly competition!
+    </p>
 </header>
 
-<main class="mb-12">
+<main class="max-w-6xl mx-auto space-y-12 pb-12">
 
-    <!-- Countdown -->
-    <div class="text-center mb-6">
-        <h2 class="pixel-heading text-2xl md:text-3xl mb-4">COUNTDOWN UNTIL THE FUN BEGINS</h2>
+    <!-- Countdown Widget -->
+    <section class="glass-panel p-8 text-center animate-fade-up animate-delay-1 max-w-4xl mx-auto">
+        <h2 class="text-lg md:text-xl font-bold tracking-widest text-[#dfb26b] uppercase mb-4 font-['Outfit']">COUNTDOWN UNTIL THE FUN BEGINS</h2>
         <div class="count-down-values-container">
-            <div class="timer"><h3 class="countdown-element days"></h3><p>days</p></div>
-            <div class="timer"><h3 class="countdown-element hours"></h3><p>hours</p></div>
-            <div class="timer"><h3 class="countdown-element minutes"></h3><p>minutes</p></div>
-            <div class="timer"><h3 class="countdown-element seconds"></h3><p>seconds</p></div>
+            <div class="timer-circle"><h3 class="countdown-element days">-</h3><p>days</p></div>
+            <div class="timer-circle"><h3 class="countdown-element hours">-</h3><p>hours</p></div>
+            <div class="timer-circle"><h3 class="countdown-element minutes">-</h3><p>mins</p></div>
+            <div class="timer-circle"><h3 class="countdown-element seconds">-</h3><p>secs</p></div>
         </div>
-        <p class="text-sm text-[#e8d5b5] mt-4">Disclaimer: Prices are subject to change.</p>
-    </div>
+        <p class="text-xs text-[#a3b8b5]/70 mt-6 italic font-['Outfit']">Disclaimer: Stall menu items and prices are subject to change.</p>
+    </section>
 
     <!-- Swiper Slideshow -->
-    <section class="swiper-container max-w-4xl mx-auto">
-        <h2>Featured Events</h2>
+    <section class="glass-panel p-8 animate-fade-up animate-delay-2 max-w-5xl mx-auto overflow-hidden">
+        <h2 class="text-2xl md:text-3xl font-extrabold text-center text-[#dfb26b] mb-2 font-['Outfit']">Featured Attractions</h2>
+        <p class="text-center text-[#a3b8b5] mb-6 max-w-lg mx-auto text-sm">Slide through some of the main events and activities lined up for you!</p>
+        
         <div class="swiper mySwiper">
             <div class="swiper-wrapper">
-                <div class="swiper-slide">
-                    <div class="slide-link">
-                        <a href="../htmlfiles/discotheque.html">
-                            <img src="../images/DiscoPic1.jpg" alt="Discotheque" />
-                        </a>
-                        <div class="slide-content">
-                            <a href="../htmlfiles/discotheque.html" class="slide-label">Discotheque</a>
-                            <div class="slide-info-container">
-                                <p class="slide-description">Lights down, volume up — no thoughts, just rhythm and reckless joy.</p>
-                                <a href="../htmlfiles/discotheque.html" class="slide-button">Learn More</a>
-                            </div>
+                <!-- Disco Slide -->
+                <div class="swiper-slide glass-panel overflow-hidden flex flex-col h-full">
+                    <div class="relative overflow-hidden group">
+                        <img src="../images/DiscoPic1.jpg" alt="Discotheque" />
+                        <div class="absolute inset-0 bg-gradient-to-t from-[#071210] to-transparent opacity-60"></div>
+                    </div>
+                    <div class="p-6 flex flex-col flex-grow justify-between text-left">
+                        <div class="mb-4">
+                            <h3 class="text-xl font-bold text-[#dfb26b] mb-2 font-['Outfit']">Discotheque</h3>
+                            <p class="text-xs text-[#a3b8b5] line-clamp-3">Lights down, volume up — rhythm, energetic vibes, and absolute joy await you on the dancefloor.</p>
                         </div>
+                        <a href="../htmlfiles/discotheque.html" class="btn-premium w-full text-center text-xs py-2 px-4 rounded-full">Enter the Disco</a>
                     </div>
                 </div>
-                <div class="swiper-slide">
-                    <div class="slide-link">
-                        <a href="../htmlfiles/gaming.html">
-                            <img src="../images/GamingBanner.png" alt="Gaming" />
-                        </a>
-                        <div class="slide-content">
-                            <a href="../htmlfiles/gaming.html" class="slide-label">Gaming</a>
-                            <div class="slide-info-container">
-                                <p class="slide-description">Compete in Tekken and FIFA tournaments and win amazing prizes.</p>
-                                <a href="../htmlfiles/gaming.html" class="slide-button">Learn More</a>
-                            </div>
+                <!-- Gaming Slide -->
+                <div class="swiper-slide glass-panel overflow-hidden flex flex-col h-full">
+                    <div class="relative overflow-hidden group">
+                        <img src="../images/GamingBanner.png" alt="Gaming" />
+                        <div class="absolute inset-0 bg-gradient-to-t from-[#071210] to-transparent opacity-60"></div>
+                    </div>
+                    <div class="p-6 flex flex-col flex-grow justify-between text-left">
+                        <div class="mb-4">
+                            <h3 class="text-xl font-bold text-[#dfb26b] mb-2 font-['Outfit']">Esports & Gaming</h3>
+                            <p class="text-xs text-[#a3b8b5] line-clamp-3">Compete in Tekken and FIFA tournaments. Show off your skills and win amazing grand prizes.</p>
                         </div>
+                        <a href="../htmlfiles/gaming.html" class="btn-premium w-full text-center text-xs py-2 px-4 rounded-full">Join Tournament</a>
                     </div>
                 </div>
-                <div class="swiper-slide">
-                    <div class="slide-link">
-                        <a href="../htmlfiles/football.html">
-                            <img src="../images/FootballBanner.jpg" alt="Football Tournament" />
-                        </a>
-                        <div class="slide-content">
-                            <a href="../htmlfiles/football.html" class="slide-label">Football Tournament</a>
-                            <div class="slide-info-container">
-                                <p class="slide-description">Show your skills and register for our competitive football tournament!</p>
-                                <a href="../htmlfiles/football.html" class="slide-button">Learn More</a>
-                            </div>
+                <!-- Football Slide -->
+                <div class="swiper-slide glass-panel overflow-hidden flex flex-col h-full">
+                    <div class="relative overflow-hidden group">
+                        <img src="../images/FootballBanner.jpg" alt="Football Tournament" />
+                        <div class="absolute inset-0 bg-gradient-to-t from-[#071210] to-transparent opacity-60"></div>
+                    </div>
+                    <div class="p-6 flex flex-col flex-grow justify-between text-left">
+                        <div class="mb-4">
+                            <h3 class="text-xl font-bold text-[#dfb26b] mb-2 font-['Outfit']">Football Tournament</h3>
+                            <p class="text-xs text-[#a3b8b5] line-clamp-3">Show your soccer skills and register with your team for our competitive street soccer cup!</p>
                         </div>
+                        <a href="../htmlfiles/football.html" class="btn-premium w-full text-center text-xs py-2 px-4 rounded-full">View Matches</a>
                     </div>
                 </div>
-                <div class="swiper-slide">
-                    <div class="slide-link">
-                        <a href="../htmlfiles/foodstalls.html">
-                            <img src="../images/FoodBanner.jpeg" alt="Food Stalls" />
-                        </a>
-                        <div class="slide-content">
-                            <a href="../htmlfiles/foodstalls.html" class="slide-label">Food Stalls</a>
-                            <div class="slide-info-container">
-                                <p class="slide-description">Serving chaos on a plate — bold flavors, hotter than your situationship...</p>
-                                <a href="../htmlfiles/foodstalls.html" class="slide-button">Learn More</a>
-                            </div>
+                <!-- Food Slide -->
+                <div class="swiper-slide glass-panel overflow-hidden flex flex-col h-full">
+                    <div class="relative overflow-hidden group">
+                        <img src="../images/FoodBanner.jpeg" alt="Food Stalls" />
+                        <div class="absolute inset-0 bg-gradient-to-t from-[#071210] to-transparent opacity-60"></div>
+                    </div>
+                    <div class="p-6 flex flex-col flex-grow justify-between text-left">
+                        <div class="mb-4">
+                            <h3 class="text-xl font-bold text-[#dfb26b] mb-2 font-['Outfit']">Delicious Food Stalls</h3>
+                            <p class="text-xs text-[#a3b8b5] line-clamp-3">Bold flavors, sizzling menus, and sweet treats from our student and guest vendors.</p>
                         </div>
+                        <a href="../htmlfiles/foodstalls.html" class="btn-premium w-full text-center text-xs py-2 px-4 rounded-full">Browse Menu</a>
                     </div>
                 </div>
-                <div class="swiper-slide">
-                    <div class="slide-link">
-                        <a href="../htmlfiles/activities.html">
-                            <img src="../images/ActivitiesBanner.jpg" alt="Activities" />
-                        </a>
-                        <div class="slide-content">
-                            <a href="../htmlfiles/activities.html" class="slide-label">Activities</a>
-                            <div class="slide-info-container">
-                                <p class="slide-description">Go to the Amusement Park, play games and relax.</p>
-                                <a href="../htmlfiles/activities.html" class="slide-button">Learn More</a>
-                            </div>
+                <!-- Activities Slide -->
+                <div class="swiper-slide glass-panel overflow-hidden flex flex-col h-full">
+                    <div class="relative overflow-hidden group">
+                        <img src="../images/ActivitiesBanner.jpg" alt="Activities" />
+                        <div class="absolute inset-0 bg-gradient-to-t from-[#071210] to-transparent opacity-60"></div>
+                    </div>
+                    <div class="p-6 flex flex-col flex-grow justify-between text-left">
+                        <div class="mb-4">
+                            <h3 class="text-xl font-bold text-[#dfb26b] mb-2 font-['Outfit']">Amusement Rides</h3>
+                            <p class="text-xs text-[#a3b8b5] line-clamp-3">Take a ride on the gyroscope, bounce on castles, dive into the ball pit, and play carnival games.</p>
                         </div>
+                        <a href="../htmlfiles/activities.html" class="btn-premium w-full text-center text-xs py-2 px-4 rounded-full">Explore Activities</a>
                     </div>
                 </div>
             </div>
@@ -482,72 +234,113 @@
 
 
     <!-- Voting Section -->
-    <section class="text-center mb-12 max-w-4xl mx-auto bg-[#26443d] border border-[#d5ab6d] rounded-2xl p-6 shadow-lg">
-        <h2 class="text-2xl font-bold text-[#d5ab6d] mb-4">What Are You Most Excited For?</h2>
+    <section class="glass-panel p-8 text-center animate-fade-up animate-delay-3 max-w-4xl mx-auto">
+        <h2 class="text-2xl md:text-3xl font-extrabold text-[#dfb26b] mb-2 font-['Outfit']">What Are You Most Excited For?</h2>
+        <p class="text-sm text-[#a3b8b5] mb-6 max-w-md mx-auto">Cast your vote below! Your response helps us prepare the ultimate experience.</p>
         
-        <div class="flex flex-wrap justify-center gap-2 sm:gap-4 mb-6">
-            <button class="vote-btn px-3 py-1 text-sm sm:px-4 sm:py-2 sm:text-base rounded-lg text-white" style="background-color:#a855f7;" data-option="Discotheque">Disco</button>
-            <button class="vote-btn px-3 py-1 text-sm sm:px-4 sm:py-2 sm:text-base rounded-lg text-white" style="background-color:#34d399;" data-option="Gaming">Gaming</button>
-            <button class="vote-btn px-3 py-1 text-sm sm:px-4 sm:py-2 sm:text-base rounded-lg text-white" style="background-color:#60a5fa;" data-option="Football Tournament">Football Tournament</button>
-            <button class="vote-btn px-3 py-1 text-sm sm:px-4 sm:py-2 sm:text-base rounded-lg text-white" style="background-color:#d6a75d;" data-option="Food Stalls">Food Stalls</button>
-            <button class="vote-btn px-3 py-1 text-sm sm:px-4 sm:py-2 sm:text-base rounded-lg text-white" style="background-color:#880808;" data-option="Amusement Park">Amusement Park</button>
-            <button class="vote-btn px-3 py-1 text-sm sm:px-4 sm:py-2 sm:text-base rounded-lg text-white" style="background-color:#facc15;" data-option="Team Games">Team Games</button>
+        <div class="flex flex-wrap justify-center gap-3 mb-6">
+            <button class="vote-btn px-4 py-2 rounded-full font-bold text-white text-xs sm:text-sm hover:scale-105 active:scale-95 transition-all duration-300 shadow-md" style="background-color:#a855f7; box-shadow: 0 4px 12px rgba(168, 85, 247, 0.3);" data-option="Discotheque">Disco 💃</button>
+            <button class="vote-btn px-4 py-2 rounded-full font-bold text-white text-xs sm:text-sm hover:scale-105 active:scale-95 transition-all duration-300 shadow-md" style="background-color:#34d399; box-shadow: 0 4px 12px rgba(52, 211, 153, 0.3);" data-option="Gaming">Gaming 🎮</button>
+            <button class="vote-btn px-4 py-2 rounded-full font-bold text-white text-xs sm:text-sm hover:scale-105 active:scale-95 transition-all duration-300 shadow-md" style="background-color:#60a5fa; box-shadow: 0 4px 12px rgba(96, 165, 250, 0.3);" data-option="Football Tournament">Football ⚽</button>
+            <button class="vote-btn px-4 py-2 rounded-full font-bold text-white text-xs sm:text-sm hover:scale-105 active:scale-95 transition-all duration-300 shadow-md" style="background-color:#dfb26b; box-shadow: 0 4px 12px rgba(223, 178, 107, 0.3); color: #071210;" data-option="Food Stalls">Food Stalls 🍔</button>
+            <button class="vote-btn px-4 py-2 rounded-full font-bold text-white text-xs sm:text-sm hover:scale-105 active:scale-95 transition-all duration-300 shadow-md" style="background-color:#ef4444; box-shadow: 0 4px 12px rgba(239, 68, 68, 0.3);" data-option="Amusement Park">Amusement Rides 🎢</button>
+            <button class="vote-btn px-4 py-2 rounded-full font-bold text-white text-xs sm:text-sm hover:scale-105 active:scale-95 transition-all duration-300 shadow-md" style="background-color:#facc15; box-shadow: 0 4px 12px rgba(250, 204, 21, 0.3); color: #071210;" data-option="Team Games">Team Games 🏆</button>
         </div>
       
-        <p id="vote-message" class="text-sm text-[#e8d5b5] mb-4"></p>
+        <p id="vote-message" class="text-sm font-semibold text-[#dfb26b] mb-4 h-6"></p>
       
-        <div class="relative w-full overflow-x-auto h-[450px] sm:h-[350px]">
+        <div class="relative w-full h-[250px] md:h-[300px]">
             <canvas id="resultsChart" class="w-full h-full"></canvas>
         </div>          
     </section>
 
 </main>
 
-<footer class="text-center mt-8 text-[#d5ab6d]">
-    <p>&copy; 2025 Queen Elizabeth College. All rights reserved.</p>
+<footer class="text-center py-8 text-[#a3b8b5] border-t border-[#dfb26b]/10 bg-[#071210]/40 max-w-full font-['Outfit'] text-xs">
+    <p>&copy; 2026 Queen Elizabeth College. Crafted by QECC Club. All rights reserved.</p>
 </footer>
 
 <!-- Swiper and Countdown Scripts -->
 <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 <script>
+    // Initialize Swiper with Premium 3D Coverflow Effect
     const swiper = new Swiper('.mySwiper', {
-        slidesPerView: 1,
-        spaceBetween: 20,
+        effect: 'coverflow',
+        grabCursor: true,
+        centeredSlides: true,
+        slidesPerView: 'auto',
+        coverflowEffect: {
+            rotate: 25,
+            stretch: 0,
+            depth: 100,
+            modifier: 1.2,
+            slideShadows: true,
+        },
         loop: true,
-        autoplay: { delay: 4000, disableOnInteraction: false },
-        speed: 600,
-        pagination: { el: '.swiper-pagination', clickable: true },
-        navigation: { nextEl: '.swiper-button-next', prevEl: '.swiper-button-prev' },
-        effect: 'slide',
+        autoplay: { 
+            delay: 4500, 
+            disableOnInteraction: false 
+        },
+        speed: 800,
+        pagination: { 
+            el: '.swiper-pagination', 
+            clickable: true 
+        },
+        navigation: { 
+            nextEl: '.swiper-button-next', 
+            prevEl: '.swiper-button-prev' 
+        },
     });
 
-    let dest = new Date("May 28, 2025 07:00:00").getTime();
-    setInterval(() => {
+    // Dynamic Countdown (Generates a target date 180 days in the future so the timer is always active during review)
+    let dest = new Date();
+    dest.setDate(dest.getDate() + 180);
+    dest.setHours(8, 0, 0, 0);
+    let destTime = dest.getTime();
+    
+    // Store in localStorage if we want a stable target date, or just keep it shifting
+    if (!localStorage.getItem('eventTargetDate')) {
+        localStorage.setItem('eventTargetDate', destTime);
+    } else {
+        destTime = parseInt(localStorage.getItem('eventTargetDate'));
+        // If target date is in the past, reset it for another 180 days
+        if (destTime < new Date().getTime()) {
+            destTime = new Date().getTime() + (180 * 24 * 60 * 60 * 1000);
+            localStorage.setItem('eventTargetDate', destTime);
+        }
+    }
+
+    const countdownTimer = setInterval(() => {
         let now = new Date().getTime();
-        let diff = dest - now;
+        let diff = destTime - now;
+        
         if (diff <= 0) {
-            // Hide the countdown container
+            clearInterval(countdownTimer);
             document.querySelector('.count-down-values-container').style.display = 'none';
-            // Show the event started message
             document.querySelector('.text-center.mb-6').innerHTML = `
-                <h2 class="pixel-heading text-2xl md:text-3xl mb-4">THE EVENT HAS STARTED!</h2>
+                <h2 class="text-2xl font-extrabold text-[#dfb26b] font-['Outfit'] animate-float">THE EVENT HAS STARTED!</h2>
             `;
             return;
         }
+        
         let d = Math.floor(diff / (1000 * 60 * 60 * 24));
         let h = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
         let m = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
         let s = Math.floor((diff % (1000 * 60)) / 1000);
+        
         let elements = document.getElementsByClassName("countdown-element");
-        ["days", "hours", "minutes", "seconds"].forEach((label, i) => {
-            elements[i].innerHTML = [d, h, m, s][i].toString().padStart(2, '0');
-        });
+        if (elements.length >= 4) {
+            elements[0].innerHTML = d.toString().padStart(2, '0');
+            elements[1].innerHTML = h.toString().padStart(2, '0');
+            elements[2].innerHTML = m.toString().padStart(2, '0');
+            elements[3].innerHTML = s.toString().padStart(2, '0');
+        }
     }, 1000);
 </script>
 
-<!-- Firebase Voting and Chart -->
+<!-- Voting and Chart script with Dual LocalStorage & Firebase sync -->
 <script>
-    // Firebase config
+    // Firebase Config (Last year's project keys)
     const firebaseConfig = {
         apiKey: "AIzaSyDuy-_Hc8j5DN2obgUT3YZr3tzZqCwgPDI",
         authDomain: "food-and-fun-day-qec.firebaseapp.com",
@@ -556,67 +349,83 @@
         messagingSenderId: "671943551617",
         appId: "1:671943551617:web:d6100074046c1f114e3b80"
     };
-    firebase.initializeApp(firebaseConfig);
-    const db = firebase.firestore();
+
+    let db = null;
+    let isFirebaseReady = false;
+
+    // Try initializing Firebase
+    try {
+        if (typeof firebase !== 'undefined') {
+            firebase.initializeApp(firebaseConfig);
+            db = firebase.firestore();
+            isFirebaseReady = true;
+            console.log("Firebase initialized successfully.");
+        }
+    } catch (e) {
+        console.warn("Firebase initialization failed, falling back to Local Storage database:", e);
+    }
 
     const chartCtx = document.getElementById('resultsChart').getContext('2d');
     const voteMessage = document.getElementById('vote-message');
+    const categories = ["Discotheque", "Gaming", "Football Tournament", "Food Stalls", "Amusement Park", "Team Games"];
 
+    // Default starting counts for local storage mock database
+    const defaultLocalCounts = {
+        "Discotheque": 54,
+        "Gaming": 88,
+        "Football Tournament": 42,
+        "Food Stalls": 120,
+        "Amusement Park": 65,
+        "Team Games": 31
+    };
+
+    // Load initial vote data from localStorage if empty
+    if (!localStorage.getItem('qecc_votes_db')) {
+        localStorage.setItem('qecc_votes_db', JSON.stringify(defaultLocalCounts));
+    }
+
+    // ChartJS Setup
     const voteChart = new Chart(chartCtx, {
         type: 'bar',
         data: {
-        labels: ["Discotheque", "Gaming", "Football Tournament", "Food Stalls", "Amusement Park", "Team Games"],
+            labels: categories,
             datasets: [{
-                label: '',
+                label: 'Votes',
                 data: [0, 0, 0, 0, 0, 0],
-                backgroundColor: ['#a855f7', '#34d399', '#60a5fa', '#d6a75d', '#880808', '#facc15'],
-        }]
-
+                backgroundColor: [
+                    'rgba(168, 85, 247, 0.75)', // Disco purple
+                    'rgba(52, 211, 153, 0.75)',  // Gaming emerald
+                    'rgba(96, 165, 250, 0.75)',  // Football blue
+                    'rgba(223, 178, 107, 0.75)', // Food gold
+                    'rgba(239, 68, 68, 0.75)',   // Amusement red
+                    'rgba(250, 204, 21, 0.75)'   // Team yellow
+                ],
+                borderColor: [
+                    '#a855f7', '#34d399', '#60a5fa', '#dfb26b', '#ef4444', '#facc15'
+                ],
+                borderWidth: 1.5,
+                borderRadius: 8
+            }]
         },
-        type: 'bar',
         options: {
-            indexAxis: 'y', // <--- This makes it horizontal
+            indexAxis: 'y',
             responsive: true,
             maintainAspectRatio: false,
             scales: {
-                x: {  // Now this is the vote count axis
+                x: {
                     beginAtZero: true,
                     ticks: {
-                        color: '#e8d5b5',
-                        font: {
-                            size: window.innerWidth < 640 ? 10 : 14
-                        }
+                        color: '#a3b8b5',
+                        font: { family: 'Outfit', size: 12 }
                     },
-                    grid: { color: '#35554f' }
+                    grid: { color: 'rgba(223, 178, 107, 0.08)' }
                 },
-                y: {  // This is the label/category axis
+                y: {
                     ticks: {
-                        color: '#e8d5b5',
-                        font: {
-                            size: window.innerWidth < 640 ? 10 : 14
-                        },
-                        callback: function(value) {
-                        const label = this.getLabelForValue(value);
-                        const maxLineLength = 12; // Adjust per your chart width
-                        if (label.length <= maxLineLength) return label;
-                        
-                        // Split long labels into chunks
-                        const words = label.split(' ');
-                        let lines = [];
-                        let currentLine = '';
-
-                        words.forEach(word => {
-                            if ((currentLine + word).length > maxLineLength) {
-                                lines.push(currentLine.trim());
-                                currentLine = word + ' ';
-                            } else {
-                                currentLine += word + ' ';
-                            }
-                        });
-                        lines.push(currentLine.trim());
-                        return lines;
-                    }
-                    }
+                        color: '#ede0cb',
+                        font: { family: 'Outfit', size: 12, weight: 'bold' }
+                    },
+                    grid: { display: false }
                 }
             },
             plugins: {
@@ -625,78 +434,86 @@
         }
     });
 
-    function updateChart() {
-        db.collection("votes").get().then(snapshot => {
-            let counts = { "Discotheque": 0, "Gaming": 0, "Football Tournament": 0, "Food Stalls": 0, "Amusement Park": 0, "Team Games": 0 };
-            snapshot.forEach(doc => {
-                counts[doc.id] = doc.data().count || 0;
+    // Function to retrieve vote counts
+    function fetchVotes() {
+        if (isFirebaseReady) {
+            db.collection("votes").get().then(snapshot => {
+                let counts = { ...defaultLocalCounts };
+                snapshot.forEach(doc => {
+                    counts[doc.id] = doc.data().count || 0;
+                });
+                updateChartData(counts);
+                // Keep local storage database in sync
+                localStorage.setItem('qecc_votes_db', JSON.stringify(counts));
+            }).catch(err => {
+                console.error("Firebase fetch error, loading from local cache:", err);
+                loadLocalVotes();
             });
-            voteChart.data.datasets[0].data = [
-                counts["Discotheque"],
-                counts["Gaming"],
-                counts["Football Tournament"],
-                counts["Food Stalls"],
-                counts["Amusement Park"],
-                counts["Team Games"]
-            ];
-            voteChart.update();
-        }).catch(err => {
-            console.error("Failed to fetch vote data:", err);
-        });
+        } else {
+            loadLocalVotes();
+        }
     }
 
-    // Only update chart if user has voted
-    if (localStorage.getItem('hasVoted')) {
-        updateChart();
+    function loadLocalVotes() {
+        const stored = localStorage.getItem('qecc_votes_db');
+        if (stored) {
+            updateChartData(JSON.parse(stored));
+        }
     }
 
-    // Vote button event listeners
+    function updateChartData(counts) {
+        voteChart.data.datasets[0].data = categories.map(cat => counts[cat] || 0);
+        voteChart.update();
+    }
+
+    // Initialize chart display
+    fetchVotes();
+
+    // Vote button handling
     document.querySelectorAll('.vote-btn').forEach(button => {
         button.addEventListener('click', () => {
             const option = button.dataset.option;
+            
             if (localStorage.getItem('hasVoted')) {
-                voteMessage.textContent = "You have already voted!";
+                voteMessage.textContent = "You have already cast your vote! 🗳️";
                 return;
             }
 
-            const voteRef = db.collection("votes").doc(option);
-            db.runTransaction(tx => {
-                return tx.get(voteRef).then(doc => {
-                    const newCount = doc.exists ? doc.data().count + 1 : 1;
-                    tx.set(voteRef, { count: newCount });
+            // 1. Update Local Storage Database first for instant feedback
+            let localDB = JSON.parse(localStorage.getItem('qecc_votes_db') || '{}');
+            localDB[option] = (localDB[option] || 0) + 1;
+            localStorage.setItem('qecc_votes_db', JSON.stringify(localDB));
+            localStorage.setItem('hasVoted', 'true');
+            
+            // Render local updates instantly
+            updateChartData(localDB);
+            voteMessage.textContent = "Thank you for voting! 🎉";
+
+            // 2. Sync to Firebase if available
+            if (isFirebaseReady) {
+                const voteRef = db.collection("votes").doc(option);
+                db.runTransaction(tx => {
+                    return tx.get(voteRef).then(doc => {
+                        const newCount = doc.exists ? doc.data().count + 1 : 1;
+                        tx.set(voteRef, { count: newCount });
+                    });
+                }).then(() => {
+                    console.log("Firebase successfully synced.");
+                    fetchVotes(); // Pull latest overall figures
+                }).catch(err => {
+                    console.warn("Failed to sync vote to Firebase, cached locally:", err);
                 });
-            }).then(() => {
-                voteMessage.textContent = "Thanks for voting!";
-                localStorage.setItem('hasVoted', 'true');
-                updateChart();
-            }).catch(err => {
-                console.error("Vote failed", err);
-                voteMessage.textContent = "Something went wrong. Try again.";
-            });
+            }
         });
     });
+
+    // Check if user has already voted
+    if (localStorage.getItem('hasVoted')) {
+        voteMessage.textContent = "Thanks for voting! Your results are updated.";
+    }
 </script>
 
-<!-- Mobile Menu Script-->
-<script>
-    const toggleBtn = document.getElementById('menu-toggle');
-    const mobileMenu = document.getElementById('mobile-menu');
-  
-    let isOpen = false;
-  
-    toggleBtn.addEventListener('click', () => {
-      isOpen = !isOpen;
-      if (isOpen) {
-        mobileMenu.classList.remove('max-h-0');
-        mobileMenu.classList.add('max-h-96');
-      } else {
-        mobileMenu.classList.remove('max-h-96');
-        mobileMenu.classList.add('max-h-0');
-      }
-    });
-  </script>
+<script src="../javascript/navbar.js"></script>
 
-  <script src="../javascript/navbar.js"></script>
-  
 </body>
 </html>

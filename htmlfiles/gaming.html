@@ -3,441 +3,241 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gaming - School Food & Fun Day!</title>
+    <title>Esports Gaming Arena - School Food & Fun Day!</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <!-- Global CSS -->
+    <link rel="stylesheet" href="../css/global.css" />
     <style>
-        /* Custom Scrollbar */
-        ::-webkit-scrollbar {
-            width: 12px;
-        }
-        ::-webkit-scrollbar-track {
-            background: #1a3330;
-        }
-        ::-webkit-scrollbar-thumb {
-            background: #2b564f;
-            border: 2px solid #d5ab6d;
-            border-radius: 6px;
-        }
-        ::-webkit-scrollbar-thumb:hover {
-            background: #336b63;
-        }
-        
-        @keyframes fade-in {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-
-        .animate-fade-in {
-            opacity: 0;
-            animation: fade-in 0.6s ease forwards;
-        }
-
-        @keyframes slide-in {
-            from { transform: translateY(20px); opacity: 0; }
-            to { transform: translateY(0); opacity: 1; }
-        }
-
-        .animate-slide-in {
-            opacity: 0;
-            animation: slide-in 0.6s ease forwards;
-        }
-        
         body {
-            font-family: 'Press Start 2P', mono;
-            -webkit-font-smoothing: none;
-            font-smooth: never;
-            background-color: #1a3330;
-            color: #e8d5b5;
-            background-image: 
-                linear-gradient(rgba(26, 51, 48, 0.97), rgba(26, 51, 48, 0.97)),
-                repeating-linear-gradient(
-                    0deg,
-                    transparent,
-                    transparent 2px,
-                    rgba(213, 171, 109, 0.1) 2px,
-                    rgba(213, 171, 109, 0.1) 4px
-                );
-            font-size: 12px;
+            font-family: var(--font-retro);
+            background: radial-gradient(circle at top, #061c1a 0%, var(--color-bg-darkest) 90%);
+            font-size: 11px;
+            letter-spacing: -0.02em;
             line-height: 1.8;
+            color: #84fbf3;
+            text-shadow: 0 0 4px rgba(132, 251, 243, 0.2);
         }
-
-        @media (min-width: 768px) {
-            body {
-                font-size: 14px;
-                line-height: 1.6;
-            }
+        h1, h2, h3, h4, h5, h6 {
+            font-family: var(--font-retro);
+            text-transform: uppercase;
         }
-
-        .pixel-border {
-            position: relative;
-            border: none;
-            background: #2b564f;
-            box-shadow: 
-                0 0 0 2px #2b564f,
-                0 0 0 4px #d5ab6d;
+        .gaming-panel {
+            background: rgba(7, 28, 25, 0.55);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 2px solid #84fbf3;
+            box-shadow: 0 0 20px rgba(132, 251, 243, 0.15), inset 0 0 10px rgba(132, 251, 243, 0.05);
+            border-radius: 8px;
+            transition: var(--transition-smooth);
         }
-
-        .pixel-border::after {
-            content: '';
-            position: absolute;
-            top: 4px;
-            left: 4px;
-            right: 4px;
-            bottom: 4px;
-            box-shadow: inset 0 0 0 1px rgba(213, 171, 109, 0.3);
+        .gaming-panel:hover {
+            box-shadow: 0 0 30px rgba(132, 251, 243, 0.35), inset 0 0 15px rgba(132, 251, 243, 0.1);
+            border-color: #a5fff9;
         }
-
-        .game-card {
-            background: rgba(43, 86, 79, 0.6);
-            position: relative;
-            padding: 1rem;
-            margin-bottom: 1rem;
-            transition: all 0.3s ease;
-            clip-path: polygon(
-                0 5px,
-                5px 0,
-                calc(100% - 5px) 0,
-                100% 5px,
-                100% calc(100% - 5px),
-                calc(100% - 5px) 100%,
-                5px 100%,
-                0 calc(100% - 5px)
-            );
+        .game-card-pixel {
+            background: rgba(10, 38, 34, 0.5);
+            border: 1px solid rgba(132, 251, 243, 0.3);
+            border-radius: 6px;
+            transition: var(--transition-smooth);
         }
-
-        .game-card.with-image {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 1rem;
+        .game-card-pixel:hover {
+            background: rgba(10, 38, 34, 0.8);
+            border-color: #84fbf3;
+            transform: scale(1.02);
+            box-shadow: 0 0 15px rgba(132, 251, 243, 0.2);
         }
-
-        .title-with-image {
-            text-align: center;
-            margin-bottom: 1rem;
-            position: relative;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 0.5rem;
-        }
-
-        .title-with-image img {
-            position: static;
-            transform: none;
-        }
-
-        .title-with-image h3 {
-            margin: 0 auto;
-            display: inline-block;
-        }
-
-        .pixel-image {
-            image-rendering: pixelated;
-            image-rendering: -moz-crisp-edges;
-            image-rendering: crisp-edges;
+        .gaming-input {
             width: 100%;
-            height: auto;
-            max-width: 40px;
-            margin: 0;
+            background: rgba(0, 0, 0, 0.6);
+            border: 2px solid rgba(132, 251, 243, 0.4);
+            color: #84fbf3;
+            padding: 0.75rem 1rem;
+            border-radius: 4px;
+            font-family: var(--font-retro);
+            font-size: 10px;
+            transition: var(--transition-smooth);
         }
-
-        .pixel-image-flipped {
-            image-rendering: pixelated;
-            image-rendering: -moz-crisp-edges;
-            image-rendering: crisp-edges;
-            width: 100%;
-            height: auto;
-            max-width: 40px;
-            margin: 0;
-            transform: rotateY(180deg) !important;
-            -webkit-transform: rotateY(180deg) !important;
-            -moz-transform: rotateY(180deg) !important;
-            -ms-transform: rotateY(180deg) !important;
-            -o-transform: rotateY(180deg) !important;
-            display: inline-block;
+        .gaming-input:focus {
+            outline: none;
+            border-color: #84fbf3;
+            box-shadow: 0 0 10px rgba(132, 251, 243, 0.4);
         }
-
-        .desktop-image {
-            display: none;
+        .gaming-btn {
+            background: #84fbf3;
+            color: #071210;
+            border: 2px solid #84fbf3;
+            padding: 0.75rem 1.5rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: var(--transition-smooth);
+            text-shadow: none;
         }
-
-        @media (min-width: 640px) {
-            .game-card.with-image {
-                grid-template-columns: 1fr 120px;
-                gap: 1.5rem;
-            }
-            .pixel-image {
-                max-width: 120px;
-                margin: 0 auto;
-            }
-            
-            .pixel-image-flipped {
-                max-width: 120px;
-                margin: 0 auto;
-            }
-
-            .title-with-image {
-                text-align: left;
-                padding-left: 0;
-                display: block;
-                position: relative;
-            }
-            .title-with-image img {
-                display: none;
-            }
-            .title-with-image h3 {
-                margin: 0;
-            }
-            .game-card .list-content,
-            .game-card .list-disc,
-            .game-card p,
-            .game-card ul,
-            .game-card h3,
-            .pixel-heading {
-                text-align: left !important;
-            }
-            .desktop-image {
-                display: block;
-                position: static;
-                transform: none;
-                margin-top: 1.5rem;
-            }
-            .title-with-image img:last-of-type {
-                display: none;
-            }
-        }
-
-        @media (max-width: 639px) {
-            .desktop-image {
-                display: none;
-            }
-        }
-
-        .game-card::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            border: 2px solid #d5ab6d;
-            clip-path: inherit;
-            z-index: 1;
-        }
-
-        .game-card:hover {
-            background: rgba(51, 107, 99, 0.8);
-            transform: translateY(-2px);
-        }
-
-        .pixel-title {
-            font-family: 'Press Start 2P', mono;
-            font-size: 1.25rem;
-            background: linear-gradient(to bottom, #d5ab6d, #b38d5a);
-            -webkit-background-clip: text;
-            background-clip: text;
-            -webkit-text-fill-color: transparent;
-            line-height: 1.5;
-            margin-bottom: 1.5rem;
-        }
-
-        @media (min-width: 768px) {
-            .pixel-title {
-                font-size: 1.5rem;
-            }
-        }
-
-        .pixel-heading {
-            font-family: 'Press Start 2P', mono;
-            text-align: center;
-            font-size: 0.875rem;
-            color: #d5ab6d;
-            line-height: 1.5;
-            margin-bottom: 1rem;
-        }
-
-        @media (min-width: 768px) {
-            .pixel-heading {
-                font-size: 1rem;
-            }
-        }
-
-        .back-button {
-            display: inline-block;
-            padding: 0.5rem;
-            background: #2b564f;
-            border: 2px solid #d5ab6d;
-            color: #e8d5b5;
-            text-decoration: none;
-            font-size: 0.75rem;
-            clip-path: polygon(
-                0 3px,
-                3px 0,
-                calc(100% - 3px) 0,
-                100% 3px,
-                100% calc(100% - 3px),
-                calc(100% - 3px) 100%,
-                3px 100%,
-                0 calc(100% - 3px)
-            );
-            transition: all 0.3s ease;
-        }
-
-        @media (min-width: 768px) {
-            .back-button {
-                padding: 0.5rem 1rem;
-                font-size: 0.875rem;
-                clip-path: polygon(
-                    0 5px,
-                    5px 0,
-                    calc(100% - 5px) 0,
-                    100% 5px,
-                    100% calc(100% - 5px),
-                    calc(100% - 5px) 100%,
-                    5px 100%,
-                    0 calc(100% - 5px)
-                );
-            }
-        }
-
-        .back-button:hover {
-            background: #336b63;
-            transform: translateY(-1px);
-        }
-
-        .list-content {
-            padding-left: 1rem;
-            font-size: 0.75rem;
-        }
-
-        @media (min-width: 768px) {
-            .list-content {
-                font-size: 0.875rem;
-            }
-        }
-
-        /* Ensure navbar font size is consistent */
-        #navbar a {
-            font-size: 12px !important; /* Consistent fixed font size for links */
+        .gaming-btn:hover {
+            background: transparent;
+            color: #84fbf3;
+            box-shadow: 0 0 15px rgba(132, 251, 243, 0.5);
         }
     </style>
 </head>
-<body class="p-4">
+<body class="px-4 md:px-8 py-4">
 
-<!-- Call Navbar -->
-<div id="navbar"></div>
+    <!-- Call Navbar -->
+    <div id="navbar"></div>
 
-    <header class="pt-20 text-center mb-6 md:mb-8 animate-fade-in">
-        <div class="mb-4 md:mb-6">
-            <img src="../icons and logos/QECLogoPixelArt.png" alt="Queen Elizabeth College Logo" class="mx-auto h-16 md:h-24 w-auto">
+    <header class="pt-24 text-center mb-8 animate-fade-up">
+        <div class="mb-4 inline-block relative">
+            <div class="absolute inset-0 bg-cyan-500/25 blur-lg rounded-full"></div>
+            <img src="../icons and logos/QECLogoPixelArt.png" alt="QEC Logo" class="relative mx-auto h-20 md:h-24 w-auto animate-float">
         </div>
-        <h1 class="pixel-title">GAMING</h1>
-        <a href="../htmlfiles/index.html" class="back-button">← BACK</a>
+        <h1 class="text-3xl md:text-4xl font-extrabold tracking-widest neon-text-cyan mb-3">GAMING ARENA</h1>
+        <p class="text-[#a3b8b5] text-[10px] md:text-xs max-w-lg mx-auto mb-4">[ SYSTEM ACTIVE: TOURNAMENT MODE ]</p>
+        <a href="../htmlfiles/index.html" class="back-button border-cyan-400 hover:bg-cyan-500/10">← RETURN</a>
     </header>
 
-    <main class="max-w-3xl mx-auto">
-        <div class="pixel-border p-4 md:p-8 rounded-lg mb-6 md:mb-8 animate-slide-in">
-            <h2 class="pixel-heading">FEATURED GAMES</h2>
-            <div class="space-y-4 md:space-y-6">
-                <div class="game-card with-image animate-slide-in" style="animation-delay: 0.1s;">
-                    <div>
-                        <div class="title-with-image">
-                            <img src="../icons and logos/FifaLogo.png" alt="FIFA Logo" class="pixel-image">
-                            <h3 class="pixel-heading">FIFA</h3>
-                            <img src="../icons and logos/FifaLogo.png" alt="FIFA Logo" class="pixel-image">
-                        </div>
-                        <p class="mb-3 list-content">Challenge your friends in the world's most popular football game!</p>
-                        <ul class="list-disc list-inside space-y-1 list-content">
-                            <li>Tournament: Starts on Tuesday, May 27th</li>
-                            <li>Free play: Wednesday, May 28th</li>
-                        </ul>
-                    </div>
-                    <img src="../icons and logos/FifaLogo.png" alt="FIFA Logo" class="pixel-image desktop-image">
-                </div>
-                <div class="game-card with-image animate-slide-in" style="animation-delay: 0.2s;">
-                    <div>
-                        <div class="title-with-image">
-                            <img src="../icons and logos/TekkenAnim.gif" alt="Tekken Animation" class="pixel-image">
-                            <h3 class="pixel-heading">TEKKEN</h3>
-                            <img src="../icons and logos/TekkenAnim.gif" alt="Tekken Animation" class="pixel-image-flipped">
-                        </div>
-                        <p class="mb-3 list-content">Show off your fighting skills in intense 1v1 battles!</p>
-                        <ul class="list-disc list-inside space-y-1 list-content">
-                            <li>Tournament: Starts on Tuesday, May 27th</li>
-                            <li>Free play: Wednesday, May 28th</li>
-                        </ul>
-                    </div>
-                    <img src="../icons and logos/TekkenAnim.gif" alt="Tekken Animation" class="pixel-image desktop-image">
-                </div>
-            </div>
-        </div>
-
-        <div class="grid gap-4 md:gap-6 md:grid-cols-2">
-            <div class="pixel-border p-4 md:p-6 rounded-lg animate-slide-in" style="animation-delay: 0.3s;">
-                <h2 class="pixel-heading mb-4">TOURNAMENT</h2>
-                <div class="space-y-4">
-                    <div class="list-content">
-                        <div class="flex items-center gap-2 mb-2">
-                            <span>Entry Fee:</span>
-                            <span class="text-[#d5ab6d]">Rs 150</span>
-                        </div>
-                        <div class="flex items-center gap-2 mb-2">
-                            <span>Location:</span>
-                            <span class="text-[#d5ab6d]">Physics Lab</span>
-                        </div>
-                        <div class="flex items-center gap-2">
-                            <span>Dates:</span>
-                            <span class="text-[#d5ab6d]">27 & 28 May</span>
+    <main class="max-w-5xl mx-auto grid md:grid-cols-12 gap-8 mb-16 px-4">
+        
+        <!-- Left: Game Details (7 Cols) -->
+        <section class="gaming-panel p-6 md:p-8 md:col-span-7 space-y-8 animate-fade-up animate-delay-1">
+            <div>
+                <h2 class="text-base text-cyan-200 border-b-2 border-cyan-500/30 pb-2 mb-6">// FEATURED TITLES</h2>
+                
+                <div class="space-y-6">
+                    <!-- FIFA -->
+                    <div class="game-card-pixel p-4 flex flex-col sm:flex-row gap-4 items-center">
+                        <img src="../icons and logos/FifaLogo.png" alt="FIFA Logo" class="w-16 h-16 object-contain image-rendering-pixelated">
+                        <div class="flex-grow text-center sm:text-left">
+                            <h3 class="text-sm font-bold text-white mb-2">FIFA 2K26 CUP</h3>
+                            <p class="text-[10px] text-[#a3b8b5] mb-2">Challenge peers and showcase soccer tactics.</p>
+                            <div class="text-[9px] text-[#dfb26b]">
+                                [ DATE: 27-28 MAY ] &bull; [ LOCATION: PHYSICS LAB ]
+                            </div>
                         </div>
                     </div>
-
-                    <div class="mt-6">
-                        <h3 class="pixel-heading text-sm mb-3">PRIZES</h3>
-                        <ul class="list-disc list-inside space-y-2 list-content">
-                            <li class="flex items-center gap-2">
-                                <span>1st Place</span>
-                                <span class="text-[#d5ab6d]">10h PC voucher at Cyber Room</span>
-                            </li>
-                            <li class="flex items-center gap-2">
-                                <span>2nd Place</span>
-                                <span class="text-[#d5ab6d]">5h PC voucher at Cyber Room</span>
-                            </li>
-                            <li class="flex items-center gap-2">
-                                <span>3rd Place</span>
-                                <span class="text-[#d5ab6d]">2h PC voucher at Cyber Room</span>
-                            </li>
-                        </ul>
-                    </div>
-
-                    <div class="mt-6">
-                        <h3 class="pixel-heading text-sm mb-3">MATCH SCHEDULE</h3>
-                        <ul class="list-disc list-inside space-y-2 list-content">
-                            <li class="flex items-center gap-2">
-                                <span>27 May:</span>
-                                <span class="text-[#d5ab6d]">Preliminary, Quarter Finals, Semi Finals</span>
-                            </li>
-                            <li class="flex items-center gap-2">
-                                <span>28 May:</span>
-                                <span class="text-[#d5ab6d]">Finals</span>
-                            </li>
-                        </ul>
+                    
+                    <!-- TEKKEN -->
+                    <div class="game-card-pixel p-4 flex flex-col sm:flex-row gap-4 items-center">
+                        <img src="../icons and logos/TekkenAnim.gif" alt="Tekken Animation" class="w-16 h-16 object-contain">
+                        <div class="flex-grow text-center sm:text-left">
+                            <h3 class="text-sm font-bold text-white mb-2">TEKKEN 8 FIGHT</h3>
+                            <p class="text-[10px] text-[#a3b8b5] mb-2">Intense 1v1 bracket battles. Combos ready.</p>
+                            <div class="text-[9px] text-[#dfb26b]">
+                                [ DATE: 27-28 MAY ] &bull; [ ENTRY: RS 150 ]
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
 
-            <div class="pixel-border p-4 md:p-6 rounded-lg animate-slide-in" style="animation-delay: 0.4s;">
-                <h2 class="pixel-heading">FREE PLAY</h2>
-                <ul class="list-disc list-inside space-y-2 list-content">
-                    <li>PCs available as from 10:00 for any game</li>
-                    <li>Rs 100/pair (Rs50/pax)</li>
-                    <li>Last min tickets: Rs200/pair</li>
+            <!-- Prizes & Brackets -->
+            <div class="grid sm:grid-cols-2 gap-6 pt-4 border-t border-cyan-500/25">
+                <div>
+                    <h3 class="text-xs text-cyan-300 mb-3">> PRIZE POOL</h3>
+                    <ul class="space-y-2 text-[9px] text-white">
+                        <li>1ST: <span class="text-[#dfb26b]">10H PC VOUCHER</span></li>
+                        <li>2ND: <span class="text-[#dfb26b]">5H PC VOUCHER</span></li>
+                        <li>3RD: <span class="text-[#dfb26b]">2H PC VOUCHER</span></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-xs text-cyan-300 mb-3">> FREE PLAY</h3>
+                    <ul class="space-y-2 text-[9px] text-white">
+                        <li>PC STATIONS OPEN: 10:00+</li>
+                        <li>CO-OP RATE: Rs 100/PAIR</li>
+                        <li>LATE TICKET: Rs 200/PAIR</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Right: Register & Live Bracket (5 Cols) -->
+        <section class="gaming-panel p-6 md:col-span-5 space-y-8 animate-fade-up animate-delay-2">
+            <!-- Registration Simulator -->
+            <div>
+                <h2 class="text-xs text-cyan-200 border-b border-cyan-500/25 pb-2 mb-4">// PRE-REGISTER</h2>
+                <form id="gamerForm" class="space-y-3">
+                    <input type="text" id="gamerTag" placeholder="GAMER TAG" class="gaming-input" required />
+                    <select id="gameChoice" class="gaming-input">
+                        <option value="FIFA 2K26">FIFA 2K26</option>
+                        <option value="TEKKEN 8">TEKKEN 8</option>
+                    </select>
+                    <button type="submit" class="gaming-btn w-full text-[10px]">REGISTER PLAYER</button>
+                </form>
+                <p id="regMessage" class="text-[9px] text-[#dfb26b] mt-3 h-4 text-center"></p>
+            </div>
+
+            <!-- Live Standings -->
+            <div>
+                <h2 class="text-xs text-cyan-200 border-b border-cyan-500/25 pb-2 mb-4">// LIVE BRACKET</h2>
+                <ul id="competitorsList" class="space-y-2.5 max-h-[220px] overflow-y-auto pr-1">
+                    <!-- Dynamically populated -->
                 </ul>
             </div>
-        </div>
+        </section>
+        
     </main>
 
-    <footer class="text-center mt-6 md:mt-8 pixel-heading text-xs md:text-sm animate-fade-in" style="animation-delay: 0.5s;">
-        <p>&copy; 2025 Queen Elizabeth College</p>
+    <footer class="text-center py-8 text-[#a3b8b5]/60 border-t border-cyan-500/10 bg-[#071210]/40 max-w-full font-['Outfit'] text-[9px]">
+        <p>&copy; 2026 Queen Elizabeth College. Crafted by QECC Club. All rights reserved.</p>
     </footer>
 
+    <!-- Interactive script -->
+    <script>
+        const gamerForm = document.getElementById('gamerForm');
+        const gamerTag = document.getElementById('gamerTag');
+        const gameChoice = document.getElementById('gameChoice');
+        const regMessage = document.getElementById('regMessage');
+        const competitorsList = document.getElementById('competitorsList');
+
+        // Seed gamer tags
+        let competitors = [
+            { tag: "PX_MASTER", game: "FIFA 2K26", rank: "1ST" },
+            { tag: "COMBO_KING", game: "TEKKEN 8", rank: "2ND" },
+            { tag: "NINJA_SLAYER", game: "TEKKEN 8", rank: "3RD" }
+        ];
+
+        function renderCompetitors() {
+            competitorsList.innerHTML = '';
+            competitors.forEach((c, idx) => {
+                const li = document.createElement('li');
+                li.className = 'flex justify-between items-center bg-black/40 p-2.5 rounded border border-cyan-500/10 hover:border-cyan-500/30 transition-colors';
+                li.innerHTML = `
+                    <div>
+                        <p class="text-[10px] font-bold text-white">${c.tag}</p>
+                        <p class="text-[8px] text-[#a3b8b5]">${c.game}</p>
+                    </div>
+                    <span class="text-[#dfb26b] font-bold text-[9px]">[ ${c.rank} ]</span>
+                `;
+                competitorsList.appendChild(li);
+            });
+        }
+
+        gamerForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const tagVal = gamerTag.value.trim().toUpperCase();
+            const gameVal = gameChoice.value;
+            
+            if (tagVal) {
+                // Check if already registered
+                if (competitors.some(c => c.tag === tagVal)) {
+                    regMessage.textContent = "ERROR: TAG ALREADY IN USE";
+                    return;
+                }
+                
+                competitors.push({
+                    tag: tagVal,
+                    game: gameVal,
+                    rank: "REGD"
+                });
+                
+                gamerTag.value = '';
+                regMessage.textContent = "SUCCESS: SLOT SECURED!";
+                renderCompetitors();
+                setTimeout(() => regMessage.textContent = '', 2500);
+            }
+        });
+
+        renderCompetitors();
+    </script>
     <script src="../javascript/navbar.js"></script>
 </body>
-</html> 
+</html>

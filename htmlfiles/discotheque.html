@@ -3,246 +3,204 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Discotech - School Food & Fun Day!</title>
+    <title>Discotheque - School Food & Fun Day!</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Righteous&display=swap" rel="stylesheet">
+    <!-- Global CSS -->
+    <link rel="stylesheet" href="../css/global.css" />
     <style>
-        /* Custom Scrollbar */
-        ::-webkit-scrollbar {
-            width: 12px;
-        }
-        ::-webkit-scrollbar-track {
-            background: #1a3330;
-        }
-        ::-webkit-scrollbar-thumb {
-            background: #2b564f;
-            border: 2px solid #d5ab6d;
-            border-radius: 6px;
-        }
-        ::-webkit-scrollbar-thumb:hover {
-            background: #336b63;
-        }
-        
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-
-        @keyframes slideUp {
-            from { 
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to { 
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes titleGlow {
-            0% { 
-                text-shadow: 0 0 5px rgba(213, 171, 109, 0.3),
-                            0 0 10px rgba(213, 171, 109, 0.2);
-            }
-            50% { 
-                text-shadow: 0 0 10px rgba(213, 171, 109, 0.5),
-                            0 0 20px rgba(213, 171, 109, 0.3),
-                            0 0 30px rgba(213, 171, 109, 0.2);
-            }
-            100% { 
-                text-shadow: 0 0 5px rgba(213, 171, 109, 0.3),
-                            0 0 10px rgba(213, 171, 109, 0.2);
-            }
-        }
-
-        .animate-fade-in {
-            opacity: 0;
-            animation: fadeIn 0.8s ease-out forwards;
-        }
-
-        .animate-slide-up {
-            opacity: 0;
-            transform: translateY(20px);
-            animation: slideUp 0.8s ease-out forwards;
-        }
-
-        .disco-card {
-            background: rgba(26, 51, 48, 0.3);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(213, 171, 109, 0.3);
-            opacity: 1;
-        }
-
-        .disco-info-box {
-            background: rgba(43, 86, 79, 0.4);
-            border: 1px solid rgba(213, 171, 109, 0.4);
-            padding: 0.75rem 1rem;
-            border-radius: 0.5rem;
-            margin-bottom: 1rem;
-        }
-
-        .disco-info-box:last-child {
-            margin-bottom: 0;
-        }
-
-        .disco-title {
-            opacity: 1;
-            color: #d5ab6d;
-            text-shadow: 0 0 10px rgba(213, 171, 109, 0.5), 0 0 20px rgba(213, 171, 109, 0.3), 0 0 30px rgba(213, 171, 109, 0.2);
-        }
-
-        .delay-100 { animation-delay: 0.1s; }
-        .delay-200 { animation-delay: 0.2s; }
-        .delay-300 { animation-delay: 0.3s; }
-        .delay-400 { animation-delay: 0.4s; }
-        .delay-500 { animation-delay: 0.5s; }
-
         body {
-            font-family: 'Inter', sans-serif;
-            background-color: #0a1413;
-            color: #e8d5b5;
-            background-image: 
-                linear-gradient(rgba(10, 20, 19, 0.97), rgba(10, 20, 19, 0.97)),
-                repeating-linear-gradient(
-                    0deg,
-                    transparent,
-                    transparent 2px,
-                    rgba(213, 171, 109, 0.05) 2px,
-                    rgba(213, 171, 109, 0.05) 4px
-                );
+            font-family: var(--font-body);
+            background: radial-gradient(circle at top, #12031c 0%, var(--color-bg-darkest) 90%);
         }
-
-        h1, h2, h3 {
-            font-family: 'Righteous', 'Inter', sans-serif;
+        h1, h2, h3, h4, h5, h6 {
+            font-family: var(--font-heading);
         }
-
-        .disco-text {
-            color: #f0e0c5;
+        .disco-neon-panel {
+            background: rgba(20, 5, 30, 0.45);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(168, 85, 247, 0.25);
+            border-radius: 16px;
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.5), 0 0 30px rgba(168, 85, 247, 0.15);
+            transition: var(--transition-smooth);
         }
-
-        .back-button {
-            background: rgba(26, 51, 48, 0.5);
-            border: 1px solid rgba(213, 171, 109, 0.5);
-            transition: all 0.3s ease;
+        .disco-neon-panel:hover {
+            border-color: rgba(168, 85, 247, 0.5);
+            box-shadow: 0 10px 40px 0 rgba(0, 0, 0, 0.6), 0 0 40px rgba(168, 85, 247, 0.3);
         }
-
-        .back-button:hover {
-            background: rgba(213, 171, 109, 0.2);
-            border-color: #d5ab6d;
+        .info-pill {
+            background: rgba(168, 85, 247, 0.08);
+            border: 1px solid rgba(168, 85, 247, 0.2);
+            border-radius: 12px;
+            transition: var(--transition-smooth);
         }
-
-        .main-content {
-            opacity: 0;
-            transform: translateY(20px);
-            animation: slideUp 0.8s ease-out 0.4s forwards;
-        }
-
-        .header-item {
-            margin-bottom: 1.5rem;
-        }
-
-        .header-item:last-child {
-            margin-bottom: 0;
-        }
-
-        .disco-banner {
-            position: relative;
-            background-image: url('../images/DiscoPic2.jpg');
-            background-size: cover;
-            background-position: center 30%;
-            overflow: hidden;
-        }
-        .disco-banner::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; right: 0; bottom: 0;
-            background: inherit;
-            filter: blur(2px);
-            z-index: 1;
-        }
-        .disco-banner::after {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; right: 0; bottom: 0;
-            background: linear-gradient(120deg, rgba(40,0,50,0.85), rgba(20,40,35,0.8));
-            filter: blur(2px);
-            z-index: 2;
-        }
-        .disco-banner > * {
-            position: relative;
-            z-index: 3;
-        }
-
-        /* Ensure navbar font size is consistent */
-        #navbar a {
-            font-size: 16px !important; /* Consistent fixed font size for links */
+        .info-pill:hover {
+            background: rgba(168, 85, 247, 0.15);
+            border-color: rgba(168, 85, 247, 0.4);
+            transform: translateY(-1px);
         }
     </style>
 </head>
-<body class="p-4">
+<body class="px-4 md:px-8 py-4">
 
     <!-- Call Navbar -->
     <div id="navbar"></div>
 
-    <header class="pt-20 text-center mb-12">
-        <div class="header-item animate-slide-up delay-100">
-            <img src="../icons and logos/QECLogoDisco.gif" alt="Queen Elizabeth College Logo" class="mx-auto h-24 w-auto">
+    <header class="pt-24 text-center mb-12 animate-fade-up">
+        <div class="mb-4 inline-block relative">
+            <div class="absolute inset-0 bg-purple-500/25 blur-lg rounded-full"></div>
+            <img src="../icons and logos/QECLogoDisco.gif" alt="Discotheque Logo" class="relative mx-auto h-28 w-auto hover:rotate-6 transition-transform duration-300">
         </div>
-        <div class="header-item animate-slide-up delay-200">
-            <h1 class="text-4xl font-bold disco-title">Discotheque</h1>
-        </div>
-        <div class="header-item animate-slide-up delay-300">
-            <a href="../htmlfiles/index.html" class="back-button inline-block px-4 py-1.5 text-[#e8d5b5] rounded-md">← Back to Main Page</a>
-        </div>
+        <h1 class="text-4xl md:text-5xl font-extrabold tracking-tight mb-3 neon-text-purple font-['Outfit']">The Discotheque</h1>
+        <p class="text-[#a3b8b5] text-sm md:text-base max-w-xl mx-auto mb-4">Lights down, volume up. Lose yourself in the music with our stellar lineup of school DJs!</p>
+        <a href="../htmlfiles/index.html" class="btn-outline text-xs px-4 py-1.5 border-purple-500/50 hover:bg-purple-500/10 hover:border-purple-400 text-purple-200">← Back to Main Page</a>
     </header>
 
-    <main class="max-w-2xl mx-auto disco-card disco-banner p-8 rounded-lg">
-        <div class="main-content">
-            <h2 class="text-2xl font-bold mb-4 disco-title">Join us for an incredible disco experience!</h2>
-            <div class="space-y-6 disco-text">
-                <p class="text-lg mb-4">Get ready for an unforgettable dance featuring Avi S, Yohan and Tuks!</p>
-
-                <div class="mt-6 disco-info-box flex items-start">
-                    <span class="h-6 w-6 mr-3 text-[#d5ab6d] flex-shrink-0 flex items-center justify-center text-xl font-bold">
-                        €
-                    </span>
-                    <div>
-                        <h3 class="font-bold text-[#d5ab6d] mb-2">Prices:</h3>
-                        <ul class="list-disc list-inside space-y-2">
-                            <li>Rs80 (single gender session)</li>
-                            <li>Rs100 (Last 2 sessions)</li>
-                        </ul>
+    <main class="max-w-4xl mx-auto grid md:grid-cols-12 gap-8 mb-16 px-4">
+        
+        <!-- Left: Party Info (7 Cols) -->
+        <section class="disco-neon-panel p-6 md:p-8 md:col-span-7 flex flex-col justify-between animate-fade-up animate-delay-1">
+            <div>
+                <h2 class="text-2xl font-bold neon-text-purple mb-4 font-['Outfit'] border-b border-purple-500/25 pb-2">Event Highlights</h2>
+                <p class="text-sm text-[#a3b8b5] mb-6">Experience professional lighting, heavy bass systems, and curated sets featuring your favorite tracks. Don't miss out on the sessions!</p>
+                
+                <div class="space-y-4">
+                    <!-- Session & Pricing -->
+                    <div class="info-pill p-4 flex items-start">
+                        <span class="text-2xl mr-3">🎟️</span>
+                        <div>
+                            <h4 class="font-bold text-purple-200 font-['Outfit']">Ticket Passes</h4>
+                            <ul class="list-disc list-inside text-xs text-[#a3b8b5] space-y-1.5 mt-1">
+                                <li><span class="font-bold text-[#dfb26b]">Rs 80:</span> Single Gender Sessions</li>
+                                <li><span class="font-bold text-[#dfb26b]">Rs 100:</span> Grand Mix (Last 2 Co-ed sessions)</li>
+                            </ul>
+                        </div>
                     </div>
-                </div>
 
-                <div class="flex items-center disco-info-box">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-3 text-[#d5ab6d] flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                    </svg>
-                    <div class="flex items-center w-full">
-                        <h3 class="font-bold text-[#d5ab6d] mr-2">Time:</h3>
-                        <p>10:00 - 14:00</p>
+                    <!-- Timing -->
+                    <div class="info-pill p-4 flex items-center">
+                        <span class="text-2xl mr-3">🕒</span>
+                        <div>
+                            <h4 class="font-bold text-purple-200 font-['Outfit']">Show Time</h4>
+                            <p class="text-xs text-[#a3b8b5] mt-0.5">10:00 AM - 14:00 PM (Rotating hourly entry batches)</p>
+                        </div>
                     </div>
-                </div>
 
-                <div class="flex items-center disco-info-box">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-3 text-[#d5ab6d] flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.828 0l-4.243-4.243a8 8 0 1111.314 0z" />
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-                    </svg>
-                    <div class="flex items-center w-full">
-                        <h3 class="font-bold text-[#d5ab6d] mr-2">Location:</h3>
-                        <p>Hall</p>
+                    <!-- Location -->
+                    <div class="info-pill p-4 flex items-center">
+                        <span class="text-2xl mr-3">📍</span>
+                        <div>
+                            <h4 class="font-bold text-purple-200 font-['Outfit']">Venue Location</h4>
+                            <p class="text-xs text-[#a3b8b5] mt-0.5">School Main Hall (Specially soundproofed and blacked out)</p>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
+
+            <!-- DJ Spotlight -->
+            <div class="mt-8 pt-6 border-t border-purple-500/20">
+                <h4 class="font-bold text-xs uppercase tracking-wider text-purple-300 font-['Outfit'] mb-3">DJ Spotlight</h4>
+                <div class="flex gap-4">
+                    <span class="text-sm bg-purple-500/10 border border-purple-500/30 px-3 py-1.5 rounded-lg text-purple-200 font-semibold">🎧 DJ Avi S</span>
+                    <span class="text-sm bg-purple-500/10 border border-purple-500/30 px-3 py-1.5 rounded-lg text-purple-200 font-semibold">⚡ DJ Yohan</span>
+                    <span class="text-sm bg-purple-500/10 border border-purple-500/30 px-3 py-1.5 rounded-lg text-purple-200 font-semibold">🔥 DJ Tuks</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Right: Song Request Panel (5 Cols) -->
+        <section class="disco-neon-panel p-6 md:col-span-5 animate-fade-up animate-delay-2">
+            <h2 class="text-xl font-bold neon-text-purple mb-4 font-['Outfit'] border-b border-purple-500/25 pb-2">Request A Song 🎵</h2>
+            <p class="text-xs text-[#a3b8b5] mb-4">Want to hear your favorite track live? Enter the song details below and upvote others!</p>
+            
+            <form id="songRequestForm" class="space-y-3 mb-6">
+                <input type="text" id="songTitle" placeholder="Song Title" class="w-full bg-[#071210]/60 border border-purple-500/30 rounded-lg p-2.5 text-xs text-[#ede0cb] focus:outline-none focus:border-purple-400 focus:ring-1 focus:ring-purple-400" required />
+                <input type="text" id="songArtist" placeholder="Artist Name" class="w-full bg-[#071210]/60 border border-purple-500/30 rounded-lg p-2.5 text-xs text-[#ede0cb] focus:outline-none focus:border-purple-400 focus:ring-1 focus:ring-purple-400" required />
+                <button type="submit" class="w-full py-2.5 bg-gradient-to-r from-purple-600 to-indigo-600 text-white rounded-lg font-bold text-xs uppercase hover:brightness-110 hover:shadow-[0_0_15px_rgba(168,85,247,0.4)] transition-all">Submit Request</button>
+            </form>
+
+            <h3 class="font-bold text-xs tracking-wider text-purple-300 uppercase mb-3 font-['Outfit']">Trending Requests</h3>
+            <ul id="requestsList" class="space-y-2 max-h-[220px] overflow-y-auto pr-1">
+                <!-- Dynamically populated -->
+            </ul>
+        </section>
+        
     </main>
 
-    <footer class="text-center mt-8 animate-fade-in delay-500" style="color: #d5ab6d;">
-        <p>&copy; 2025 Queen Elizabeth College. All rights reserved.</p>
+    <footer class="text-center py-8 text-[#a3b8b5] border-t border-[#dfb26b]/10 bg-[#071210]/40 max-w-full font-['Outfit'] text-xs">
+        <p>&copy; 2026 Queen Elizabeth College. Crafted by QECC Club. All rights reserved.</p>
     </footer>
+
+    <!-- Interactive JS logic -->
+    <script>
+        const songForm = document.getElementById('songRequestForm');
+        const songTitle = document.getElementById('songTitle');
+        const songArtist = document.getElementById('songArtist');
+        const requestsList = document.getElementById('requestsList');
+
+        // Seed requests
+        let requests = [
+            { id: 1, title: "Blinding Lights", artist: "The Weeknd", votes: 42 },
+            { id: 2, title: "Industry Baby", artist: "Lil Nas X & Jack Harlow", votes: 29 },
+            { id: 3, title: "Love Nwantiti", artist: "CKay", votes: 18 }
+        ];
+
+        function renderRequests() {
+            requests.sort((a, b) => b.votes - a.votes);
+            requestsList.innerHTML = '';
+            requests.forEach(req => {
+                const li = document.createElement('li');
+                li.className = 'flex justify-between items-center bg-[#071210]/40 p-2.5 rounded-lg border border-purple-500/10 hover:border-purple-500/25 transition-colors';
+                li.innerHTML = `
+                    <div class="min-w-0 flex-1">
+                        <p class="text-xs font-bold text-[#ede0cb] truncate">${req.title}</p>
+                        <p class="text-[10px] text-[#a3b8b5] truncate">${req.artist}</p>
+                    </div>
+                    <button class="upvote-btn flex items-center gap-1 bg-purple-500/10 hover:bg-purple-500/20 text-purple-300 border border-purple-500/20 hover:border-purple-500/40 px-2 py-1 rounded text-[10px] font-bold transition-all" data-id="${req.id}">
+                        ▲ <span>${req.votes}</span>
+                    </button>
+                `;
+                requestsList.appendChild(li);
+            });
+
+            // Re-bind upvote clicks
+            document.querySelectorAll('.upvote-btn').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const id = parseInt(btn.dataset.id);
+                    const item = requests.find(r => r.id === id);
+                    if (item) {
+                        item.votes++;
+                        // Animation bounce effect on vote click
+                        btn.style.transform = 'scale(1.15)';
+                        setTimeout(() => btn.style.transform = 'scale(1)', 150);
+                        renderRequests();
+                    }
+                });
+            });
+        }
+
+        // Handle submissions
+        songForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const title = songTitle.value.trim();
+            const artist = songArtist.value.trim();
+            
+            if (title && artist) {
+                const newReq = {
+                    id: Date.now(),
+                    title: title,
+                    artist: artist,
+                    votes: 1
+                };
+                requests.push(newReq);
+                songForm.reset();
+                renderRequests();
+            }
+        });
+
+        // Initialize display
+        renderRequests();
+    </script>
     <script src="../javascript/navbar.js"></script>
 </body>
-</html> 
+</html>

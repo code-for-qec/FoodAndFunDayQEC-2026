@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ticket Booking Simulation - School Food & Fun Day!</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Global CSS -->
+    <link rel="stylesheet" href="../css/global.css" />
+    <style>
+        body {
+            font-family: var(--font-body);
+            background: radial-gradient(circle at top, var(--color-bg-medium) 0%, var(--color-bg-dark) 80%);
+        }
+        h1, h2, h3, h4, h5, h6 {
+            font-family: var(--font-heading);
+        }
+        .form-input {
+            width: 100%;
+            background: rgba(7, 18, 16, 0.6);
+            border: 1.5px solid rgba(223, 178, 107, 0.2);
+            color: var(--color-cream);
+            padding: 0.85rem 1rem;
+            border-radius: 12px;
+            font-family: var(--font-body);
+            transition: var(--transition-smooth);
+        }
+        .form-input:focus {
+            outline: none;
+            border-color: var(--color-gold);
+            box-shadow: var(--glow-gold);
+            background: rgba(7, 18, 16, 0.8);
+        }
+        .tier-card {
+            border: 1.5px solid rgba(223, 178, 107, 0.15);
+            background: rgba(20, 45, 42, 0.4);
+            border-radius: 12px;
+            padding: 1rem;
+            cursor: pointer;
+            transition: var(--transition-smooth);
+        }
+        .tier-card:hover {
+            border-color: rgba(223, 178, 107, 0.4);
+            background: rgba(20, 45, 42, 0.6);
+            transform: translateY(-2px);
+        }
+        .tier-card.selected {
+            border-color: var(--color-gold);
+            background: rgba(223, 178, 107, 0.08);
+            box-shadow: var(--glow-gold);
+        }
+        
+        /* Scan Line Animation */
+        .scan-container {
+            position: relative;
+            overflow: hidden;
+        }
+        .scan-line {
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(to right, transparent, var(--color-gold), transparent);
+            position: absolute;
+            top: 0;
+            left: 0;
+            opacity: 0.8;
+            box-shadow: 0 0 10px var(--color-gold);
+            animation: scan 2s linear infinite;
+            display: none;
+        }
+        @keyframes scan {
+            0% { top: 0%; }
+            50% { top: 100%; }
+            100% { top: 0%; }
+        }
+        
+        /* Ticket Stub styling */
+        .ticket-stub {
+            background-image: radial-gradient(circle at 0 50%, transparent 12px, rgba(31, 66, 62, 0.45) 12px),
+                              radial-gradient(circle at 100% 50%, transparent 12px, rgba(31, 66, 62, 0.45) 12px);
+            background-position: left, right;
+            background-size: 100% 100%;
+            background-repeat: no-repeat;
+        }
+    </style>
+</head>
+<body class="px-4 md:px-8 py-4">
+
+    <!-- Call Navbar -->
+    <div id="navbar"></div>
+
+    <header class="pt-24 text-center mb-8 animate-fade-up">
+        <div class="mb-4 inline-block relative">
+            <div class="absolute inset-0 bg-[#dfb26b]/20 blur-lg rounded-full"></div>
+            <span class="text-4xl relative">🎟️</span>
+        </div>
+        <h1 class="text-4xl md:text-5xl font-extrabold tracking-tight mb-3 bg-clip-text text-transparent bg-gradient-to-r from-[#f1d89b] via-[#dfb26b] to-[#b88a44]">Ticket Simulator</h1>
+        <p class="text-[#a3b8b5] text-sm md:text-base max-w-xl mx-auto mb-4">Calculate prices, choose your tier, and instantly generate your mock event pass.</p>
+        <a href="../htmlfiles/index.html" class="btn-outline text-xs px-4 py-1.5">← Back to Main Page</a>
+    </header>
+
+    <main class="max-w-6xl mx-auto px-4 pb-16">
+        <div class="grid md:grid-cols-12 gap-8 items-start">
+            
+            <!-- Left: Purchase Form (7 Cols) -->
+            <section class="glass-panel p-6 md:p-8 md:col-span-7 animate-fade-up animate-delay-1">
+                <h2 class="text-2xl font-bold text-[#dfb26b] mb-6 font-['Outfit'] border-b border-[#dfb26b]/10 pb-2">Select Your Tickets</h2>
+                
+                <form id="bookingForm" class="space-y-6">
+                    <!-- User Details -->
+                    <div class="grid sm:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-xs uppercase tracking-wider text-[#dfb26b] mb-2 font-bold font-['Outfit']">Full Name</label>
+                            <input type="text" id="userName" class="form-input" placeholder="e.g. John Doe" required />
+                        </div>
+                        <div>
+                            <label class="block text-xs uppercase tracking-wider text-[#dfb26b] mb-2 font-bold font-['Outfit']">Grade / Affiliation</label>
+                            <select id="userGrade" class="form-input">
+                                <option value="Grade 7">Grade 7</option>
+                                <option value="Grade 8">Grade 8</option>
+                                <option value="Grade 9">Grade 9</option>
+                                <option value="Grade 10">Grade 10</option>
+                                <option value="Grade 11">Grade 11</option>
+                                <option value="Grade 12">Grade 12</option>
+                                <option value="Grade 13">Grade 13</option>
+                                <option value="Alumni">Alumni / QEC Staff</option>
+                                <option value="Visitor">Guest / Visitor</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Tiers Selection -->
+                    <div>
+                        <label class="block text-xs uppercase tracking-wider text-[#dfb26b] mb-3 font-bold font-['Outfit']">Choose Pass Tier</label>
+                        <div class="space-y-3">
+                            <!-- Standard -->
+                            <div class="tier-card selected" data-tier="standard" data-price="150">
+                                <div class="flex justify-between items-center mb-1">
+                                    <h4 class="font-bold text-lg text-[#ede0cb] font-['Outfit']">Standard Entry</h4>
+                                    <span class="text-sm font-bold text-[#dfb26b]">Rs 150</span>
+                                </div>
+                                <p class="text-xs text-[#a3b8b5]">Basic entry access to food court, game viewing areas, and main stage grounds.</p>
+                            </div>
+                            <!-- Premium -->
+                            <div class="tier-card" data-tier="premium" data-price="300">
+                                <div class="flex justify-between items-center mb-1">
+                                    <h4 class="font-bold text-lg text-[#ede0cb] font-['Outfit']">Premium Pass 💃</h4>
+                                    <span class="text-sm font-bold text-[#dfb26b]">Rs 300</span>
+                                </div>
+                                <p class="text-xs text-[#a3b8b5]">Standard access + single entry pass to the exclusive Discotheque room.</p>
+                            </div>
+                            <!-- VIP -->
+                            <div class="tier-card" data-tier="vip" data-price="500">
+                                <div class="flex justify-between items-center mb-1">
+                                    <h4 class="font-bold text-lg text-[#ede0cb] font-['Outfit']">VIP Super Bundle 🌟</h4>
+                                    <span class="text-sm font-bold text-[#dfb26b]">Rs 500</span>
+                                </div>
+                                <p class="text-xs text-[#a3b8b5]">Standard access + Discotheque pass + 3 amusement ride passes + VIP seating line.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Quantity -->
+                    <div class="flex items-center justify-between p-4 bg-[#071210]/40 rounded-xl border border-[#dfb26b]/10">
+                        <div>
+                            <h4 class="font-bold text-[#ede0cb] text-sm font-['Outfit']">Number of Tickets</h4>
+                            <p class="text-xs text-[#a3b8b5]">Max 10 per reservation</p>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <button type="button" id="qtyMinus" class="w-8 h-8 rounded-full bg-[#1f423e] hover:bg-[#dfb26b] hover:text-[#071210] font-bold text-[#ede0cb] transition-colors flex items-center justify-center">-</button>
+                            <span id="ticketQty" class="font-bold text-lg text-[#dfb26b] w-6 text-center">1</span>
+                            <button type="button" id="qtyPlus" class="w-8 h-8 rounded-full bg-[#1f423e] hover:bg-[#dfb26b] hover:text-[#071210] font-bold text-[#ede0cb] transition-colors flex items-center justify-center">+</button>
+                        </div>
+                    </div>
+
+                    <!-- Action Button -->
+                    <button type="submit" class="btn-premium w-full text-sm font-bold py-3.5 rounded-xl uppercase tracking-wider">
+                        Generate Event Ticket 🎟️
+                    </button>
+                </form>
+            </section>
+            
+            <!-- Right: Interactive Live Ticket Preview (5 Cols) -->
+            <section class="md:col-span-5 animate-fade-up animate-delay-2">
+                <div class="glass-panel p-6 scan-container flex flex-col justify-between" id="previewPanel">
+                    <div class="scan-line" id="scanLine"></div>
+                    
+                    <h2 class="text-xs uppercase tracking-widest text-[#dfb26b]/60 mb-4 font-bold font-['Outfit'] text-center">Live Preview Card</h2>
+                    
+                    <!-- Ticket Render -->
+                    <div class="glass-card ticket-stub rounded-xl p-5 border border-[#dfb26b]/20 relative mb-6" id="ticketVisual">
+                        <div class="flex justify-between items-start mb-6">
+                            <div>
+                                <span class="bg-[#dfb26b]/10 text-[#dfb26b] text-[8px] border border-[#dfb26b]/20 px-2 py-0.5 rounded uppercase tracking-wider font-bold">QECC PASS</span>
+                                <h3 class="text-[#ede0cb] font-bold text-lg mt-2 font-['Outfit']" id="ticketDisplayTier">STANDARD ENTRY</h3>
+                            </div>
+                            <span class="text-2xl text-[#dfb26b]">👑</span>
+                        </div>
+                        
+                        <!-- Details -->
+                        <div class="space-y-3 mb-6 text-sm">
+                            <div>
+                                <p class="text-[10px] text-[#a3b8b5] uppercase tracking-wider">Pass Holder</p>
+                                <p class="font-bold text-[#ede0cb] font-['Outfit']" id="ticketDisplayName">Guest User</p>
+                            </div>
+                            <div class="grid grid-cols-2 gap-2">
+                                <div>
+                                    <p class="text-[10px] text-[#a3b8b5] uppercase tracking-wider">Affiliation</p>
+                                    <p class="font-bold text-[#ede0cb]" id="ticketDisplayGrade">Grade 7</p>
+                                </div>
+                                <div>
+                                    <p class="text-[10px] text-[#a3b8b5] uppercase tracking-wider">Quantity</p>
+                                    <p class="font-bold text-[#ede0cb]"><span id="ticketDisplayQty">1</span>x ticket(s)</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Ticket Dotted Divider -->
+                        <div class="border-t-2 border-dashed border-[#dfb26b]/20 my-5 relative">
+                            <div class="absolute -left-8 -top-3 w-5 h-6 rounded-r-full bg-[#0b1a18] border-r border-[#dfb26b]/20"></div>
+                            <div class="absolute -right-8 -top-3 w-5 h-6 rounded-l-full bg-[#0b1a18] border-l border-[#dfb26b]/20"></div>
+                        </div>
+                        
+                        <!-- QR Code Canvas -->
+                        <div class="flex flex-col items-center justify-center p-2 bg-[#071210]/60 rounded-lg max-w-[170px] mx-auto border border-[#dfb26b]/15">
+                            <canvas id="qrCanvas" class="w-36 h-36 rounded border border-[#dfb26b]/10 bg-[#071210]"></canvas>
+                            <span class="text-[9px] uppercase tracking-widest text-[#a3b8b5] font-['Outfit'] mt-2" id="ticketSerial">MOCK-SERIAL-0000</span>
+                        </div>
+                    </div>
+
+                    <!-- Price Calculator Box -->
+                    <div class="p-4 bg-[#071210]/60 rounded-xl border border-[#dfb26b]/15 text-center flex justify-between items-center font-['Outfit']">
+                        <span class="text-sm font-semibold text-[#a3b8b5]">Total price estimate:</span>
+                        <span class="text-xl font-black text-[#dfb26b] transition-all" id="ticketDisplayPrice">Rs 150</span>
+                    </div>
+
+                    <!-- Success State Buttons -->
+                    <div class="hidden space-y-3 mt-4" id="successState">
+                        <div class="p-3 bg-[#10b981]/15 text-[#10b981] border border-[#10b981]/30 rounded-xl text-xs font-semibold text-center flex items-center justify-center gap-2">
+                            <span>✓</span> Mock ticket booking generated successfully!
+                        </div>
+                        <div class="flex gap-2">
+                            <button id="downloadBtn" class="btn-premium flex-1 text-xs font-bold py-3.5 rounded-xl uppercase tracking-wider">
+                                Save Image 📥
+                            </button>
+                            <button id="resetFormBtn" class="btn-outline flex-1 text-xs font-bold py-3.5 rounded-xl uppercase tracking-wider">
+                                New Booking ↺
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+        </div>
+    </main>
+
+    <!-- JS Logic -->
+    <script>
+        // Form & Preview elements
+        const userNameInput = document.getElementById('userName');
+        const userGradeSelect = document.getElementById('userGrade');
+        const tierCards = document.querySelectorAll('.tier-card');
+        const qtyMinus = document.getElementById('qtyMinus');
+        const qtyPlus = document.getElementById('qtyPlus');
+        const ticketQtySpan = document.getElementById('ticketQty');
+        const bookingForm = document.getElementById('bookingForm');
+        
+        // Preview targets
+        const previewName = document.getElementById('ticketDisplayName');
+        const previewGrade = document.getElementById('ticketDisplayGrade');
+        const previewTier = document.getElementById('ticketDisplayTier');
+        const previewQty = document.getElementById('ticketDisplayQty');
+        const previewPrice = document.getElementById('ticketDisplayPrice');
+        const previewSerial = document.getElementById('ticketSerial');
+        const scanLine = document.getElementById('scanLine');
+        const successState = document.getElementById('successState');
+        const downloadBtn = document.getElementById('downloadBtn');
+        const resetFormBtn = document.getElementById('resetFormBtn');
+
+        let selectedTier = 'standard';
+        let tierPrice = 150;
+        let quantity = 1;
+
+        // Dynamic QR code canvas renderer
+        function drawMockQRCode(canvasId, text) {
+            const canvas = document.getElementById(canvasId);
+            if (!canvas) return;
+            const ctx = canvas.getContext('2d');
+            const size = canvas.width;
+            
+            // Set size explicitly
+            canvas.width = 160;
+            canvas.height = 160;
+            const width = canvas.width;
+
+            // Clear canvas
+            ctx.fillStyle = '#071210';
+            ctx.fillRect(0, 0, width, width);
+            
+            // Set styles
+            ctx.fillStyle = '#dfb26b';
+            
+            // Top-Left Finder block
+            ctx.fillRect(10, 10, 28, 28);
+            ctx.fillStyle = '#071210';
+            ctx.fillRect(14, 14, 20, 20);
+            ctx.fillStyle = '#dfb26b';
+            ctx.fillRect(18, 18, 12, 12);
+            
+            // Top-Right Finder block
+            ctx.fillRect(width - 38, 10, 28, 28);
+            ctx.fillStyle = '#071210';
+            ctx.fillRect(width - 34, 14, 20, 20);
+            ctx.fillStyle = '#dfb26b';
+            ctx.fillRect(width - 30, 18, 12, 12);
+            
+            // Bottom-Left Finder block
+            ctx.fillRect(10, width - 38, 28, 28);
+            ctx.fillStyle = '#071210';
+            ctx.fillRect(14, width - 34, 20, 20);
+            ctx.fillStyle = '#dfb26b';
+            ctx.fillRect(18, width - 30, 12, 12);
+            
+            // Draw random QR noise
+            ctx.fillStyle = '#dfb26b';
+            const numBlocks = 21;
+            const blockSize = (width - 20) / numBlocks;
+            
+            for (let r = 0; r < numBlocks; r++) {
+                for (let c = 0; c < numBlocks; c++) {
+                    // Skip finders
+                    if ((r < 7 && c < 7) || (r < 7 && c >= numBlocks - 7) || (r >= numBlocks - 7 && c < 7)) {
+                        continue;
+                    }
+                    
+                    // Simple hash generation from text + coords
+                    let hash = 0;
+                    const combinedText = text + r + "," + c;
+                    for (let i = 0; i < combinedText.length; i++) {
+                        hash = combinedText.charCodeAt(i) + ((hash << 5) - hash);
+                    }
+                    
+                    if (Math.abs(hash % 3) === 0 || Math.abs(hash % 5) === 0) {
+                        ctx.fillRect(10 + c * blockSize, 10 + r * blockSize, blockSize - 0.5, blockSize - 0.5);
+                    }
+                }
+            }
+        }
+
+        // Draw initial QR Code
+        drawMockQRCode('qrCanvas', 'Guest User - standard');
+
+        // Update Live Price math
+        function updateLiveEstimates() {
+            const totalPrice = tierPrice * quantity;
+            previewPrice.textContent = `Rs ${totalPrice}`;
+            previewQty.textContent = quantity;
+        }
+
+        // Live Name updates on keystrokes
+        userNameInput.addEventListener('input', (e) => {
+            const val = e.target.value.trim();
+            previewName.textContent = val !== '' ? val : 'Guest User';
+            drawMockQRCode('qrCanvas', `${previewName.textContent}-${selectedTier}-${quantity}`);
+        });
+
+        // Live Grade updates
+        userGradeSelect.addEventListener('change', (e) => {
+            previewGrade.textContent = e.target.value;
+        });
+
+        // Selector Tiers
+        tierCards.forEach(card => {
+            card.addEventListener('click', () => {
+                tierCards.forEach(c => c.classList.remove('selected'));
+                card.classList.add('selected');
+                
+                selectedTier = card.dataset.tier;
+                tierPrice = parseInt(card.dataset.price);
+                
+                previewTier.textContent = card.querySelector('h4').textContent.toUpperCase();
+                
+                updateLiveEstimates();
+                drawMockQRCode('qrCanvas', `${previewName.textContent}-${selectedTier}-${quantity}`);
+            });
+        });
+
+        // Increment Quantity
+        qtyPlus.addEventListener('click', () => {
+            if (quantity < 10) {
+                quantity++;
+                ticketQtySpan.textContent = quantity;
+                updateLiveEstimates();
+                drawMockQRCode('qrCanvas', `${previewName.textContent}-${selectedTier}-${quantity}`);
+            }
+        });
+
+        // Decrement Quantity
+        qtyMinus.addEventListener('click', () => {
+            if (quantity > 1) {
+                quantity--;
+                ticketQtySpan.textContent = quantity;
+                updateLiveEstimates();
+                drawMockQRCode('qrCanvas', `${previewName.textContent}-${selectedTier}-${quantity}`);
+            }
+        });
+
+        // Submit Reservation
+        bookingForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            // Enable Scan Animation
+            scanLine.style.display = 'block';
+            
+            // Simulate processing delay
+            setTimeout(() => {
+                scanLine.style.display = 'none';
+                
+                // Set Serial
+                const randSerial = 'QEC-' + Math.floor(100000 + Math.random() * 900000);
+                previewSerial.textContent = randSerial;
+                
+                // Enable success layout and hide submit
+                successState.classList.remove('hidden');
+                bookingForm.querySelector('button[type="submit"]').disabled = true;
+                bookingForm.querySelector('button[type="submit"]').classList.add('opacity-50');
+            }, 1800);
+        });
+
+        // Reset reservation
+        resetFormBtn.addEventListener('click', () => {
+            bookingForm.reset();
+            quantity = 1;
+            ticketQtySpan.textContent = 1;
+            selectedTier = 'standard';
+            tierPrice = 150;
+            
+            previewName.textContent = 'Guest User';
+            previewGrade.textContent = 'Grade 7';
+            previewTier.textContent = 'STANDARD ENTRY';
+            previewSerial.textContent = 'MOCK-SERIAL-0000';
+            
+            updateLiveEstimates();
+            drawMockQRCode('qrCanvas', 'Guest User-standard-1');
+            
+            successState.classList.add('hidden');
+            bookingForm.querySelector('button[type="submit"]').disabled = false;
+            bookingForm.querySelector('button[type="submit"]').classList.remove('opacity-50');
+        });
+
+        // Save Image trigger click
+        downloadBtn.addEventListener('click', () => {
+            alert(`Mock Ticket Saved!\nSerial Number: ${previewSerial.textContent}\nTotal Price: ${previewPrice.textContent}\nEnjoy the Food and Fun Day!`);
+        });
+
+    </script>
+    <script src="../javascript/navbar.js"></script>
+</body>
+</html>
