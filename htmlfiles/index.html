@@ -5,264 +5,312 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Queen Elizabeth College - Food & Fun Day 2026</title>
 <meta name="description" content="Official website for QEC Food and Fun Day 2026. Explore attraction schedules, discotheque sessions, gaming events, food stall menu prices, and school activities.">
-<!-- Global CSS -->
 <link rel="stylesheet" href="../css/global.css" />
 <style>
-    /* Page specific styling */
-    .hero-container {
-        position: relative;
-        min-height: 100vh;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
+    .home-page {
+        background-color: var(--color-bg-dark);
+    }
+
+    .home-hero {
         text-align: center;
-        padding: 2rem;
-        box-sizing: border-box;
-        overflow: hidden;
-    }
-    
-    .hero-overlay {
-        position: absolute;
-        inset: 0;
-        background: linear-gradient(180deg, rgba(7, 18, 16, 0.4) 0%, rgba(7, 18, 16, 0.95) 100%);
-        z-index: 2;
-    }
-    
-    .hero-content {
-        position: relative;
-        z-index: 3;
-        max-width: 800px;
-        margin-top: 4rem;
+        padding: max(1.25rem, env(safe-area-inset-top)) 1rem 1.25rem;
+        max-width: 720px;
+        margin: 0 auto;
     }
 
-    /* Timer Styles */
-    .count-down-values-container {
-        display: flex;
-        justify-content: center;
-        gap: 1.5rem;
-        flex-wrap: wrap;
-        margin-top: 1.5rem;
+    .home-hero img {
+        display: block;
+        margin: 0 auto 1rem;
+        height: 5rem;
+        width: auto;
     }
 
-    .timer-circle {
+    .home-hero h1 {
+        font-size: clamp(1.75rem, 5vw, 2.5rem);
+        margin-bottom: 0.75rem;
+    }
+
+    .home-hero p {
+        color: var(--color-text-muted);
+        margin: 0 auto 1.25rem;
+        max-width: 36rem;
+        line-height: 1.6;
+    }
+
+    .home-main {
+        max-width: 48rem;
+        margin: 0 auto;
+        padding: 0 1rem 2rem;
         display: flex;
         flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        background: rgba(20, 45, 42, 0.65);
-        backdrop-filter: blur(8px);
-        -webkit-backdrop-filter: blur(8px);
-        border: 2px solid rgba(223, 178, 107, 0.25);
-        width: 100px;
-        height: 100px;
-        border-radius: 50%;
-        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
-        transition: var(--transition-smooth);
+        gap: 2rem;
     }
 
-    .timer-circle:hover {
-        transform: scale(1.08) translateY(-4px);
-        border-color: var(--color-gold);
-        box-shadow: 0 12px 32px rgba(0, 0, 0, 0.5), var(--glow-gold);
+    .home-panel {
+        background: var(--color-bg-medium);
+        border: 1px solid rgba(223, 178, 107, 0.2);
+        border-radius: 12px;
+        padding: 1.5rem;
     }
 
-    .timer-circle h3 {
-        font-size: 2rem;
-        font-weight: 800;
-        color: var(--color-gold-light);
-        line-height: 1;
-        margin: 0;
-        font-family: var(--font-heading);
-    }
-
-    .timer-circle p {
-        font-size: 0.7rem;
+    .home-panel h2 {
+        font-size: 1rem;
         text-transform: uppercase;
+        letter-spacing: 0.08em;
+        text-align: center;
+        margin-bottom: 1rem;
+    }
+
+    .countdown-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 0.75rem;
+        max-width: 24rem;
+        margin: 0 auto;
+    }
+
+    .countdown-box {
+        text-align: center;
+        background: var(--color-bg-dark);
+        border: 1px solid rgba(223, 178, 107, 0.2);
+        border-radius: 8px;
+        padding: 0.75rem 0.5rem;
+    }
+
+    .countdown-box strong {
+        display: block;
+        font-size: 1.5rem;
+        font-family: var(--font-heading);
+        color: var(--color-gold-light);
+        line-height: 1.2;
+    }
+
+    .countdown-box span {
+        display: block;
+        font-size: 0.65rem;
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
         color: var(--color-text-muted);
-        letter-spacing: 0.1em;
-        margin: 0;
         margin-top: 0.2rem;
+    }
+
+    .home-disclaimer {
+        text-align: center;
+        font-size: 0.75rem;
+        color: var(--color-text-muted);
+        margin: 1rem 0 0;
+        font-style: italic;
+    }
+
+    .nav-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 0.75rem;
+        list-style: none;
+        margin: 0;
+        padding: 0;
+    }
+
+    @media (min-width: 540px) {
+        .nav-grid {
+            grid-template-columns: 1fr 1fr;
+        }
+    }
+
+    .nav-grid a {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        padding: 1rem;
+        background: var(--color-bg-dark);
+        border: 1px solid rgba(223, 178, 107, 0.15);
+        border-radius: 8px;
+        text-decoration: none;
+        color: var(--color-cream);
+    }
+
+    .nav-grid a:hover,
+    .nav-grid a:focus-visible {
+        border-color: rgba(223, 178, 107, 0.4);
+        outline: none;
+    }
+
+    .nav-grid img {
+        width: 2rem;
+        height: 2rem;
+        object-fit: contain;
+        flex-shrink: 0;
+    }
+
+    .nav-grid .nav-text strong {
+        display: block;
+        font-family: var(--font-heading);
+        color: var(--color-gold-light);
+        font-size: 1rem;
+        margin-bottom: 0.15rem;
+    }
+
+    .nav-grid .nav-text span {
+        display: block;
+        font-size: 0.8rem;
+        color: var(--color-text-muted);
+        line-height: 1.4;
+    }
+
+    .home-footer {
+        text-align: center;
+        padding: 1.5rem 1rem;
+        font-size: 0.75rem;
+        color: var(--color-text-muted);
+        border-top: 1px solid rgba(223, 178, 107, 0.1);
+    }
+
+    @media (max-width: 480px) {
+        .home-panel {
+            padding: 1.25rem 1rem;
+        }
+
+        .home-hero .btn-premium {
+            display: flex;
+            width: 100%;
+            max-width: 18rem;
+            margin-left: auto;
+            margin-right: auto;
+            box-sizing: border-box;
+        }
+
+        .nav-grid a {
+            min-height: 3.25rem;
+            padding: 0.875rem;
+        }
+
+        .nav-grid .nav-text strong {
+            font-size: 0.95rem;
+        }
+
+        .countdown-box strong {
+            font-size: 1.25rem;
+        }
+    }
+
+    @media (max-width: 380px) {
+        .countdown-grid {
+            grid-template-columns: repeat(2, 1fr);
+        }
     }
 </style>
 </head>
 
-<body data-particles="home">
+<body class="home-page">
 
-<!-- Call Navbar -->
-<div id="navbar"></div>
-
-<!-- Hero Section -->
-<header class="hero-container">
-    <div class="hero-slider-container">
-        <div class="hero-slide" style="background-image: url('../images/DiscoPic1.jpg');"></div>
-        <div class="hero-slide" style="background-image: url('../images/GamingBanner.png');"></div>
-        <div class="hero-slide" style="background-image: url('../images/FoodBanner.jpeg');"></div>
-        <div class="hero-slide" style="background-image: url('../images/FootballBanner.jpg');"></div>
-    </div>
-    <div class="hero-overlay"></div>
-    
-    <div class="hero-content scroll-reveal">
-        <div class="inline-block relative mb-6">
-            <div class="absolute inset-0 bg-gold" style="opacity: 0.15; filter: blur(24px); border-radius: 50%;"></div>
-            <img src="../icons and logos/QECLogo.png" alt="Queen Elizabeth College Logo" class="relative mx-auto h-28 w-auto transition-transform duration-500 hover:scale-105" />
-        </div>
-        
-        <h1 class="text-4xl md:text-6xl font-extrabold mb-3 typewriter-text tracking-tight font-['Outfit']" style="color: var(--color-gold-light);">
-            Food & Fun Day 2026
-        </h1>
-        
-        <p class="text-lg md:text-xl text-base max-w-2xl mx-auto font-medium mb-8" style="color: var(--color-text-muted); padding: 0 1rem;">
-            Join Queen Elizabeth College on June 9th, 2026 for a legendary day of excitement, delicious food, and friendly competition!
-        </p>
-        
-        <div class="flex flex-wrap justify-center gap-4">
-            <a href="#countdown-section" class="btn-premium">Explore Attractions ↓</a>
-            <a href="../htmlfiles/foodstalls.html" class="btn-outline">Browse Stalls →</a>
-        </div>
-    </div>
+<header class="home-hero">
+    <img src="../icons and logos/QECLogo.png" alt="Queen Elizabeth College Logo" width="112" height="112" />
+    <h1>Food &amp; Fun Day 2026</h1>
+    <p>Join Queen Elizabeth College on <strong>June 9th, 2026</strong> for a day of excitement, delicious food, and friendly competition.</p>
+    <a href="#explore" class="btn-premium">Explore attractions</a>
 </header>
 
-<main class="max-w-6xl mx-auto px-4 py-12 flex flex-col gap-12 pb-12">
+<main class="home-main">
 
-    <!-- Countdown Widget -->
-    <section id="countdown-section" class="glass-panel p-8 text-center scroll-reveal stagger-1 max-w-4xl mx-auto w-full">
-        <h2 class="text-lg md:text-xl font-bold tracking-widest uppercase mb-4 text-gold font-['Outfit']">COUNTDOWN UNTIL THE FUN BEGINS</h2>
-        <div class="count-down-values-container">
-            <div class="timer-circle"><h3 class="countdown-element days">-</h3><p>days</p></div>
-            <div class="timer-circle"><h3 class="countdown-element hours">-</h3><p>hours</p></div>
-            <div class="timer-circle"><h3 class="countdown-element minutes">-</h3><p>mins</p></div>
-            <div class="timer-circle"><h3 class="countdown-element seconds">-</h3><p>secs</p></div>
+    <section id="countdown-section" class="home-panel" aria-label="Event countdown">
+        <h2>Countdown until the fun begins</h2>
+        <div class="countdown-grid count-down-values-container">
+            <div class="countdown-box"><strong class="countdown-element days">-</strong><span>days</span></div>
+            <div class="countdown-box"><strong class="countdown-element hours">-</strong><span>hours</span></div>
+            <div class="countdown-box"><strong class="countdown-element minutes">-</strong><span>mins</span></div>
+            <div class="countdown-box"><strong class="countdown-element seconds">-</strong><span>secs</span></div>
         </div>
-        <p class="text-xs mt-6 italic font-['Outfit']" style="color: rgba(163, 184, 181, 0.7);">Disclaimer: Stall menu items and prices are subject to change.</p>
+        <p class="home-disclaimer">Stall menu items and prices are subject to change.</p>
     </section>
 
-    <!-- Native Scroll Snap Card Slideshow -->
-    <section class="glass-panel p-8 scroll-reveal stagger-2 max-w-5xl mx-auto w-full overflow-hidden">
-        <h2 class="text-2xl md:text-3xl font-extrabold text-center mb-2 text-gold font-['Outfit']">Featured Attractions</h2>
-        <p class="text-center mb-6 max-w-lg mx-auto text-sm" style="color: var(--color-text-muted);">Swipe or scroll through the main events and activities lined up for you!</p>
-        
-        <div class="scroll-snap-row">
-            <!-- Disco Slide -->
-            <div class="scroll-snap-card glass-panel overflow-hidden">
-                <div class="relative overflow-hidden" style="height: 200px;">
-                    <img src="../images/DiscoPic1.jpg" alt="Discotheque" class="w-full h-full object-cover transition-transform duration-500 hover:scale-105" />
-                    <div class="absolute inset-0" style="background: linear-gradient(to top, rgba(7, 18, 16, 0.8) 0%, transparent 100%);"></div>
-                </div>
-                <div class="p-6 flex flex-col flex-grow justify-between text-left">
-                    <div class="mb-4">
-                        <h3 class="text-xl font-bold text-gold mb-2 font-['Outfit']">Discotheque</h3>
-                        <p class="text-xs text-sm" style="color: var(--color-text-muted); line-height: 1.5;">Lights down, volume up — rhythm, energetic vibes, and absolute joy await you on the dancefloor.</p>
-                    </div>
-                    <a href="../htmlfiles/discotheque.html" class="btn-premium text-xs py-2 px-4 rounded-full text-center">Enter the Disco</a>
-                </div>
-            </div>
-            
-            <!-- Gaming Slide -->
-            <div class="scroll-snap-card glass-panel overflow-hidden">
-                <div class="relative overflow-hidden" style="height: 200px;">
-                    <img src="../images/GamingBanner.png" alt="Gaming" class="w-full h-full object-cover transition-transform duration-500 hover:scale-105" />
-                    <div class="absolute inset-0" style="background: linear-gradient(to top, rgba(7, 18, 16, 0.8) 0%, transparent 100%);"></div>
-                </div>
-                <div class="p-6 flex flex-col flex-grow justify-between text-left">
-                    <div class="mb-4">
-                        <h3 class="text-xl font-bold text-gold mb-2 font-['Outfit']">Esports & Gaming</h3>
-                        <p class="text-xs text-sm" style="color: var(--color-text-muted); line-height: 1.5;">Compete in Tekken and FIFA tournaments. Show off your skills and win amazing grand prizes.</p>
-                    </div>
-                    <a href="../htmlfiles/gaming.html" class="btn-premium text-xs py-2 px-4 rounded-full text-center">Join Tournament</a>
-                </div>
-            </div>
-            
-            <!-- Football Slide -->
-            <div class="scroll-snap-card glass-panel overflow-hidden">
-                <div class="relative overflow-hidden" style="height: 200px;">
-                    <img src="../images/FootballBanner.jpg" alt="Football Tournament" class="w-full h-full object-cover transition-transform duration-500 hover:scale-105" />
-                    <div class="absolute inset-0" style="background: linear-gradient(to top, rgba(7, 18, 16, 0.8) 0%, transparent 100%);"></div>
-                </div>
-                <div class="p-6 flex flex-col flex-grow justify-between text-left">
-                    <div class="mb-4">
-                        <h3 class="text-xl font-bold text-gold mb-2 font-['Outfit']">Football Tournament</h3>
-                        <p class="text-xs text-sm" style="color: var(--color-text-muted); line-height: 1.5;">Show your soccer skills and register with your team for our competitive street soccer cup!</p>
-                    </div>
-                    <a href="../htmlfiles/football.html" class="btn-premium text-xs py-2 px-4 rounded-full text-center">View Matches</a>
-                </div>
-            </div>
-            
-            <!-- Food Slide -->
-            <div class="scroll-snap-card glass-panel overflow-hidden">
-                <div class="relative overflow-hidden" style="height: 200px;">
-                    <img src="../images/FoodBanner.jpeg" alt="Food Stalls" class="w-full h-full object-cover transition-transform duration-500 hover:scale-105" />
-                    <div class="absolute inset-0" style="background: linear-gradient(to top, rgba(7, 18, 16, 0.8) 0%, transparent 100%);"></div>
-                </div>
-                <div class="p-6 flex flex-col flex-grow justify-between text-left">
-                    <div class="mb-4">
-                        <h3 class="text-xl font-bold text-gold mb-2 font-['Outfit']">Delicious Food Stalls</h3>
-                        <p class="text-xs text-sm" style="color: var(--color-text-muted); line-height: 1.5;">Bold flavors, sizzling menus, and sweet treats from our student and guest vendors.</p>
-                    </div>
-                    <a href="../htmlfiles/foodstalls.html" class="btn-premium text-xs py-2 px-4 rounded-full text-center">Browse Menu</a>
-                </div>
-            </div>
-            
-            <!-- Activities Slide -->
-            <div class="scroll-snap-card glass-panel overflow-hidden">
-                <div class="relative overflow-hidden" style="height: 200px;">
-                    <img src="../images/ActivitiesBanner.jpg" alt="Activities" class="w-full h-full object-cover transition-transform duration-500 hover:scale-105" />
-                    <div class="absolute inset-0" style="background: linear-gradient(to top, rgba(7, 18, 16, 0.8) 0%, transparent 100%);"></div>
-                </div>
-                <div class="p-6 flex flex-col flex-grow justify-between text-left">
-                    <div class="mb-4">
-                        <h3 class="text-xl font-bold text-gold mb-2 font-['Outfit']">Amusement Rides</h3>
-                        <p class="text-xs text-sm" style="color: var(--color-text-muted); line-height: 1.5;">Take a ride on the gyroscope, bounce on castles, dive into the ball pit, and play carnival games.</p>
-                    </div>
-                    <a href="../htmlfiles/activities.html" class="btn-premium text-xs py-2 px-4 rounded-full text-center">Explore Activities</a>
-                </div>
-            </div>
-        </div>
+    <section id="explore" class="home-panel" aria-label="Site navigation">
+        <h2>Where do you want to go?</h2>
+        <ul class="nav-grid">
+            <li>
+                <a href="../htmlfiles/discotheque.html">
+                    <img src="../icons and logos/QECLogoDiscoNoText.png" alt="" width="32" height="32" />
+                    <span class="nav-text">
+                        <strong>Discotheque</strong>
+                        <span>Dance sessions and music</span>
+                    </span>
+                </a>
+            </li>
+            <li>
+                <a href="../htmlfiles/gaming.html">
+                    <img src="../icons and logos/QECLogoPixelArtNoText.png" alt="" width="32" height="32" />
+                    <span class="nav-text">
+                        <strong>Esports &amp; Gaming</strong>
+                        <span>Tekken and FIFA tournaments</span>
+                    </span>
+                </a>
+            </li>
+            <li>
+                <a href="../htmlfiles/football.html">
+                    <img src="../icons and logos/QECLogoFootballNoText.png" alt="" width="32" height="32" />
+                    <span class="nav-text">
+                        <strong>Football</strong>
+                        <span>Street soccer matches</span>
+                    </span>
+                </a>
+            </li>
+            <li>
+                <a href="../htmlfiles/foodstalls.html">
+                    <img src="../icons and logos/QECLogoFoodNoText.png" alt="" width="32" height="32" />
+                    <span class="nav-text">
+                        <strong>Food Stalls</strong>
+                        <span>Menus and prices</span>
+                    </span>
+                </a>
+            </li>
+            <li>
+                <a href="../htmlfiles/activities.html">
+                    <img src="../icons and logos/QECLogoActivitiesNoText.png" alt="" width="32" height="32" />
+                    <span class="nav-text">
+                        <strong>Amusement Rides</strong>
+                        <span>Rides and carnival games</span>
+                    </span>
+                </a>
+            </li>
+        </ul>
     </section>
 
 </main>
 
-<footer class="text-center py-8 border-t bg-[#071210]/40 max-w-full font-['Outfit'] text-xs" style="color: var(--color-text-muted); border-color: rgba(223, 178, 107, 0.1);">
-    <p>&copy; 2026 Queen Elizabeth College. Crafted by QECC Club. All rights reserved.</p>
+<footer class="home-footer">
+    <p>&copy; 2026 Queen Elizabeth College. Crafted by Code For QEC. All rights reserved.</p>
 </footer>
 
-<!-- JavaScript Module Links -->
-<script src="../javascript/splash.js"></script>
-<script src="../javascript/particles.js"></script>
-<script src="../javascript/scroll-reveal.js"></script>
-<script src="../javascript/page-transition.js"></script>
-<script src="../javascript/navbar.js"></script>
-
 <script>
-    // Hardcoded Countdown until June 9, 2026 at 08:00 AM
     const destTime = new Date('2026-06-09T08:00:00').getTime();
-    
-    const countdownTimer = setInterval(() => {
-        const now = new Date().getTime();
-        const diff = destTime - now;
-        
+    const countdownSection = document.getElementById('countdown-section');
+    const countdownHeading = countdownSection.querySelector('h2');
+    const countdownContainer = document.querySelector('.count-down-values-container');
+
+    function updateCountdown() {
+        const diff = destTime - Date.now();
+
         if (diff <= 0) {
-            clearInterval(countdownTimer);
-            document.querySelector('.count-down-values-container').style.display = 'none';
-            document.getElementById('countdown-section').querySelector('h2').innerHTML = `
-                <h2 class="text-2xl font-extrabold text-gold font-['Outfit'] animate-float" style="color: var(--color-gold);">THE EVENT HAS STARTED!</h2>
-            `;
-            return;
+            countdownContainer.hidden = true;
+            countdownHeading.textContent = 'The event has started!';
+            return false;
         }
-        
-        const d = Math.floor(diff / (1000 * 60 * 60 * 24));
-        const h = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-        const m = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-        const s = Math.floor((diff % (1000 * 60)) / 1000);
-        
-        const elements = document.getElementsByClassName("countdown-element");
-        if (elements.length >= 4) {
-            elements[0].innerHTML = d.toString().padStart(2, '0');
-            elements[1].innerHTML = h.toString().padStart(2, '0');
-            elements[2].innerHTML = m.toString().padStart(2, '0');
-            elements[3].innerHTML = s.toString().padStart(2, '0');
-        }
-    }, 1000);
+
+        const d = Math.floor(diff / 86400000);
+        const h = Math.floor((diff % 86400000) / 3600000);
+        const m = Math.floor((diff % 3600000) / 60000);
+        const s = Math.floor((diff % 60000) / 1000);
+        const elements = document.getElementsByClassName('countdown-element');
+
+        elements[0].textContent = String(d).padStart(2, '0');
+        elements[1].textContent = String(h).padStart(2, '0');
+        elements[2].textContent = String(m).padStart(2, '0');
+        elements[3].textContent = String(s).padStart(2, '0');
+        return true;
+    }
+
+    if (updateCountdown()) {
+        setInterval(updateCountdown, 1000);
+    }
 </script>
 
 </body>

@@ -5,330 +5,458 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Football Tournament - School Food & Fun Day!</title>
     <meta name="description" content="View QEC Food and Fun Day 2026 Football Tournament fixtures, match schedule schedules, bracket diagrams, rules, and team registration links.">
-    <!-- Global CSS -->
     <link rel="stylesheet" href="../css/global.css" />
     <style>
-        body {
+        body.football-page {
             font-family: var(--font-body);
             background: radial-gradient(circle at top, #0c2017 0%, var(--color-bg-darkest) 90%);
         }
-        h1, h2, h3, h4, h5, h6 {
-            font-family: var(--font-heading);
-        }
-        
-        .stadium-panel {
-            background: rgba(12, 38, 25, 0.45);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 1px solid rgba(223, 178, 107, 0.2);
-            border-radius: 16px;
-            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.4);
-            transition: var(--transition-smooth);
-        }
-        .stadium-panel:hover {
-            border-color: rgba(223, 178, 107, 0.4);
-            box-shadow: 0 10px 40px 0 rgba(0, 0, 0, 0.5), 0 0 25px rgba(16, 185, 129, 0.1);
+
+        .page-hero {
+            text-align: center;
+            padding: max(1.25rem, env(safe-area-inset-top)) 1rem 1rem;
+            max-width: 40rem;
+            margin: 0 auto;
         }
 
-        /* Match Card Redesign */
-        .match-card {
+        .page-hero img {
+            display: block;
+            margin: 0 auto 1rem;
+            height: 5rem;
+            width: auto;
+        }
+
+        .page-hero h1 {
+            font-size: clamp(1.75rem, 5vw, 2.5rem);
+            margin-bottom: 0.75rem;
+            background: linear-gradient(90deg, #f1d89b, #dfb26b, #b88a44);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .page-hero p {
+            color: var(--color-text-muted);
+            margin: 0 auto 1rem;
+            max-width: 32rem;
+        }
+
+        .football-main {
+            max-width: 42rem;
+            margin: 0 auto;
+            padding: 0 1rem 2rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1.25rem;
+        }
+
+        .stadium-panel {
+            background: rgba(12, 38, 25, 0.9);
+            border: 1px solid rgba(223, 178, 107, 0.25);
+            border-radius: 12px;
+            padding: 1.5rem;
+        }
+
+        .stadium-panel h2 {
+            font-size: 1.25rem;
+            color: var(--color-gold);
+            margin: 0 0 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid rgba(223, 178, 107, 0.15);
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 0.75rem;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        @media (max-width: 480px) {
+            .info-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .info-tile {
+            background: rgba(7, 18, 16, 0.6);
+            border: 1px solid rgba(223, 178, 107, 0.15);
+            border-radius: 8px;
+            padding: 0.75rem;
+        }
+
+        .info-tile .label {
+            font-size: 0.6rem;
+            text-transform: uppercase;
+            color: var(--color-text-muted);
+            display: block;
+            margin-bottom: 0.15rem;
+        }
+
+        .info-tile .value {
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: var(--color-cream);
+        }
+
+        .register-row {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        @media (min-width: 640px) {
+            .register-row {
+                flex-direction: row;
+                align-items: center;
+            }
+        }
+
+        .register-row p {
+            flex: 1;
+            font-size: 0.85rem;
+            color: var(--color-text-muted);
+            margin: 0;
+            line-height: 1.6;
+        }
+
+        .bracket-container {
             display: flex;
             align-items: center;
-            justify-content: space-between;
-            background: rgba(7, 18, 16, 0.45);
-            border: 1px solid rgba(223, 178, 107, 0.15);
-            border-radius: 16px;
-            padding: 1rem 1.5rem;
-            gap: 1rem;
-            transition: var(--transition-smooth);
+            justify-content: center;
+            gap: 0.75rem;
+            background: rgba(7, 18, 16, 0.5);
+            border: 1px solid rgba(223, 178, 107, 0.12);
+            border-radius: 8px;
+            padding: 1rem;
+            margin-bottom: 1.25rem;
         }
-        .match-card:hover {
+
+        .bracket-stage {
+            flex: 1;
+            min-width: 0;
+            text-align: center;
+        }
+
+        .bracket-stage-title {
+            font-size: 0.6rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            color: var(--color-gold);
+            margin-bottom: 0.4rem;
+        }
+
+        .bracket-box {
+            background: rgba(7, 18, 16, 0.8);
+            border: 1px solid rgba(163, 184, 181, 0.25);
+            border-radius: 6px;
+            padding: 0.4rem 0.5rem;
+            font-size: 0.7rem;
+            font-weight: 600;
+            color: var(--color-cream);
+            margin-bottom: 0.4rem;
+            word-break: break-word;
+        }
+
+        .bracket-box:last-child {
+            margin-bottom: 0;
+        }
+
+        .bracket-box-gold {
             border-color: var(--color-gold);
-            box-shadow: 0 4px 15px rgba(223, 178, 107, 0.15);
-            transform: translateY(-2px);
+            color: var(--color-gold-light);
         }
+
+        .bracket-arrow {
+            color: rgba(223, 178, 107, 0.5);
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+
+        .fixtures-panel {
+            overflow-x: hidden;
+        }
+
+        .match-card {
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
+            grid-template-areas:
+                "team-left vs team-right"
+                "time time time";
+            align-items: center;
+            gap: 0.4rem 0.5rem;
+            background: rgba(7, 18, 16, 0.7);
+            border: 1px solid rgba(223, 178, 107, 0.15);
+            border-radius: 10px;
+            padding: 0.75rem;
+        }
+
         .match-team {
             font-family: var(--font-heading);
             font-weight: 700;
-            font-size: 0.95rem;
+            font-size: 0.85rem;
             color: var(--color-cream);
-            flex: 1;
+            min-width: 0;
+            word-break: break-word;
+            line-height: 1.3;
         }
+
         .match-team-left {
+            grid-area: team-left;
             text-align: right;
         }
+
         .match-team-right {
+            grid-area: team-right;
             text-align: left;
         }
+
         .match-vs-badge {
+            grid-area: vs;
+            justify-self: center;
             background: rgba(16, 185, 129, 0.15);
             border: 1px solid rgba(16, 185, 129, 0.4);
             color: var(--color-success);
             font-family: var(--font-heading);
             font-weight: 800;
-            font-size: 0.75rem;
-            padding: 0.25rem 0.5rem;
-            border-radius: 6px;
-            letter-spacing: 0.05em;
-            min-width: 32px;
-            text-align: center;
+            font-size: 0.65rem;
+            padding: 0.2rem 0.45rem;
+            border-radius: 4px;
+            flex-shrink: 0;
         }
+
         .match-time-badge {
+            grid-area: time;
+            justify-self: center;
             background: rgba(223, 178, 107, 0.1);
             border: 1px solid rgba(223, 178, 107, 0.3);
             color: var(--color-gold-light);
-            font-size: 0.75rem;
+            font-size: 0.7rem;
             font-weight: 600;
-            padding: 0.25rem 0.65rem;
+            padding: 0.2rem 0.5rem;
             border-radius: 99px;
-            white-space: nowrap;
-        }
-        @media (max-width: 576px) {
-            .match-card {
-                flex-direction: column;
-                text-align: center;
-                padding: 1.25rem;
-                gap: 0.75rem;
-            }
-            .match-team-left, .match-team-right {
-                text-align: center;
-            }
         }
 
-        /* Bracket Flow Styling */
-        .bracket-container {
+        #tabButtonsContainer {
             display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 1rem;
-            background: rgba(12, 38, 25, 0.35);
-            border: 1px solid rgba(223, 178, 107, 0.12);
-            border-radius: 12px;
-            padding: 1.5rem;
-            overflow-x: auto;
-            margin-bottom: 2rem;
-            scrollbar-width: thin;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 1px solid rgba(223, 178, 107, 0.1);
         }
-        .bracket-stage {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            min-width: 140px;
-        }
-        .bracket-stage-title {
-            font-size: 0.65rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            color: var(--color-gold);
-            letter-spacing: 0.05em;
-            margin-bottom: 0.5rem;
-        }
-        .bracket-box-group {
+
+        #tabContentsContainer {
             display: flex;
             flex-direction: column;
             gap: 0.5rem;
-            width: 100%;
         }
-        .bracket-box {
-            background: rgba(7, 18, 16, 0.6);
-            border: 1px solid rgba(163, 184, 181, 0.2);
-            border-radius: 8px;
-            padding: 0.5rem 0.75rem;
-            font-size: 0.75rem;
-            font-weight: 600;
+
+        .page-footer {
             text-align: center;
-            color: var(--color-cream);
-            width: 100%;
-            box-sizing: border-box;
-            white-space: nowrap;
-        }
-        .bracket-box-gold {
-            border-color: var(--color-gold);
-            box-shadow: 0 0 10px rgba(223, 178, 107, 0.2);
-            color: var(--color-gold-light);
-        }
-        .bracket-arrow {
-            color: rgba(223, 178, 107, 0.4);
-            font-weight: bold;
-            font-size: 1.25rem;
+            padding: 1.5rem 1rem;
+            font-size: 0.75rem;
+            color: var(--color-text-muted);
+            border-top: 1px solid rgba(223, 178, 107, 0.1);
         }
 
-        /* Pulsing CTA Registration Button */
-        .pulse-btn {
-            animation: goldPulse 2s infinite;
-        }
-        @keyframes goldPulse {
-            0% {
-                box-shadow: 0 0 0 0 rgba(223, 178, 107, 0.45);
+        @media (max-width: 520px) {
+            .fixtures-panel {
+                padding: 1rem 0.75rem;
             }
-            70% {
-                box-shadow: 0 0 0 10px rgba(223, 178, 107, 0);
+
+            .fixtures-panel h2 {
+                font-size: 1.1rem;
             }
-            100% {
-                box-shadow: 0 0 0 0 rgba(223, 178, 107, 0);
+
+            .bracket-container {
+                flex-direction: column;
+                align-items: stretch;
+                gap: 0.35rem;
+                padding: 0.75rem;
+            }
+
+            .bracket-arrow {
+                align-self: center;
+                line-height: 1;
+                transform: rotate(90deg);
+            }
+
+            .bracket-stage-title {
+                font-size: 0.55rem;
+            }
+
+            .bracket-box {
+                font-size: 0.65rem;
+                padding: 0.35rem 0.45rem;
+            }
+
+            #tabButtonsContainer {
+                display: grid;
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+                gap: 0.4rem;
+            }
+
+            #tabButtonsContainer .filter-chip {
+                width: 100%;
+                min-height: 2.25rem;
+                font-size: 0.75rem;
+                padding: 0.4rem 0.5rem;
+            }
+
+            .match-card {
+                grid-template-columns: 1fr;
+                grid-template-areas:
+                    "team-left"
+                    "vs"
+                    "team-right"
+                    "time";
+                text-align: center;
+                padding: 0.65rem 0.75rem;
+            }
+
+            .match-team-left,
+            .match-team-right {
+                text-align: center;
+                font-size: 0.8rem;
+            }
+
+            .match-time-badge {
+                margin-top: 0.15rem;
             }
         }
 
-        /* Tab Switch Transition animation */
-        .tab-fade-in {
-            animation: tabFadeIn 0.35s ease-out forwards;
-        }
-        @keyframes tabFadeIn {
-            from { opacity: 0; transform: translateY(8px); }
-            to { opacity: 1; transform: translateY(0); }
+        @media (max-width: 480px) {
+            .stadium-panel {
+                padding: 1.25rem 1rem;
+            }
+
+            .register-row .btn-premium {
+                display: flex;
+                width: 100%;
+                justify-content: center;
+                box-sizing: border-box;
+            }
         }
     </style>
 </head>
-<body data-particles="football">
+<body class="football-page">
 
-    <!-- Call Navbar -->
-    <div id="navbar"></div>
-
-    <header class="pt-24 text-center mb-10 scroll-reveal">
-        <div class="mb-4 inline-block relative">
-            <div class="absolute inset-0 bg-emerald-500/20 blur-lg rounded-full"></div>
-            <img src="../icons and logos/QECLogoFootball.webp" alt="Football Logo" class="relative mx-auto h-24 w-auto hover:rotate-6 transition-transform duration-300">
-        </div>
-        <h1 class="text-4xl md:text-5xl font-extrabold tracking-tight mb-2 bg-clip-text text-transparent bg-gradient-to-r from-[#f1d89b] via-[#dfb26b] to-[#b88a44]">Football Tournament</h1>
-        <p class="text-[#a3b8b5] text-sm md:text-base max-w-xl mx-auto mb-4" style="padding: 0 1rem;">Show your skills, represent your class, and claim the ultimate crown on the field!</p>
-        <a href="../htmlfiles/index.html" class="btn-outline text-xs px-4 py-1.5">← Back to Main Page</a>
+    <header class="page-hero">
+        <img src="../icons and logos/QECLogoFootball.webp" alt="Football Logo" width="80" height="80" />
+        <h1>Football Tournament</h1>
+        <p>Show your skills, represent your class, and claim the ultimate crown on the field!</p>
+        <a href="../htmlfiles/index.html" class="btn-outline page-back"><span class="page-back-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"/><path d="M12 19l-7-7 7-7"/></svg></span>Back to Main Page</a>
     </header>
 
-    <main class="max-w-4xl mx-auto flex flex-col gap-8 mb-16 px-4 scroll-reveal stagger-1">
-        
-        <!-- Rules & Info -->
-        <section class="stadium-panel p-6 md:p-8">
-            <h2 class="text-2xl font-bold text-[#dfb26b] mb-4 font-['Outfit'] border-b pb-2" style="margin-top: 0; border-color: rgba(223, 178, 107, 0.1);">Tournament Overview</h2>
-            <div class="grid sm:grid-cols-3 gap-4 mb-6 text-center">
-                <div class="p-3 bg-[#071210]/40 rounded-xl border" style="border-color: rgba(223, 178, 107, 0.1);">
-                    <span class="text-xl block mb-1">👥</span>
-                    <span class="text-[10px] uppercase text-[#a3b8b5] block">Format</span>
-                    <span class="font-bold text-sm text-[#ede0cb]">6-a-side Match</span>
+    <main class="football-main">
+
+        <section class="stadium-panel" aria-label="Tournament overview">
+            <h2>Tournament Overview</h2>
+            <div class="info-grid">
+                <div class="info-tile">
+                    <span aria-hidden="true" style="font-size:1.25rem;">👥</span>
+                    <span class="label">Format</span>
+                    <span class="value">6-a-side Match</span>
                 </div>
-                <div class="p-3 bg-[#071210]/40 rounded-xl border" style="border-color: rgba(223, 178, 107, 0.1);">
-                    <span class="text-xl block mb-1">💰</span>
-                    <span class="text-[10px] uppercase text-[#a3b8b5] block">Entry Fee</span>
-                    <span class="font-bold text-sm text-[#ede0cb]">Rs 150 / Team</span>
+                <div class="info-tile">
+                    <span aria-hidden="true" style="font-size:1.25rem;">💰</span>
+                    <span class="label">Entry Fee</span>
+                    <span class="value">Rs 150 / Team</span>
                 </div>
-                <div class="p-3 bg-[#071210]/40 rounded-xl border" style="border-color: rgba(223, 178, 107, 0.1);">
-                    <span class="text-xl block mb-1">📍</span>
-                    <span class="text-[10px] uppercase text-[#a3b8b5] block">Location</span>
-                    <span class="font-bold text-sm text-[#ede0cb]">Football Field</span>
+                <div class="info-tile">
+                    <span aria-hidden="true" style="font-size:1.25rem;">📍</span>
+                    <span class="label">Location</span>
+                    <span class="value">Football Field</span>
                 </div>
             </div>
-            <p class="text-sm text-[#a3b8b5] leading-relaxed" style="margin: 0;">
+            <p style="font-size: 0.85rem; color: var(--color-text-muted); margin: 0; line-height: 1.6;">
                 Group stages lead directly into knockout brackets. Each game lasts 15 minutes (7 mins per half, 1 min break). Teams must be ready with matching shirts/bibs. Standard football boots or sneakers are required.
             </p>
         </section>
 
-        <!-- Register Link Section -->
-        <section class="stadium-panel p-6 md:p-8">
-            <h2 class="text-2xl font-bold text-[#dfb26b] mb-3 font-['Outfit']" style="margin-top: 0;">Register Your Team</h2>
-            <div class="flex flex-col md:flex-row items-center justify-between gap-6">
-                <p class="text-sm text-[#a3b8b5] leading-relaxed" style="margin: 0; flex: 1;">
-                    Ready to showcase your team's skills? Click the button to register for the football tournament. 
-                    You'll be taken to the official registration Google Form where you can submit your squad details.
-                </p>
-                <a href="https://docs.google.com/forms/d/e/1FAIpQLSd4R9flbFLRYlhWioT5SjqJWeZzWigF5SpOO6duQFvuDIbWFg/viewform" 
-                   target="_blank" 
-                   class="btn-premium py-3 px-8 text-xs font-bold uppercase tracking-wider rounded-lg text-center pulse-btn" style="white-space: nowrap;">
+        <section class="stadium-panel" aria-label="Registration">
+            <h2>Register Your Team</h2>
+            <div class="register-row">
+                <p>Ready to showcase your team's skills? Register via the official Google Form and submit your squad details.</p>
+                <a href="https://docs.google.com/forms/d/e/1FAIpQLSd4R9flbFLRYlhWioT5SjqJWeZzWigF5SpOO6duQFvuDIbWFg/viewform"
+                   target="_blank" rel="noopener noreferrer"
+                   class="btn-premium" style="font-size: 0.75rem; padding: 0.75rem 1.5rem; white-space: nowrap; text-align: center;">
                     Register Now →
                 </a>
             </div>
         </section>
 
-        <!-- Schedule & Fixtures tabs -->
-        <section class="stadium-panel p-6 md:p-8">
-            <h2 class="text-2xl font-bold text-[#dfb26b] mb-4 font-['Outfit']" style="margin-top: 0;">Fixtures & Playoff Bracket</h2>
-            
-            <!-- Tournament Flow Diagram -->
+        <section class="stadium-panel fixtures-panel" aria-label="Fixtures">
+            <h2>Fixtures &amp; Playoff Bracket</h2>
             <div class="bracket-container">
                 <div class="bracket-stage">
-                    <div class="bracket-stage-title">Groups A-D</div>
+                    <div class="bracket-stage-title">Groups A–D</div>
                     <div class="bracket-box">4 Group Winners</div>
                 </div>
-                <div class="bracket-arrow">→</div>
+                <span class="bracket-arrow" aria-hidden="true">→</span>
                 <div class="bracket-stage">
                     <div class="bracket-stage-title">Semi-Finals</div>
-                    <div class="bracket-box-group">
-                        <div class="bracket-box">A Winner vs B Winner</div>
-                        <div class="bracket-box">C Winner vs D Winner</div>
-                    </div>
+                    <div class="bracket-box">A vs B</div>
+                    <div class="bracket-box">C vs D</div>
                 </div>
-                <div class="bracket-arrow">→</div>
+                <span class="bracket-arrow" aria-hidden="true">→</span>
                 <div class="bracket-stage">
                     <div class="bracket-stage-title">Grand Final</div>
-                    <div class="bracket-box bracket-box-gold">Finalist 1 vs Finalist 2</div>
+                    <div class="bracket-box bracket-box-gold">Finalists</div>
                 </div>
             </div>
-
-            <div>
-                <!-- Tab Buttons -->
-                <div id="tabButtonsContainer" class="flex flex-wrap gap-2 pb-3 mb-6" style="border-bottom: 1px solid rgba(223, 178, 107, 0.1);">
-                    <!-- Populated by JS -->
-                </div>
-                
-                <!-- Tab Contents -->
-                <div id="tabContentsContainer" class="flex flex-col gap-3">
-                    <!-- Populated by JS -->
-                </div>
-            </div>
+            <div id="tabButtonsContainer"></div>
+            <div id="tabContentsContainer"></div>
         </section>
 
     </main>
 
-    <footer class="text-center py-8 text-[#a3b8b5] border-t bg-[#071210]/40 max-w-full font-['Outfit'] text-xs" style="border-color: rgba(223, 178, 107, 0.1);">
-        <p>&copy; 2026 Queen Elizabeth College. Crafted by QECC Club. All rights reserved.</p>
+    <footer class="page-footer">
+        <p>&copy; 2026 Queen Elizabeth College. Crafted by Code For QEC. All rights reserved.</p>
     </footer>
 
-    <!-- Script loading and registration processing -->
     <script>
         let scheduleData = {};
-        
+
         async function loadSchedule() {
             try {
-                const response = await fetch('football_schedule.json?' + new Date().getTime());
-                if (!response.ok) throw new Error("Schedule load error");
-                
+                const response = await fetch('football_schedule.json?' + Date.now());
+                if (!response.ok) throw new Error('Schedule load error');
                 scheduleData = await response.json();
                 renderSchedule();
             } catch (err) {
-                console.error("Fixture loading failed:", err);
-                document.getElementById('tabContentsContainer').innerHTML = '<p class="text-xs" style="color: var(--color-error)">Error loading football fixtures.</p>';
+                console.error('Fixture loading failed:', err);
+                document.getElementById('tabContentsContainer').innerHTML =
+                    '<p style="color: var(--color-error); font-size: 0.8rem;">Error loading football fixtures.</p>';
             }
         }
 
         function renderSchedule() {
             const buttonsContainer = document.getElementById('tabButtonsContainer');
             const contentsContainer = document.getElementById('tabContentsContainer');
-            
             buttonsContainer.innerHTML = '';
             contentsContainer.innerHTML = '';
 
             let idx = 0;
             for (const groupName in scheduleData) {
-                const activeClass = idx === 0 ? 'active' : '';
-                
-                // Button
+                const isActive = idx === 0;
                 const btn = document.createElement('button');
-                btn.className = `filter-chip ${activeClass}`;
+                btn.className = 'filter-chip' + (isActive ? ' active' : '');
                 btn.setAttribute('data-tab', groupName);
                 btn.textContent = groupName;
                 buttonsContainer.appendChild(btn);
 
-                // Content container
                 const contentDiv = document.createElement('div');
-                contentDiv.id = `tab-content-${groupName.replace(/\s+/g, '')}`;
-                contentDiv.className = `flex flex-col gap-3 ${idx === 0 ? '' : 'hidden'}`;
-                
-                let matchesHTML = '';
-                scheduleData[groupName].forEach(match => {
-                    // Split the team name string e.g. "Team A vs Team B" to make "vs." cards
+                contentDiv.id = 'tab-content-' + groupName.replace(/\s+/g, '');
+                if (!isActive) contentDiv.hidden = true;
+
+                contentDiv.innerHTML = scheduleData[groupName].map(match => {
                     const parts = match.teams.split(/\s+v[sS]\.?\s+/);
                     const team1 = parts[0] || '';
                     const team2 = parts[1] || '';
-
-                    matchesHTML += `
+                    return `
                         <div class="match-card">
                             <span class="match-team match-team-left">${team1}</span>
                             <span class="match-vs-badge">VS</span>
@@ -336,45 +464,27 @@
                             <span class="match-time-badge">🕒 ${match.time}</span>
                         </div>
                     `;
-                });
-                
-                contentDiv.innerHTML = matchesHTML;
+                }).join('');
+
                 contentsContainer.appendChild(contentDiv);
                 idx++;
             }
 
-            // Bind Tab Clicks with animated transitions
-            document.querySelectorAll('#tabButtonsContainer button').forEach(btn => {
+            buttonsContainer.querySelectorAll('button').forEach(btn => {
                 btn.addEventListener('click', () => {
-                    document.querySelectorAll('#tabButtonsContainer button').forEach(c => c.classList.remove('active'));
+                    buttonsContainer.querySelectorAll('button').forEach(b => b.classList.remove('active'));
                     btn.classList.add('active');
-
                     const targetTab = btn.getAttribute('data-tab');
                     for (const groupName in scheduleData) {
-                        const divId = `tab-content-${groupName.replace(/\s+/g, '')}`;
-                        const div = document.getElementById(divId);
-                        if (groupName === targetTab) {
-                            div.classList.remove('hidden');
-                            div.classList.remove('tab-fade-in');
-                            // Trigger reflow to restart transition
-                            void div.offsetWidth;
-                            div.classList.add('tab-fade-in');
-                        } else {
-                            div.classList.add('hidden');
-                        }
+                        const div = document.getElementById('tab-content-' + groupName.replace(/\s+/g, ''));
+                        div.hidden = groupName !== targetTab;
                     }
                 });
             });
         }
 
-        // Initialize schedule loading
         loadSchedule();
     </script>
-    
-    <!-- Script imports -->
-    <script src="../javascript/particles.js"></script>
-    <script src="../javascript/scroll-reveal.js"></script>
-    <script src="../javascript/page-transition.js"></script>
-    <script src="../javascript/navbar.js"></script>
+
 </body>
 </html>

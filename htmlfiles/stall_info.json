@@ -221,5 +221,20 @@
     "location": "Recreational Area",
     "time": "TBD",
     "section": "Team Games"
+  },
+  {
+    "name": "What's in the Box?",
+    "products": [
+      {
+        "name": "Ticket per group",
+        "price": "Rs150"
+      }
+    ],
+    "note": "Presented by STEM CLUB as part of FUN DAY. Group size must be 2 or 4 or 6. Ticket sale happens on Friday 5th June and Monday 8th June. Grab your tickets and take on the challenge! Think. Guess. Discover. Win!",
+    "location": "",
+    "time": "09:00 - 12:00",
+    "section": "Team Games",
+    "image": "../images/stemposter.jpeg",
+    "image_position": "50% 50%"
   }
 ]

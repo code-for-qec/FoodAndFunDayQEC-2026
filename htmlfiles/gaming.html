@@ -5,300 +5,351 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Esports Gaming Arena - School Food & Fun Day!</title>
     <meta name="description" content="Welcome to the QEC Food and Fun Day 2026 Gaming Arena. Check tournament match schedules, entry fees, prize details, and location guides.">
-    <!-- Global CSS -->
     <link rel="stylesheet" href="../css/global.css" />
     <style>
-        body {
+        body.gaming-page {
             font-family: var(--font-retro);
             background: radial-gradient(circle at top, #061c1a 0%, var(--color-bg-darkest) 90%);
             font-size: 13px;
-            letter-spacing: -0.01em;
-            line-height: 1.8;
+            line-height: 1.7;
             color: #84fbf3;
-            text-shadow: 0 0 4px rgba(132, 251, 243, 0.2);
         }
-        h1, h2, h3, h4, h5, h6 {
+
+        body.gaming-page h1,
+        body.gaming-page h2,
+        body.gaming-page h3 {
             font-family: var(--font-retro);
             text-transform: uppercase;
         }
-        
-        .gaming-panel {
-            background: rgba(7, 28, 25, 0.55);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 2px solid #84fbf3;
-            box-shadow: 0 0 20px rgba(132, 251, 243, 0.15), inset 0 0 10px rgba(132, 251, 243, 0.05);
-            border-radius: 8px;
-            transition: var(--transition-smooth);
-        }
-        .gaming-panel:hover {
-            box-shadow: 0 0 30px rgba(132, 251, 243, 0.35), inset 0 0 15px rgba(132, 251, 243, 0.1);
-            border-color: #a5fff9;
-        }
-        
-        /* Game Cards */
-        .game-card-pixel {
-            background: rgba(10, 38, 34, 0.5);
-            border: 1px solid rgba(132, 251, 243, 0.3);
-            border-radius: 6px;
-            padding: 1.5rem;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
+
+        .page-hero {
             text-align: center;
-            gap: 1rem;
-            transition: var(--transition-smooth);
+            padding: max(1.25rem, env(safe-area-inset-top)) 1rem 1rem;
+            max-width: 40rem;
+            margin: 0 auto;
         }
-        @media (min-width: 576px) {
-            .game-card-pixel {
-                flex-direction: row;
-                text-align: left;
-                align-items: center;
-            }
-        }
-        .game-card-pixel:hover {
-            background: rgba(10, 38, 34, 0.8);
-            border-color: #84fbf3;
-            transform: scale(1.02);
-            box-shadow: 0 0 15px rgba(132, 251, 243, 0.2);
-        }
-        .game-logo {
-            width: 80px;
-            height: 80px;
-            object-fit: contain;
+
+        .page-hero img {
+            display: block;
+            margin: 0 auto 1rem;
+            height: 5rem;
+            width: auto;
             image-rendering: pixelated;
         }
 
-        /* Scanline Overlay */
-        .scanline-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: repeating-linear-gradient(
-                0deg,
-                rgba(0, 0, 0, 0.15),
-                rgba(0, 0, 0, 0.15) 1px,
-                transparent 1px,
-                transparent 2px
-            );
-            pointer-events: none;
-            z-index: 9998;
+        .page-hero h1 {
+            font-size: clamp(1.25rem, 4vw, 1.75rem);
+            letter-spacing: 0.08em;
+            margin-bottom: 0.5rem;
         }
 
-        /* Prize Podium styling */
+        .page-hero .tagline {
+            color: var(--color-text-muted);
+            font-size: 0.60rem;
+            margin: 0 0 1rem;
+        }
+
+        .gaming-main {
+            max-width: 48rem;
+            margin: 0 auto;
+            padding: 0 1rem 2rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1.25rem;
+        }
+
+        .gaming-panel {
+            background: rgba(7, 28, 25, 0.92);
+            border: 2px solid rgba(132, 251, 243, 0.45);
+            border-radius: 8px;
+            padding: 1.25rem;
+        }
+
+        .gaming-panel h2 {
+            font-size: 0.7rem;
+            color: #a5fff9;
+            border-bottom: 1px solid rgba(132, 251, 243, 0.25);
+            padding-bottom: 0.5rem;
+            margin: 0 0 1rem;
+        }
+
+        .game-grid {
+            display: grid;
+            gap: 0.75rem;
+        }
+
+        @media (min-width: 576px) {
+            .game-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        .game-card {
+            background: rgba(10, 38, 34, 0.85);
+            border: 1px solid rgba(132, 251, 243, 0.3);
+            border-radius: 6px;
+            padding: 1rem;
+            display: flex;
+            gap: 0.75rem;
+            align-items: center;
+        }
+
+        .game-logo {
+            width: 4rem;
+            height: 4rem;
+            object-fit: contain;
+            image-rendering: pixelated;
+            flex-shrink: 0;
+        }
+
+        .game-card h3 {
+            font-size: 0.65rem;
+            color: #fff;
+            margin: 0 0 0.35rem;
+        }
+
+        .game-card p {
+            font-size: 0.6rem;
+            color: var(--color-text-muted);
+            margin: 0 0 0.35rem;
+        }
+
+        .game-meta {
+            font-size: 0.55rem;
+            color: var(--color-gold);
+        }
+
+        .info-grid {
+            display: grid;
+            gap: 1.25rem;
+        }
+
+        @media (min-width: 640px) {
+            .info-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        .stat-row {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.6rem;
+            padding: 0.4rem 0;
+            border-bottom: 1px solid rgba(132, 251, 243, 0.15);
+        }
+
+        .stat-row span:first-child {
+            color: #84fbf3;
+        }
+
+        .stat-row span:last-child {
+            color: #fff;
+        }
+
         .podium-container {
             display: flex;
             justify-content: center;
             align-items: flex-end;
-            gap: 0.75rem;
-            margin-top: 1.5rem;
-            height: 160px;
+            gap: 0.5rem;
+            margin-top: 0.75rem;
+            height: 8rem;
         }
+
         .podium-column {
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: flex-end;
-            width: 90px;
+            width: 5.5rem;
             border-radius: 6px 6px 0 0;
-            font-weight: bold;
+            padding-bottom: 0.4rem;
             text-align: center;
-            padding-bottom: 0.5rem;
-            box-sizing: border-box;
         }
+
         .podium-1st {
-            height: 120px;
-            background: linear-gradient(180deg, rgba(223, 178, 107, 0.35) 0%, rgba(223, 178, 107, 0.1) 100%);
+            height: 6.5rem;
+            background: rgba(223, 178, 107, 0.2);
             border: 2px solid var(--color-gold);
-            box-shadow: 0 0 12px rgba(223, 178, 107, 0.25);
         }
+
         .podium-2nd {
-            height: 95px;
-            background: linear-gradient(180deg, rgba(237, 224, 203, 0.35) 0%, rgba(237, 224, 203, 0.08) 100%);
+            height: 5.5rem;
+            background: rgba(237, 224, 203, 0.15);
             border: 2px solid #ede0cb;
-            box-shadow: 0 0 10px rgba(237, 224, 203, 0.15);
         }
+
         .podium-3rd {
-            height: 75px;
-            background: linear-gradient(180deg, rgba(184, 138, 68, 0.35) 0%, rgba(184, 138, 68, 0.08) 100%);
+            height: 4.5rem;
+            background: rgba(184, 138, 68, 0.15);
             border: 2px solid var(--color-gold-dark);
-            box-shadow: 0 0 8px rgba(184, 138, 68, 0.15);
         }
+
         .podium-rank {
-            font-size: 1.25rem;
-            margin-bottom: 0.25rem;
+            font-size: 1rem;
+            margin-bottom: 0.15rem;
         }
+
         .rank-gold { color: var(--color-gold); }
         .rank-silver { color: #ede0cb; }
         .rank-bronze { color: var(--color-gold-dark); }
-        
+
         .podium-label {
-            font-size: 9px;
+            font-size: 0.5rem;
             color: #fff;
-            margin-bottom: 0.15rem;
         }
+
         .podium-prize {
-            font-size: 8px;
+            font-size: 0.45rem;
             color: #84fbf3;
-            line-height: 1.2;
+        }
+
+        .sched-list {
+            font-size: 0.55rem;
+            color: var(--color-text-muted);
+            margin: 0;
+            padding-left: 1.1rem;
+        }
+
+        .sched-list li {
+            margin-bottom: 0.25rem;
         }
 
         .back-button {
             display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: fit-content;
+            max-width: 100%;
+            box-sizing: border-box;
             font-family: var(--font-retro);
-            font-size: 10px;
-            font-weight: bold;
+            font-size: 0.6rem;
+            line-height: 1.3;
             color: #84fbf3;
             border: 2px solid #84fbf3;
-            padding: 0.5rem 1.25rem;
+            padding: 0.45rem 0.75rem;
             border-radius: 4px;
-            cursor: pointer;
             text-decoration: none;
-            transition: var(--transition-smooth);
-            background: transparent;
+            text-align: center;
+            -webkit-tap-highlight-color: transparent;
+            gap: 0.35em;
         }
-        .back-button:hover {
-            background: rgba(132, 251, 243, 0.12);
-            box-shadow: 0 0 12px rgba(132, 251, 243, 0.25);
-            color: #a5fff9;
+
+        .page-footer {
+            text-align: center;
+            padding: 1.5rem 1rem;
+            font-size: 0.55rem;
+            color: var(--color-text-muted);
+            border-top: 1px solid rgba(132, 251, 243, 0.15);
+        }
+
+        @media (max-width: 480px) {
+            .gaming-panel {
+                padding: 1rem;
+            }
+
+            .game-card {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .podium-container {
+                gap: 0.35rem;
+            }
+
+            .podium-column {
+                width: 4.5rem;
+            }
+
+            .back-button {
+                font-size: 0.55rem;
+                padding: 0.5rem 0.7rem;
+            }
         }
     </style>
 </head>
-<body data-particles="gaming">
+<body class="gaming-page">
 
-    <!-- CRT Overlay -->
-    <div class="scanline-overlay"></div>
-
-    <!-- Call Navbar -->
-    <div id="navbar"></div>
-
-    <header class="pt-24 text-center mb-8 scroll-reveal">
-        <div class="mb-4 inline-block relative">
-            <div class="absolute inset-0 bg-cyan-500/25 blur-lg rounded-full"></div>
-            <img src="../icons and logos/QECLogoPixelArt.png" alt="QEC Logo" class="relative mx-auto h-24 w-auto animate-float">
-        </div>
-        <h1 class="text-3xl md:text-4xl font-extrabold tracking-widest neon-text-cyan mb-3">GAMING ARENA</h1>
-        <p class="text-[#a3b8b5] text-[10px] md:text-xs max-w-lg mx-auto mb-4">[ SYSTEM ACTIVE: TOURNAMENT MODE ]</p>
-        <a href="../htmlfiles/index.html" class="back-button">← RETURN</a>
+    <header class="page-hero">
+        <img src="../icons and logos/QECLogoPixelArt.png" alt="Gaming Arena Logo" width="80" height="80" />
+        <h1 class="neon-text-cyan">Gaming Arena</h1>
+        <p class="tagline">[ SYSTEM ACTIVE: TOURNAMENT MODE ]</p>
+        <a href="../htmlfiles/index.html" class="back-button"><span class="page-back-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"/><path d="M12 19l-7-7 7-7"/></svg></span>Back to Main Page</a>
     </header>
 
-    <main class="max-w-4xl mx-auto flex flex-col gap-8 mb-16 px-4 scroll-reveal stagger-1">
-        
-        <!-- Featured Games -->
-        <section class="gaming-panel p-6 md:p-8">
-            <h2 class="text-sm text-cyan-200 border-b-2 border-cyan-500/30 pb-2 mb-6" style="margin-top: 0;">// FEATURED TITLES</h2>
-            
-            <div class="grid md:grid-cols-2 gap-6">
-                <!-- FIFA -->
-                <div class="game-card-pixel">
-                    <img src="../icons and logos/FifaLogo.png" alt="FIFA Logo" class="game-logo">
-                    <div class="flex-grow">
-                        <h3 class="text-xs font-bold text-white mb-2" style="margin: 0 0 0.5rem 0;">FIFA 2K26 CUP</h3>
-                        <p class="text-[10px] text-[#a3b8b5] mb-2" style="margin: 0 0 0.5rem 0;">Challenge peers and showcase soccer tactics.</p>
-                        <div class="text-[8px] text-[#dfb26b]">
-                            [ DATE: 9 JUNE ] &bull; [ LOCATION: PHYSICS LAB ]
-                        </div>
+    <main class="gaming-main">
+
+        <section class="gaming-panel" aria-label="Featured games">
+            <h2>// Featured Titles</h2>
+            <div class="game-grid">
+                <div class="game-card">
+                    <img src="../icons and logos/FifaLogo.png" alt="FIFA" class="game-logo" width="64" height="64" />
+                    <div>
+                        <h3>FIFA 2K26 Cup</h3>
+                        <p>Challenge peers and showcase soccer tactics.</p>
+                        <div class="game-meta">[ DATE: 9 JUNE ] <br> [ LOCATION: PHYSICS LAB ]</div>
                     </div>
                 </div>
-                
-                <!-- TEKKEN -->
-                <div class="game-card-pixel">
-                    <img src="../icons and logos/TekkenAnim.gif" alt="Tekken Animation" class="game-logo">
-                    <div class="flex-grow">
-                        <h3 class="text-xs font-bold text-white mb-2" style="margin: 0 0 0.5rem 0;">TEKKEN 8 FIGHT</h3>
-                        <p class="text-[10px] text-[#a3b8b5] mb-2" style="margin: 0 0 0.5rem 0;">Intense 1v1 bracket battles. Combos ready.</p>
-                        <div class="text-[8px] text-[#dfb26b]">
-                            [ DATE: 9 JUNE ] &bull; [ ENTRY: RS 150 ]
-                        </div>
+                <div class="game-card">
+                    <img src="../icons and logos/TekkenAnim.gif" alt="Tekken" class="game-logo" width="64" height="64" />
+                    <div>
+                        <h3>Tekken 8 Fight</h3>
+                        <p>Intense 1v1 bracket battles. Combos ready.</p>
+                        <div class="game-meta">[ DATE: 9 JUNE ] <br> [ ENTRY: RS 150 ]</div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Rules, Prizes, and Schedule -->
-        <div class="grid md:grid-cols-2 gap-8">
-            <!-- Tournament Guide -->
-            <section class="gaming-panel p-6">
-                <h2 class="text-xs text-cyan-200 border-b border-cyan-500/25 pb-2 mb-4" style="margin-top: 0;">// TOURNAMENT INFO</h2>
-                
-                <div class="flex flex-col gap-2 text-[10px]" style="margin-bottom: 1.5rem;">
-                    <div class="flex justify-between border-b pb-2" style="border-color: rgba(132, 251, 243, 0.15);">
-                        <span class="text-cyan-300">ENTRY FEE</span>
-                        <span class="text-white">Rs 150</span>
-                    </div>
-                    <div class="flex justify-between border-b pb-2" style="border-color: rgba(132, 251, 243, 0.15);">
-                        <span class="text-cyan-300">LOCATION</span>
-                        <span class="text-white">Physics Lab</span>
-                    </div>
-                    <div class="flex justify-between border-b pb-2" style="border-color: rgba(132, 251, 243, 0.15);">
-                        <span class="text-cyan-300">DATE</span>
-                        <span class="text-white">Tuesday 9 June</span>
-                    </div>
-                </div>
+        <div class="info-grid">
+            <section class="gaming-panel" aria-label="Tournament info">
+                <h2>// Tournament Info</h2>
+                <div class="stat-row"><span>ENTRY FEE</span><span>Rs 150</span></div>
+                <div class="stat-row"><span>LOCATION</span><span>Physics Lab</span></div>
+                <div class="stat-row"><span>DATE</span><span>Tuesday 9 June</span></div>
 
-                <div>
-                    <h3 class="text-[10px] text-cyan-300 mb-2">> PRIZE PODIUM</h3>
-                    
-                    <div class="podium-container">
-                        <!-- 2nd Place -->
-                        <div class="podium-column podium-2nd">
-                            <span class="podium-rank rank-silver">2</span>
-                            <span class="podium-label">2ND PRIZE</span>
-                            <span class="podium-prize">5H PC PASS</span>
-                        </div>
-                        
-                        <!-- 1st Place -->
-                        <div class="podium-column podium-1st">
-                            <span class="podium-rank rank-gold">1</span>
-                            <span class="podium-label">1ST PRIZE</span>
-                            <span class="podium-prize">10H PC PASS</span>
-                        </div>
-                        
-                        <!-- 3rd Place -->
-                        <div class="podium-column podium-3rd">
-                            <span class="podium-rank rank-bronze">3</span>
-                            <span class="podium-label">3RD PRIZE</span>
-                            <span class="podium-prize">2H PC PASS</span>
-                        </div>
+                <h3 style="font-size: 0.6rem; color: #84fbf3; margin: 1rem 0 0;">&gt; Prize Podium</h3>
+                <div class="podium-container">
+                    <div class="podium-column podium-2nd">
+                        <span class="podium-rank rank-silver">2</span>
+                        <span class="podium-label">2ND</span>
+                        <span class="podium-prize">5H PC<br>PASS</span>
+                    </div>
+                    <div class="podium-column podium-1st">
+                        <span class="podium-rank rank-gold">1</span>
+                        <span class="podium-label">1ST</span>
+                        <span class="podium-prize">10H PC<br>PASS</span>
+                    </div>
+                    <div class="podium-column podium-3rd">
+                        <span class="podium-rank rank-bronze">3</span>
+                        <span class="podium-label">3RD</span>
+                        <span class="podium-prize">2H PC<br>PASS</span>
                     </div>
                 </div>
             </section>
 
-            <!-- Play & Schedules -->
-            <section class="gaming-panel p-6 flex flex-col gap-6">
-                <div>
-                    <h2 class="text-xs text-cyan-200 border-b border-cyan-500/25 pb-2 mb-4" style="margin-top: 0;">// FREE PLAY & SCHED</h2>
-                    <h3 class="text-[10px] text-cyan-300 mb-2">> FREE PLAY DATA</h3>
-                    <ul class="text-[9px] text-[#a3b8b5]" style="list-style-type: square; margin: 0; padding-left: 1.25rem;">
-                        <li style="margin-bottom: 0.25rem;">PCs open starting at 10:00 AM</li>
-                        <li style="margin-bottom: 0.25rem;">Rs 100/pair (Rs 50 per player)</li>
-                        <li>Last minute tickets: Rs 200/pair</li>
-                    </ul>
-                </div>
+            <section class="gaming-panel" aria-label="Schedule">
+                <h2>// Free Play &amp; Sched</h2>
+                <h3 style="font-size: 0.6rem; color: #84fbf3; margin: 0 0 0.5rem;">&gt; Free Play</h3>
+                <ul class="sched-list">
+                    <li>PCs open starting at 10:00 AM</li>
+                    <li>Rs 100/pair (Rs 50 per player)</li>
+                    <li>Last minute tickets: Rs 200/pair</li>
+                </ul>
 
-                <div class="pt-2">
-                    <h3 class="text-[10px] text-cyan-300 mb-2">> MATCH TIMELINE</h3>
-                    <ul class="text-[9px] text-[#a3b8b5]" style="list-style-type: square; margin: 0; padding-left: 1.25rem;">
-                        <li style="margin-bottom: 0.25rem;"><span class="text-white">10:00 - 12:00:</span> Preliminary Rounds</li>
-                        <li style="margin-bottom: 0.25rem;"><span class="text-white">12:00 - 13:00:</span> Semi Finals</li>
-                        <li><span class="text-white">13:00 - 14:00:</span> Grand Finals</li>
-                    </ul>
-                </div>
+                <h3 style="font-size: 0.6rem; color: #84fbf3; margin: 1rem 0 0.5rem;">&gt; Match Timeline</h3>
+                <ul class="sched-list">
+                    <li><span style="color:#fff;">10:00 – 12:00:</span> Preliminary Rounds</li>
+                    <li><span style="color:#fff;">12:00 – 13:00:</span> Semi Finals</li>
+                    <li><span style="color:#fff;">13:00 – 14:00:</span> Grand Finals</li>
+                </ul>
             </section>
         </div>
-        
+
     </main>
 
-    <footer class="text-center py-8 text-[#a3b8b5]/60 border-t bg-[#071210]/40 max-w-full font-['Outfit'] text-[9px]" style="border-color: rgba(132, 251, 243, 0.15);">
-        <p>&copy; 2026 Queen Elizabeth College. Crafted by QECC Club. All rights reserved.</p>
+    <footer class="page-footer">
+        <p>&copy; 2026 Queen Elizabeth College. Crafted by Code For QEC. All rights reserved.</p>
     </footer>
 
-    <!-- Script imports -->
-    <script src="../javascript/particles.js"></script>
-    <script src="../javascript/scroll-reveal.js"></script>
-    <script src="../javascript/page-transition.js"></script>
-    <script src="../javascript/navbar.js"></script>
 </body>
 </html>
