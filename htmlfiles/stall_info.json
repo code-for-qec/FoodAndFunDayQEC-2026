@@ -21,7 +21,7 @@
     "section": "Food"
   },
   {
-    "name": "Ice Cream",
+    "name": "La Maison des Glaces",
     "products": [
       { "name": "CONE (1 Boule)", "price": "Rs 35" },
       { "name": "CUP (2 Boules)", "price": "Rs 50" }
@@ -41,13 +41,20 @@
   },
   {
     "name": "Pain Fourré",
+    "products": [],
+    "location": "Corridor near Lecture theatre",
+    "time": "Tuesday, 09th June 2026",
+    "section": "Food"
+  },
+  {
+    "name": "Baz So6",
     "products": [
       { "name": "Classic Hotdog", "price": "RS 50" },
       { "name": "Chicken Baguette", "price": "RS 75" }
     ],
-    "note": "Custom Sauces & Condiments: Pima rouz, Pima vert, Ketchup, Mayo.",
+    "note": "A choice of Bun-Believably Taste Bites. Custom Sauces & Condiments: Pima rouz, Pima vert, Ketchup, Mayo.",
     "location": "Corridor near Art room",
-    "time": "Tuesday, 09th June 2026",
+    "time": "",
     "section": "Food"
   },
   {
