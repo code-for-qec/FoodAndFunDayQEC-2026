@@ -8,16 +8,24 @@
   },
   {
     "name": "Drinks",
-    "products": [],
-    "location": "Corridor near Hall",
-    "time": "Tuesday 9th June 2026",
+    "products": [
+      { "name": "Special Alouda", "price": "Rs. 35" },
+      { "name": "Chilled Ice Coffee", "price": "Rs. 35" },
+      { "name": "Fresh Mojito", "price": "Rs. 25" }
+    ],
+    "note": "Sip happiness in every glass. Different Flavours... Same Happiness!",
+    "location": "",
+    "time": "",
     "section": "Food"
   },
   {
-    "name": "Chips",
-    "products": [],
-    "location": "Canteen Area",
-    "time": "Tuesday 9th June 2026",
+    "name": "Chips Royale",
+    "products": [
+      { "name": "Chips Royale Portion", "price": "Rs 30" }
+    ],
+    "note": "Experience the Royal Crunch! Fresh, Crispy, Golden, Delicious. Irresistibly Crispy, Perfectly Seasoned, Freshly Prepared.",
+    "location": "Near Canteen Area",
+    "time": "",
     "section": "Food"
   },
   {
@@ -65,11 +73,16 @@
     "section": "Food"
   },
   {
-    "name": "Beauty Parlour, mehendi etc..",
-    "products": [],
-    "location": "Art room 1",
-    "time": "Tuesday 9th June 2026",
-    "section": "Creativity & Relaxation"
+    "name": "Mehendi Application",
+    "products": [
+      { "name": "Mehendi Application", "price": "Rs 100 per side" }
+    ],
+    "note": "By Professional Mehendi Artist Mufiidah Peeroo. <br> Beauty in every detail. <br> Elegant, Timeless, Uniquely You.",
+    "location": "Near Art Room",
+    "time": "09.30 - 12.30",
+    "section": "Creativity & Relaxation",
+    "image": "../images/mehendi.jpeg",
+    "image_position": "50% 50%"
   },
   {
     "name": "Chinese food + la boutique Sinwa",
@@ -86,10 +99,15 @@
     "section": "Creativity & Relaxation"
   },
   {
-    "name": "Mine frit",
-    "products": [],
-    "location": "Canteen area",
-    "time": "Tuesday 9th June 2026",
+    "name": "Top Wok - Mine Frit",
+    "products": [
+      { "name": "Bol Non Veg", "price": "Rs. 75" },
+      { "name": "Bol Veg", "price": "Rs. 60" },
+      { "name": "Take Away", "price": "Rs. 100" }
+    ],
+    "note": "Fast, Fresh & Delicious! Hot & Tasty, Made Fresh, Served With Love.",
+    "location": "",
+    "time": "",
     "section": "Food"
   },
   {
@@ -107,7 +125,7 @@
         "price": "Rs150"
       }
     ],
-    "note": "Presented by STEM CLUB as part of FUN DAY. Group size must be 2 or 4 or 6. Ticket sale happens on Friday 5th June and Monday 8th June. Grab your tickets and take on the challenge! Think. Guess. Discover. Win!",
+    "note": "Group size must be 2 or 4 or 6. <br> Ticket sale happens on Friday 5th June and Monday 8th June. <br> Grab your tickets and take on the challenge! <br> Think. Guess. Discover. Win!",
     "location": "",
     "time": "Tuesday 9th June 2026",
     "section": "Games",
@@ -115,11 +133,15 @@
     "image_position": "50% 50%"
   },
   {
-    "name": "Racing simulator",
-    "products": [],
-    "note": "Organized by Book Club",
-    "location": "",
-    "time": "Tuesday 9th June 2026",
-    "section": "Games"
+    "name": "Driving Simulator",
+    "products": [
+      { "name": "Driving Simulator Session", "price": "Rs50 for 10 minutes" }
+    ],
+    "note": "Games available: <br> 08:30 - 11:00 : FH5 <br> 11:00 - 13:00 : GT7 <br> 13:00 - 14:00 : 1V1. <br> Date: 09/06/26. <br> For more info: +230 58138775.",
+    "location": "Near Library Stairs",
+    "time": "08:30 - 14:00",
+    "section": "Games",
+    "image": "../images/drivingsim.jpeg",
+    "image_position": "50% 50%"
   }
 ]
