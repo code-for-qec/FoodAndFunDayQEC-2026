@@ -362,11 +362,7 @@
                 if (!response.ok) throw new Error('HTTP error! status: ' + response.status);
 
                 const stalls = await response.json();
-                const foodStalls = [
-                    'Pain Fourré', 'Chips', 'Fried Noodles', 'Ti Puri and Curry',
-                    'Juice (Panacon), Soft Drinks and Alouda', 'Ice Cream', 'La Boutik Sinwa', 'Pastries'
-                ];
-                allActivities = stalls.filter(stall => !foodStalls.includes(stall.name));
+                allActivities = stalls.filter(stall => !(stall.section || '').toLowerCase().includes('food'));
                 filterAndRenderActivities();
             } catch (error) {
                 console.error('Error loading activity information:', error);
