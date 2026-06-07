@@ -17,9 +17,9 @@
   {
     "name": "Drinks",
     "products": [
-      { "name": "Special Alouda", "price": "Rs. 35" },
-      { "name": "Chilled Ice Coffee", "price": "Rs. 35" },
-      { "name": "Fresh Mojito", "price": "Rs. 25" }
+      { "name": "Special Alouda", "price": "Rs 35" },
+      { "name": "Chilled Ice Coffee", "price": "Rs 35" },
+      { "name": "Fresh Mojito", "price": "Rs 25" }
     ],
     "note": "Sip happiness in every glass. Different Flavours... Same Happiness!",
     "location": "",
@@ -51,9 +51,9 @@
   {
     "name": "Top Wok - Mine Frit",
     "products": [
-      { "name": "Bol Non Veg", "price": "Rs. 75" },
-      { "name": "Bol Veg", "price": "Rs. 60" },
-      { "name": "Take Away", "price": "Rs. 100" }
+      { "name": "Bol Non Veg", "price": "Rs 75" },
+      { "name": "Bol Veg", "price": "Rs 60" },
+      { "name": "Take Away", "price": "Rs 100" }
     ],
     "note": "Fast, Fresh & Delicious! Hot & Tasty, Made Fresh, Served With Love.",
     "location": "",
@@ -63,8 +63,8 @@
   {
     "name": "Baz So6",
     "products": [
-      { "name": "Classic Hotdog", "price": "RS 50" },
-      { "name": "Chicken Baguette", "price": "RS 75" }
+      { "name": "Classic Hotdog", "price": "Rs 50" },
+      { "name": "Chicken Baguette", "price": "Rs 75" }
     ],
     "Custom Sauces & Condiments": "Pima rouz <br> Pima vert <br> Ketchup <br> Mayo",
     "location": "Corridor near Art room",
@@ -116,7 +116,7 @@
     "products": [
       {
         "name": "Ticket per group",
-        "price": "Rs150"
+        "price": "Rs 150"
       }
     ],
     "note": "<strong style=\"color: var(--color-gold);\">Group size: </strong> <br> 2, 4 or 6 <br> <br> <strong style=\"color: var(--color-gold);\">Ticket sale: </strong> <br>Friday 5th June <br> Monday 8th June <br><br> Grab your tickets and take on the challenge! <br> Think. Guess. Discover. Win!",
@@ -129,7 +129,7 @@
   {
     "name": "Driving Simulator",
     "products": [
-      { "name": "Driving Simulator Session", "price": "Rs50 for 10 minutes" }
+      { "name": "Driving Simulator Session", "price": "Rs 50 for 10 minutes" }
     ],
     "note": "<strong style=\"color: var(--color-gold);\">Games available:</strong> <br> 08:30 - 11:00 : FH5 <br> 11:00 - 13:00 : GT7 <br> 13:00 - 14:00 : 1V1. <br><br> <strong style=\"color: var(--color-gold);\">For more info: +230 58138775</strong>",
     "location": "Near Library Stairs",
