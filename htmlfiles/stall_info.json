@@ -87,9 +87,17 @@
       { "name": "Coffee", "price": "Rs 20" },
       { "name": "Tea", "price": "Rs 20" },
       { "name": "Hot Chocolate", "price": "Rs 20" },
+      { "name": "Juice", "price": "Rs 20" },
       { "name": "Red Velvet Cake", "price": "Rs 10" },
       { "name": "Choclate Cake", "price": "Rs10"},
-      { "name": "Pudding Mais", "price": "Rs 10"}
+      { "name": "Pudding Mais", "price": "Rs 10"},
+      { "name": "Cookies(×2)", "price": "Rs 25"},
+      { "name": "Pain au Chocolat", "price": "Rs 20" },
+      { "name": "Scones", "price": "Rs 10" },
+      { "name": "Pancakes", "price": "Rs 20" },
+      { "name": "Petits Pains au Fromage(×2)", "price": "Rs 25" },
+      { "name": "Mini Pizza (Veg)(×2) ", "price": "Rs 25" },
+      { "name": "Parfait Yoghurt", "price": "Rs 25" }
     ],
     "location": "Canteen area",
     "time": "8:45 - 10:10",
