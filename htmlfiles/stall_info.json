@@ -34,8 +34,8 @@
       { "name": "CONE (1 Boule)", "price": "Rs 35" },
       { "name": "CUP (2 Boules)", "price": "Rs 50" }
     ],
-    "flavours": "Chocolat, Vanille, Dame Blanche",
-    "note": "Toppings & Extras: Waffle Sticks, Sprinkles Colorés, Choco Dip. Crémez votre journée avec une touche de bonheur ! Choisissez votre saveur préférée et régalez-vous !",
+    "flavours": "Chocolat <br> Vanille <br> Dame Blanche",
+    "Toppings & Extras": "Waffle Sticks <br> Sprinkles Colorés <br> Choco Dip",
     "location": "Outside Photocopy Room",
     "time": "Tuesday, 09th June 2026",
     "section": "Food"
@@ -60,7 +60,7 @@
       { "name": "Classic Hotdog", "price": "RS 50" },
       { "name": "Chicken Baguette", "price": "RS 75" }
     ],
-    "note": "A choice of Bun-Believably Taste Bites. Custom Sauces & Condiments: Pima rouz, Pima vert, Ketchup, Mayo.",
+    "Custom Sauces & Condiments": "Pima rouz <br> Pima vert <br> Ketchup <br> Mayo",
     "location": "Corridor near Art room",
     "time": "",
     "section": "Food"

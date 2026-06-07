@@ -383,6 +383,12 @@
                 Object.entries(stall).forEach(([field, value]) => {
                     if (['name', 'products', 'sections', 'section', 'location', 'time', 'categories'].includes(field)) return;
                     if (!value || (Array.isArray(value) && value.length === 0) || value === '') return;
+                    if (field === 'note') {
+                        html += `<div style="margin-top: 0.5rem; padding: 0.5rem; background: rgba(7,18,16,0.5); border-radius: 6px; border: 1px solid rgba(223,178,107,0.1); font-size: 0.75rem;">
+                            <p style="color: var(--color-text-muted); margin: 0;">${renderFieldValue(value)}</p>
+                        </div>`;
+                        return;
+                    }
                     html += `<div style="margin-top: 0.5rem; padding: 0.5rem; background: rgba(7,18,16,0.5); border-radius: 6px; border: 1px solid rgba(223,178,107,0.1); font-size: 0.75rem;">
                         <strong style="color: var(--color-gold); text-transform: uppercase;">${formatFieldName(field)}</strong>
                         <p style="color: var(--color-text-muted); margin: 0.25rem 0 0;">${renderFieldValue(value)}</p>
