@@ -80,12 +80,21 @@
     "note": "WIP"
   },
   {
-    "name": "Breakfast",
-    "products": [],
+    "name": "Rise & Vibe Menu",
+    "products": [
+
+
+      { "name": "Coffee", "price": "Rs 20" },
+      { "name": "Tea", "price": "Rs 20" },
+      { "name": "Hot Chocolate", "price": "Rs 20" },
+      { "name": "Red Velvet Cake", "price": "Rs 10" },
+      { "name": "Choclate Cake", "price": "Rs10"},
+      { "name": "Pudding Mais", "price": "Rs 10"}
+    ],
     "location": "Canteen area",
     "time": "8:45 - 10:10",
     "section": "Food",
-    "note": "WIP"
+    "note": ""
   },
   {
     "name": "Mehendi Application",
