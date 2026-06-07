@@ -158,11 +158,11 @@
         "price": "Rs 50"
       },
       {
-        "name": "Entry for all 3 modes",
+        "name": "Entry for all 3 challenges",
         "price": "Rs 120"
       }
     ],
-    "note": "3 modes. 1 winner. No excuses. <br> <br> <strong style=\"color: var(--color-gold);\">Penalties (5 attempts):</strong> <br> 5/5 Goals = Rs 100 <br> 4/5 Goals = Rs 60<br> 3/5 Goals = Rs 30<br> 0-2 Goals = Roasted! <br> <br><strong style=\"color: var(--color-gold);\">Free Kicks (4 attempts):</strong><br> 4/4 Goals = Rs 100<br> 3/4 Goals = Rs 60<br> 2/4 Goals = Rs 30<br> 0-1 Goals = Roasted! <br> <br><strong style=\"color: var(--color-gold);\">Dizzy Kicks (3 attempts):</strong><br> 3/3 Goals = Rs 100<br> 2/3 Goals = Rs 60<br> 1/3 Goals = Rs 30<br> 0 Goals = Roasted! <br><br> <strong style=\"color: var(--color-gold);\">ALL PRIZES WILL BE IN TOKENS!</strong>",
+    "note": "<strong style=\"color: var(--color-gold);\">PRIZES AVAILABLE:</strong> <br> <br> <strong style=\"color: var(--color-gold);\">Penalties (5 attempts):</strong> <br> 5/5 Goals = Rs 100 <br> 4/5 Goals = Rs 60<br> 3/5 Goals = Rs 30<br> 0-2 Goals = Roasted! <br> <br><strong style=\"color: var(--color-gold);\">Free Kicks (4 attempts):</strong><br> 4/4 Goals = Rs 100<br> 3/4 Goals = Rs 60<br> 2/4 Goals = Rs 30<br> 0-1 Goals = Roasted! <br> <br><strong style=\"color: var(--color-gold);\">Dizzy Kicks (3 attempts):</strong><br> 3/3 Goals = Rs 100<br> 2/3 Goals = Rs 60<br> 1/3 Goals = Rs 30<br> 0 Goals = Roasted! <br><br> <strong style=\"color: var(--color-gold);\">ALL PRIZES WILL BE IN TOKENS!</strong>",
     "location": "",
     "time": "",
     "section": "Games",
