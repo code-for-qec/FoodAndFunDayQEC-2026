@@ -104,13 +104,6 @@
     "section": "Food"
   },
   {
-    "name": "Photobooth",
-    "products": [],
-    "location": "",
-    "time": "Tuesday 9th June 2026",
-    "section": "Creativity & Relaxation"
-  },
-  {
     "name": "What's in the Box?",
     "products": [
       {
@@ -118,7 +111,7 @@
         "price": "Rs150"
       }
     ],
-    "note": "Group size must be 2 or 4 or 6. <br> Ticket sale happens on Friday 5th June and Monday 8th June. <br> Grab your tickets and take on the challenge! <br> Think. Guess. Discover. Win!",
+    "note": "<strong style=\"color: var(--color-gold);\">Group size: </strong> <br> 2, 4 or 6 <br> <br> <strong style=\"color: var(--color-gold);\">Ticket sale: </strong> <br>Friday 5th June <br> Monday 8th June <br><br> Grab your tickets and take on the challenge! <br> Think. Guess. Discover. Win!",
     "location": "",
     "time": "Tuesday 9th June 2026",
     "section": "Games",
@@ -130,7 +123,7 @@
     "products": [
       { "name": "Driving Simulator Session", "price": "Rs50 for 10 minutes" }
     ],
-    "note": "Games available: <br> 08:30 - 11:00 : FH5 <br> 11:00 - 13:00 : GT7 <br> 13:00 - 14:00 : 1V1. <br> Date: 09/06/26. <br> For more info: +230 58138775.",
+    "note": "<strong style=\"color: var(--color-gold);\">Games available:</strong> <br> 08:30 - 11:00 : FH5 <br> 11:00 - 13:00 : GT7 <br> 13:00 - 14:00 : 1V1. <br><br> <strong style=\"color: var(--color-gold);\">For more info: +230 58138775</strong>",
     "location": "Near Library Stairs",
     "time": "08:30 - 14:00",
     "section": "Games",
@@ -143,5 +136,24 @@
     "location": "Recreational Area",
     "time": "TBD",
     "section": "Games"
+  },
+  {
+    "name": "Kick Challenge",
+    "products": [
+      {
+        "name": "Entry per challenge mode",
+        "price": "Rs 50"
+      },
+      {
+        "name": "Entry for all 3 modes",
+        "price": "Rs 120"
+      }
+    ],
+    "note": "3 modes. 1 winner. No excuses. <br> <br> <strong style=\"color: var(--color-gold);\">Penalties (5 attempts):</strong> <br> 5/5 Goals = Rs 100 <br> 4/5 Goals = Rs 60<br> 3/5 Goals = Rs 30<br> 0-2 Goals = Roasted! <br> <br><strong style=\"color: var(--color-gold);\">Free Kicks (4 attempts):</strong><br> 4/4 Goals = Rs 100<br> 3/4 Goals = Rs 60<br> 2/4 Goals = Rs 30<br> 0-1 Goals = Roasted! <br> <br><strong style=\"color: var(--color-gold);\">Dizzy Kicks (3 attempts):</strong><br> 3/3 Goals = Rs 100<br> 2/3 Goals = Rs 60<br> 1/3 Goals = Rs 30<br> 0 Goals = Roasted!",
+    "location": "",
+    "time": "",
+    "section": "Games",
+    "image": "../images/kickchallenge.jpeg",
+    "image_position": "50% 0%"
   }
 ]
