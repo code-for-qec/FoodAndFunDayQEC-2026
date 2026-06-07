@@ -30,10 +30,6 @@
         .page-hero h1 {
             font-size: clamp(1.75rem, 5vw, 2.5rem);
             margin-bottom: 0.75rem;
-            background: linear-gradient(90deg, #f1d89b, #dfb26b, #b88a44);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
         }
 
         .page-hero p {
@@ -170,6 +166,10 @@
             word-break: break-word;
         }
 
+        .price-tag-gold {
+            box-shadow: none;
+        }
+
         @media (max-width: 480px) {
             .activity-card img {
                 height: 7.5rem;
@@ -184,6 +184,76 @@
                 align-items: flex-start;
                 gap: 0.15rem;
             }
+        }
+
+        .activity-card.is-wip {
+            position: relative;
+            overflow: hidden;
+            border-color: rgba(140, 140, 140, 0.35);
+        }
+
+        .wip-card-content {
+            filter: grayscale(100%);
+            opacity: 0.35;
+            pointer-events: none;
+            user-select: none;
+        }
+
+        .wip-overlay {
+            position: absolute;
+            inset: 0;
+            z-index: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
+            background: rgba(7, 18, 16, 0.72);
+            border-radius: 10px;
+        }
+
+        .wip-notice {
+            margin: 0;
+            text-align: center;
+            font-size: clamp(0.9rem, 2.8vw, 1.15rem);
+            font-weight: 800;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            background: linear-gradient(90deg, #f1d89b, #dfb26b, #b88a44);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            animation: wip-glow 2.5s ease-in-out infinite;
+        }
+
+        @keyframes wip-glow {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+
+        .activity-card-header {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: flex-start;
+            justify-content: space-between;
+            gap: 0.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .activity-card-header h3 {
+            margin: 0;
+        }
+
+        .category-badge {
+            font-size: 0.55rem;
+            text-transform: uppercase;
+            font-weight: 700;
+            padding: 0.15rem 0.4rem;
+            border-radius: 4px;
+            background: rgba(223, 178, 107, 0.12);
+            border: 1px solid rgba(223, 178, 107, 0.25);
+            color: var(--color-gold);
+            margin-right: 0.2rem;
+            flex-shrink: 0;
         }
     </style>
 </head>
@@ -235,6 +305,10 @@
             if (Array.isArray(value)) return value.join(', ');
             if (typeof value === 'object' && value !== null) return JSON.stringify(value);
             return value.toString();
+        }
+
+        function isWipEntry(stall) {
+            return stall.note === 'WIP';
         }
 
         function renderProducts(products, sections) {
@@ -299,6 +373,8 @@
             container.hidden = false;
             noResultsMessage.hidden = true;
 
+            filtered.sort((a, b) => Number(isWipEntry(a)) - Number(isWipEntry(b)));
+
             const grouped = filtered.reduce((acc, stall) => {
                 const sec = stall.section || 'Other Activities';
                 if (!acc[sec]) acc[sec] = [];
@@ -318,14 +394,15 @@
 
                 grouped[secName].forEach(stall => {
                     const card = document.createElement('article');
-                    card.className = 'activity-card';
+                    const wip = isWipEntry(stall);
+                    card.className = wip ? 'activity-card is-wip' : 'activity-card';
 
                     let html = '<div>';
                     if (stall.image) {
                         const imgStyle = stall.image_position ? `object-position: ${stall.image_position};` : '';
                         html += `<img src="${stall.image}" alt="${stall.name}" loading="lazy" style="${imgStyle}">`;
                     }
-                    html += `<h3>${stall.name}</h3>`;
+                    html += `<div class="activity-card-header"><h3>${stall.name}</h3></div>`;
 
                     if ((stall.products && stall.products.length > 0) || (stall.sections && stall.sections.length > 0)) {
                         html += renderProducts(stall.products, stall.sections);
@@ -333,7 +410,14 @@
 
                     Object.entries(stall).forEach(([field, value]) => {
                         if (['name', 'products', 'sections', 'section', 'location', 'time', 'image', 'image_position'].includes(field)) return;
+                        if (field === 'note' && wip) return;
                         if (!value || (Array.isArray(value) && value.length === 0) || value === '') return;
+                        if (field === 'note') {
+                            html += `<div style="margin-top: 0.5rem; padding: 0.5rem; background: rgba(7,18,16,0.5); border-radius: 6px; border: 1px solid rgba(223,178,107,0.1); font-size: 0.75rem;">
+                                <p style="color: var(--color-text-muted); margin: 0;">${renderFieldValue(value)}</p>
+                            </div>`;
+                            return;
+                        }
                         html += `<div style="margin-top: 0.5rem; padding: 0.5rem; background: rgba(7,18,16,0.5); border-radius: 6px; border: 1px solid rgba(223,178,107,0.1); font-size: 0.75rem;">
                             <strong style="color: var(--color-gold); text-transform: uppercase;">${formatFieldName(field)}</strong>
                             <p style="color: var(--color-text-muted); margin: 0.25rem 0 0;">${renderFieldValue(value)}</p>
@@ -345,6 +429,13 @@
                             <span><strong style="color: var(--color-gold);">🕒</strong> ${stall.time || 'TBD'}</span>
                             <span><strong style="color: var(--color-gold);">📍</strong> ${stall.location || 'TBD'}</span>
                         </div>`;
+
+                    if (wip) {
+                        html = `<div class="wip-card-content">${html}</div>
+                            <div class="wip-overlay" aria-hidden="true">
+                                <p class="wip-notice">More info soon</p>
+                            </div>`;
+                    }
 
                     card.innerHTML = html;
                     secGrid.appendChild(card);

@@ -21,7 +21,7 @@
       { "name": "Chilled Ice Coffee", "price": "Rs 35" },
       { "name": "Fresh Mojito", "price": "Rs 25" }
     ],
-    "note": "Sip happiness in every glass. Different Flavours... Same Happiness!",
+    "note": "<strong>Sip happiness in every glass.</strong> <br> Different Flavours... Same Happiness!",
     "location": "",
     "time": "",
     "section": "Food"
@@ -31,7 +31,7 @@
     "products": [
       { "name": "Chips Royale Portion", "price": "Rs 30" }
     ],
-    "note": "Experience the Royal Crunch! Fresh, Crispy, Golden, Delicious. Irresistibly Crispy, Perfectly Seasoned, Freshly Prepared.",
+    "note": "<strong>Experience the Royal Crunch!</strong><br>Fresh, Crispy, Golden, Delicious.<br>Irresistibly Crispy. Perfectly Seasoned. Freshly Prepared.",
     "location": "Near Canteen Area",
     "time": "",
     "section": "Food"
@@ -55,7 +55,7 @@
       { "name": "Bol Veg", "price": "Rs 60" },
       { "name": "Take Away", "price": "Rs 100" }
     ],
-    "note": "Fast, Fresh & Delicious! Hot & Tasty, Made Fresh, Served With Love.",
+    "note": "<strong>Fast, Fresh & Delicious!</strong> <br> Hot & Tasty, Made Fresh, Served With Love.",
     "location": "",
     "time": "",
     "section": "Food"
@@ -76,14 +76,16 @@
     "products": [],
     "location": "Canteen area",
     "time": "Tuesday 9th June 2026",
-    "section": "Food"
+    "section": "Food",
+    "note": "WIP"
   },
   {
     "name": "Breakfast",
     "products": [],
     "location": "Canteen area",
     "time": "8:45 - 10:10",
-    "section": "Food"
+    "section": "Food",
+    "note": "WIP"
   },
   {
     "name": "Mehendi Application",
@@ -102,14 +104,16 @@
     "products": [],
     "location": "Canteen area",
     "time": "Tuesday 9th June 2026",
-    "section": "Food"
+    "section": "Food",
+    "note": "WIP"
   },
   {
     "name": "Fashion Fiesta",
     "products": [],
     "location": "Canteen area",
     "time": "Tuesday 9th June 2026",
-    "section": "Creativity & Relaxation"
+    "section": "Creativity & Relaxation",
+    "note": "WIP"
   },
   {
     "name": "What's in the Box?",
@@ -143,7 +147,8 @@
     "products": [{ "name": "Games and prices to be confirmed", "price": "TBD" }],
     "location": "Recreational Area",
     "time": "TBD",
-    "section": "Games"
+    "section": "Games",
+    "note": "WIP"
   },
   {
     "name": "Kick Challenge",
