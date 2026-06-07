@@ -143,5 +143,12 @@
     "section": "Games",
     "image": "../images/drivingsim.jpeg",
     "image_position": "50% 50%"
+  },
+  {
+    "name": "Carnival Games",
+    "products": [{ "name": "Games and prices to be confirmed", "price": "TBD" }],
+    "location": "Recreational Area",
+    "time": "TBD",
+    "section": "Games"
   }
 ]
