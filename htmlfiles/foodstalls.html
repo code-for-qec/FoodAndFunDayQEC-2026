@@ -295,7 +295,7 @@
             if (lowerName.includes('juice') || lowerName.includes('drinks') || lowerName.includes('alouda') || lowerName.includes('mojito')) {
                 categories.push('drinks');
             }
-            if (lowerName.includes('ice cream') || lowerName.includes('pastries') || lowerName.includes('boutik') || lowerName.includes('glaces')) {
+            if (lowerName.includes('ice cream') || lowerName.includes('pastries') || lowerName.includes('pastry') || lowerName.includes('boutik') || lowerName.includes('glaces')) {
                 categories.push('desserts');
             }
 
@@ -398,7 +398,7 @@
 
                 html += `</div>
                     <div class="stall-footer">
-                        <span><strong style="color: var(--color-gold);">🕒</strong> ${stall.time || 'TBD'}</span>
+                        <span><strong style="color: var(--color-gold);">🕒</strong> ${stall.time || '08:00 - 14:00'}</span>
                         <span><strong style="color: var(--color-gold);">📍</strong> ${stall.location || 'TBD'}</span>
                     </div>`;
 

@@ -1,9 +1,17 @@
 [
   {
-    "name": "Cakes + Pastries / Candy Store",
-    "products": [],
-    "location": "Canteen Area",
-    "time": "Tuesday 9th June 2026",
+    "name": "Pastries",
+    "products": [
+      { "name": "Chocolate Cookies", "price": "Rs 35" },
+      { "name": "Tiramisu Cookies", "price": "Rs 40" },
+      { "name": "Red Velvet Cupcakes", "price": "Rs 40" },
+      { "name": "Chocolate Cupcakes", "price": "Rs 40" },
+      { "name": "Brownies", "price": "Rs 50" },
+      { "name": "Cheesecake", "price": "Rs 70" }
+    ],
+    "note": "All ingredients are <strong>in adherence to halal diets</strong> <br><br> <strong style=\"color: var(--color-gold);\">Dietary info:</strong> <br> Cookies, Cupcakes, and Brownies <strong>contain eggs</strong> <br> Cheesecake <strong>does not contain eggs</strong> and is <strong>suitable for vegetarian diets</strong>",
+    "location": "Near DT Lab",
+    "time": "",
     "section": "Food"
   },
   {
@@ -41,10 +49,15 @@
     "section": "Food"
   },
   {
-    "name": "Ti puri, curries, bajia, gateau piment etc...",
-    "products": [],
-    "location": "Canteen area",
-    "time": "Tuesday 9th June 2026",
+    "name": "Top Wok - Mine Frit",
+    "products": [
+      { "name": "Bol Non Veg", "price": "Rs. 75" },
+      { "name": "Bol Veg", "price": "Rs. 60" },
+      { "name": "Take Away", "price": "Rs. 100" }
+    ],
+    "note": "Fast, Fresh & Delicious! Hot & Tasty, Made Fresh, Served With Love.",
+    "location": "",
+    "time": "",
     "section": "Food"
   },
   {
@@ -56,6 +69,13 @@
     "Custom Sauces & Condiments": "Pima rouz <br> Pima vert <br> Ketchup <br> Mayo",
     "location": "Corridor near Art room",
     "time": "",
+    "section": "Food"
+  },
+  {
+    "name": "Ti puri, curries, bajia, gateau piment etc...",
+    "products": [],
+    "location": "Canteen area",
+    "time": "Tuesday 9th June 2026",
     "section": "Food"
   },
   {
@@ -90,18 +110,6 @@
     "location": "Canteen area",
     "time": "Tuesday 9th June 2026",
     "section": "Creativity & Relaxation"
-  },
-  {
-    "name": "Top Wok - Mine Frit",
-    "products": [
-      { "name": "Bol Non Veg", "price": "Rs. 75" },
-      { "name": "Bol Veg", "price": "Rs. 60" },
-      { "name": "Take Away", "price": "Rs. 100" }
-    ],
-    "note": "Fast, Fresh & Delicious! Hot & Tasty, Made Fresh, Served With Love.",
-    "location": "",
-    "time": "",
-    "section": "Food"
   },
   {
     "name": "What's in the Box?",
@@ -149,7 +157,7 @@
         "price": "Rs 120"
       }
     ],
-    "note": "3 modes. 1 winner. No excuses. <br> <br> <strong style=\"color: var(--color-gold);\">Penalties (5 attempts):</strong> <br> 5/5 Goals = Rs 100 <br> 4/5 Goals = Rs 60<br> 3/5 Goals = Rs 30<br> 0-2 Goals = Roasted! <br> <br><strong style=\"color: var(--color-gold);\">Free Kicks (4 attempts):</strong><br> 4/4 Goals = Rs 100<br> 3/4 Goals = Rs 60<br> 2/4 Goals = Rs 30<br> 0-1 Goals = Roasted! <br> <br><strong style=\"color: var(--color-gold);\">Dizzy Kicks (3 attempts):</strong><br> 3/3 Goals = Rs 100<br> 2/3 Goals = Rs 60<br> 1/3 Goals = Rs 30<br> 0 Goals = Roasted!",
+    "note": "3 modes. 1 winner. No excuses. <br> <br> <strong style=\"color: var(--color-gold);\">Penalties (5 attempts):</strong> <br> 5/5 Goals = Rs 100 <br> 4/5 Goals = Rs 60<br> 3/5 Goals = Rs 30<br> 0-2 Goals = Roasted! <br> <br><strong style=\"color: var(--color-gold);\">Free Kicks (4 attempts):</strong><br> 4/4 Goals = Rs 100<br> 3/4 Goals = Rs 60<br> 2/4 Goals = Rs 30<br> 0-1 Goals = Roasted! <br> <br><strong style=\"color: var(--color-gold);\">Dizzy Kicks (3 attempts):</strong><br> 3/3 Goals = Rs 100<br> 2/3 Goals = Rs 60<br> 1/3 Goals = Rs 30<br> 0 Goals = Roasted! <br><br> <strong style=\"color: var(--color-gold);\">ALL PRIZES WILL BE IN TOKENS!</strong>",
     "location": "",
     "time": "",
     "section": "Games",
