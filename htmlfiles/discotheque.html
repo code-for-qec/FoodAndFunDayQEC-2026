@@ -101,6 +101,11 @@
             margin-bottom: 0;
         }
 
+        .info-pill > div {
+            flex: 1;
+            min-width: 0;
+        }
+
         .info-pill h4 {
             color: #e9d5ff;
             margin: 0 0 0.25rem;
@@ -115,7 +120,26 @@
         }
 
         .info-pill ul {
-            padding-left: 1.25rem;
+            list-style: none;
+            padding: 0;
+            margin-top: 0.35rem;
+        }
+
+        .info-pill ul li {
+            position: relative;
+            padding-left: 0.9em;
+            margin-bottom: 0.2rem;
+        }
+
+        .info-pill ul li::before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            color: #c4b5fd;
+        }
+
+        .info-pill ul li:last-child {
+            margin-bottom: 0;
         }
 
         .timeline {
@@ -275,8 +299,13 @@
             }
 
             .info-pill {
-                flex-direction: row;
-                align-items: flex-start;
+                flex-direction: column;
+                align-items: stretch;
+                gap: 0.35rem;
+            }
+
+            .info-pill > span[aria-hidden="true"] {
+                line-height: 1;
             }
         }
     </style>
@@ -322,7 +351,7 @@
                 <span aria-hidden="true">📍</span>
                 <div>
                     <h4>Venue Location</h4>
-                    <p>School Main Hall (Specially soundproofed and blacked out)</p>
+                    <p>School Main Hall</p>
                 </div>
             </div>
 

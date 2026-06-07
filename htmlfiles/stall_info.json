@@ -48,13 +48,6 @@
     "section": "Food"
   },
   {
-    "name": "Pain Fourré",
-    "products": [],
-    "location": "Corridor near Lecture theatre",
-    "time": "Tuesday, 09th June 2026",
-    "section": "Food"
-  },
-  {
     "name": "Baz So6",
     "products": [
       { "name": "Classic Hotdog", "price": "RS 50" },
