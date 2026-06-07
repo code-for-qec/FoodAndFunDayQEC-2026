@@ -1,6 +1,6 @@
 [
   {
-    "name": "Pastries",
+    "name": "Pastry Stand",
     "products": [
       { "name": "Chocolate Cookies", "price": "Rs 35" },
       { "name": "Tiramisu Cookies", "price": "Rs 40" },
@@ -15,7 +15,7 @@
     "section": "Food"
   },
   {
-    "name": "Drinks",
+    "name": "Drinks Stand",
     "products": [
       { "name": "Special Alouda", "price": "Rs 35" },
       { "name": "Chilled Ice Coffee", "price": "Rs 35" },
