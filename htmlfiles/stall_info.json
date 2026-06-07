@@ -39,8 +39,8 @@
   {
     "name": "La Maison des Glaces",
     "products": [
-      { "name": "CONE (1 Boule)", "price": "Rs 35" },
-      { "name": "CUP (2 Boules)", "price": "Rs 50" }
+      { "name": "Cone (1 Boule)", "price": "Rs 35" },
+      { "name": "Cup (2 Boules)", "price": "Rs 50" }
     ],
     "flavours": "Chocolat <br> Vanille <br> Dame Blanche",
     "Toppings & Extras": "Waffle Sticks <br> Sprinkles Colorés <br> Choco Dip",
@@ -135,7 +135,7 @@
     "products": [
       { "name": "Driving Simulator Session", "price": "Rs 50 for 10 minutes" }
     ],
-    "note": "<strong style=\"color: var(--color-gold);\">Games available:</strong> <br> 08:30 - 11:00 : FH5 <br> 11:00 - 13:00 : GT7 <br> 13:00 - 14:00 : 1V1. <br><br> <strong style=\"color: var(--color-gold);\">For more info: +230 58138775</strong>",
+    "note": "<strong style=\"color: var(--color-gold);\">Games available:</strong> <br> 08:30 - 11:00 : Forza Horizon 5 <br> 11:00 - 13:00 : Gran Turismo 7 <br> 13:00 - 14:00 : 1V1 <br><br> <strong style=\"color: var(--color-gold);\">For more info: +230 58138775</strong>",
     "location": "Near Library Stairs",
     "time": "08:30 - 14:00",
     "section": "Games",
