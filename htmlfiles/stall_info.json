@@ -137,8 +137,8 @@
     "products": [
       {
         "name": "Ticket per group",
-        "price": "Rs 150"
-      }
+        "price": "Rs 100"}
+    
     ],
     "note": "<strong style=\"color: var(--color-gold);\">Group size: </strong> <br> 2, 4 or 6 <br> <br> <strong style=\"color: var(--color-gold);\">Ticket sale: </strong> <br>Friday 5th June <br> Monday 8th June <br><br> Grab your tickets and take on the challenge! <br> Think. Guess. Discover. Win!",
     "location": "",
