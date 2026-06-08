@@ -311,6 +311,23 @@
             return stall.note === 'WIP';
         }
 
+        function isBlankPrice(price) {
+            return price == null || String(price).trim() === '';
+        }
+
+        function renderPriceTag(price) {
+            if (isBlankPrice(price)) return '';
+            return `<span class="price-tag-gold" style="font-size: 0.75rem;">${price}</span>`;
+        }
+
+        function renderItemName(name, price) {
+            if (isBlankPrice(price)) {
+                if (/<strong/i.test(name)) return name;
+                return `<strong style="color: var(--color-gold);">${name}</strong>`;
+            }
+            return name;
+        }
+
         function renderProducts(products, sections) {
             let html = '';
             if (sections && sections.length > 0) {
@@ -320,8 +337,8 @@
                         <ul style="list-style: none; margin: 0; padding: 0;">`;
                     section.items.forEach(item => {
                         html += `<li class="menu-item-row">
-                            <span class="item-name">${item.name}</span>
-                            <span class="price-tag-gold" style="font-size: 0.75rem;">${item.price}</span>
+                            <span class="item-name">${renderItemName(item.name, item.price)}</span>
+                            ${renderPriceTag(item.price)}
                         </li>`;
                     });
                     html += '</ul></div>';
@@ -330,8 +347,8 @@
                 html += '<ul style="list-style: none; margin: 0; padding: 0;">';
                 products.forEach(product => {
                     html += `<li class="menu-item-row">
-                        <span class="item-name">${product.name}</span>
-                        <span class="price-tag-gold" style="font-size: 0.75rem;">${product.price}</span>
+                        <span class="item-name">${renderItemName(product.name, product.price)}</span>
+                        ${renderPriceTag(product.price)}
                     </li>`;
                 });
                 html += '</ul>';

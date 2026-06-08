@@ -82,28 +82,33 @@
   {
     "name": "Rise & Vibe Menu",
     "products": [
-
-
+      { "name": "POWER COMBO!", "price": "" },
+      { "name": "Petits Pains + Any 2 different cakes + 1 Drink", "price": "Rs 50" },
+      { "name": "The AM Elixirs", "price": "" },
       { "name": "Coffee", "price": "Rs 20" },
       { "name": "Tea", "price": "Rs 20" },
       { "name": "Hot Chocolate", "price": "Rs 20" },
       { "name": "Juice", "price": "Rs 20" },
+      { "name": "Sweet Treats Only!", "price": "" },
       { "name": "Red Velvet Cake", "price": "Rs 10" },
-      { "name": "Choclate Cake", "price": "Rs10"},
-      { "name": "Pudding Mais", "price": "Rs 10"},
+      { "name": "Chocolate Cake", "price": "Rs 10"},
+      { "name": "Pudding Maïs", "price": "Rs 10"},
       { "name": "Cookies(×2)", "price": "Rs 25"},
+      { "name": "Pastry Roll Call", "price": "" },
       { "name": "Pain au Chocolat", "price": "Rs 20" },
       { "name": "Scones", "price": "Rs 10" },
       { "name": "Pancakes", "price": "Rs 20" },
+      { "name": "Savory Squad", "price": "" },
       { "name": "Petits Pains au Fromage(×2)", "price": "Rs 25" },
       { "name": "Mini Pizza (Veg)(×2) ", "price": "Rs 25" },
+      { "name": "Layer Up!", "price": "" },
       { "name": "Parfait Yoghurt", "price": "Rs 25" }
     ],
     "location": "Canteen area",
     "time": "8:45 - 10:10",
     "section": "Food",
     "note": ""
-  },
+},
   {
     "name": "Mehendi Application",
     "products": [
@@ -140,7 +145,7 @@
         "price": "Rs 100"}
     
     ],
-    "note": "<strong style=\"color: var(--color-gold);\">Group size: </strong> <br> 2, 4 or 6 <br> <br> <strong style=\"color: var(--color-gold);\">Ticket sale: </strong> <br>Friday 5th June <br> Monday 8th June <br><br> Grab your tickets and take on the challenge! <br> Think. Guess. Discover. Win!",
+    "note": "<strong style=\"color: var(--color-gold);\">Group size: </strong> <br> 2, 4 or 6 <br> <br> <strong style=\"color: var(--color-gold);\">Ticket sale: </strong> <br>Friday 5th June <br> Monday 8th June <br> Tuesday 9th June <br><br> Grab your tickets and take on the challenge! <br> Think. Guess. Discover. Win!",
     "location": "",
     "time": "Tuesday 9th June 2026",
     "section": "Games",
