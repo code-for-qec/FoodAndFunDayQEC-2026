@@ -105,7 +105,7 @@
       { "name": "Parfait Yoghurt", "price": "Rs 25" }
     ],
     "location": "Canteen area",
-    "time": "8:45 - 10:10",
+    "time": "08:45 - 10:10",
     "section": "Food",
     "note": ""
 },
@@ -116,7 +116,7 @@
     ],
     "note": "By Professional Mehendi Artist Mufiidah Peeroo. <br> Beauty in every detail. <br> Elegant, Timeless, Uniquely You.",
     "location": "Near Art Room",
-    "time": "09.30 - 12.30",
+    "time": "09:30 - 12:30",
     "section": "Creativity & Relaxation",
     "image": "../images/mehendi.jpeg",
     "image_position": "50% 50%"
