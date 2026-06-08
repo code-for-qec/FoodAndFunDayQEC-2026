@@ -109,6 +109,43 @@
     "section": "Food",
     "note": ""
 },
+{
+  "name": "La Boutik Sinwa",
+  "products": [
+    { "name": "Vavang", "price": "2 for Rs 15" },
+    { "name": "Mango/Letchi/Watermelon", "price": "Rs 5" },
+    { "name": "Maltesers", "price": "Rs 10" },
+    { "name": "Zess Sandwich Cracker", "price": "Rs 10" },
+    { "name": "Rice crackers", "price": "Rs 10" },
+    { "name": "Muk-Bang", "price": "Rs 10" },
+    { "name": "Crix", "price": "Rs 15" },
+    { "name": "Gato zingeli", "price": "Rs 15" },
+    { "name": "Balconi Trancetto", "price": "Rs 20" },
+    { "name": "Balconi Wafers", "price": "Rs 20" },
+    { "name": "Real Froot", "price": "Rs 30" },
+    { "name": "Marshmallows - Twisted", "price": "Rs 50" },
+    { "name": "Mister Potato", "price": "Rs 70" },
+    { "name": "Colman's Hot English Mustard", "price": "Rs 100" },
+    { "name": "Voortman Chocolate Chip Cookies", "price": "Rs 150" },
+    { "name": "GPR Gold Pure Butter Cookies", "price": "Rs 250" },
+    { "name": "Mine Bouilli Touni", "price": "Rs 35" },
+    { "name": "Mine Bouilli Gros Pois", "price": "Rs 50" },
+    { "name": "Mine Bouilli Satini Pom D'Amour", "price": "Rs 50" },
+    { "name": "Mine Bouilli Salmi Poulet", "price": "Rs 60" },
+    { "name": "Mine Bouilli Somon", "price": "Rs 60" },
+    { "name": "Boulettes (Bol 5)*", "price": "Rs 100" },
+    { "name": "Add on:", "price": "" },
+    { "name": "Oeuf Roti", "price": "Rs 15" },
+    { "name": "Satini Pom D'Amour", "price": "Rs 15" },
+    { "name": "Gros Pois", "price": "Rs 15" },
+    { "name": "Salmi Poulet", "price": "Rs 25" },
+    { "name": "Somon", "price": "Rs 25" }
+  ],
+  "location": "",
+  "time": "",
+  "section": "Food",
+  "note": "*Chouchou, Poisson, Fromage, Sao Mai"
+},
   {
     "name": "Mehendi Application",
     "products": [
@@ -120,14 +157,6 @@
     "section": "Creativity & Relaxation",
     "image": "../images/mehendi.jpeg",
     "image_position": "50% 50%"
-  },
-  {
-    "name": "Chinese food + la boutique Sinwa",
-    "products": [],
-    "location": "Canteen area",
-    "time": "09th June 2026",
-    "section": "Food",
-    "note": "WIP"
   },
   {
     "name": "Fashion Fiesta",
