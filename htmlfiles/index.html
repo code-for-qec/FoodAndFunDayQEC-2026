@@ -95,6 +95,26 @@
         margin-top: 0.2rem;
     }
 
+    .countdown-started-message {
+        display: none;
+        text-align: center;
+        font-family: var(--font-heading);
+        font-size: 1.5rem;
+        color: var(--color-gold-light);
+        max-width: 24rem;
+        margin: 0 auto;
+        line-height: 1.4;
+    }
+
+    #countdown-section.is-started .countdown-heading,
+    #countdown-section.is-started .countdown-grid {
+        display: none;
+    }
+
+    #countdown-section.is-started .countdown-started-message {
+        display: block;
+    }
+
     .home-disclaimer {
         text-align: center;
         font-size: 0.75rem;
@@ -192,6 +212,10 @@
         .countdown-box strong {
             font-size: 1.25rem;
         }
+
+        .countdown-started-message {
+            font-size: 1.25rem;
+        }
     }
 
     @media (max-width: 380px) {
@@ -214,13 +238,14 @@
 <main class="home-main">
 
     <section id="countdown-section" class="home-panel" aria-label="Event countdown">
-        <h2>Countdown until the fun begins</h2>
+        <h2 class="countdown-heading">Countdown until the fun begins</h2>
         <div class="countdown-grid count-down-values-container">
             <div class="countdown-box"><strong class="countdown-element days">-</strong><span>days</span></div>
             <div class="countdown-box"><strong class="countdown-element hours">-</strong><span>hours</span></div>
             <div class="countdown-box"><strong class="countdown-element minutes">-</strong><span>mins</span></div>
             <div class="countdown-box"><strong class="countdown-element seconds">-</strong><span>secs</span></div>
         </div>
+        <p class="countdown-started-message">The event has started! <br> Discover our stalls!</p>
         <p class="home-disclaimer">Stall menu items and prices are subject to change.</p>
     </section>
 
@@ -275,15 +300,18 @@
 <script>
     const destTime = new Date('2026-06-09T08:00:00').getTime();
     const countdownSection = document.getElementById('countdown-section');
-    const countdownHeading = countdownSection.querySelector('h2');
-    const countdownContainer = document.querySelector('.count-down-values-container');
+    let countdownInterval;
+
+    function showEventStarted() {
+        countdownSection.classList.add('is-started');
+        if (countdownInterval) clearInterval(countdownInterval);
+    }
 
     function updateCountdown() {
         const diff = destTime - Date.now();
 
         if (diff <= 0) {
-            countdownContainer.hidden = true;
-            countdownHeading.textContent = 'The event has started!';
+            showEventStarted();
             return false;
         }
 
@@ -301,7 +329,7 @@
     }
 
     if (updateCountdown()) {
-        setInterval(updateCountdown, 1000);
+        countdownInterval = setInterval(updateCountdown, 1000);
     }
 </script>
 
