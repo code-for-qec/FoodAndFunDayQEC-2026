@@ -11,7 +11,7 @@
     ],
     "note": "All ingredients are <strong>in adherence to halal diets</strong> <br><br> <strong style=\"color: var(--color-gold);\">Dietary info:</strong> <br> Cookies, Cupcakes, and Brownies <strong>contain eggs</strong> <br> Cheesecake <strong>does not contain eggs</strong> and is <strong>suitable for vegetarian diets</strong>",
     "location": "Near DT Lab",
-    "time": "",
+    "time": "09th June 2026",
     "section": "Food"
   },
   {
@@ -23,7 +23,7 @@
     ],
     "note": "<strong>Sip happiness in every glass.</strong> <br> Different Flavours... Same Happiness!",
     "location": "",
-    "time": "",
+    "time": "09th June 2026",
     "section": "Food"
   },
   {
@@ -33,7 +33,7 @@
     ],
     "note": "<strong>Experience the Royal Crunch!</strong><br>Fresh, Crispy, Golden, Delicious.<br>Irresistibly Crispy. Perfectly Seasoned. Freshly Prepared.",
     "location": "Near Canteen Area",
-    "time": "",
+    "time": "09th June 2026",
     "section": "Food"
   },
   {
@@ -45,7 +45,7 @@
     "flavours": "Chocolat <br> Vanille <br> Dame Blanche",
     "Toppings & Extras": "Waffle Sticks <br> Sprinkles Colorés <br> Choco Dip",
     "location": "Outside Photocopy Room",
-    "time": "Tuesday, 09th June 2026",
+    "time": "09th June 2026",
     "section": "Food"
   },
   {
@@ -57,7 +57,7 @@
     ],
     "note": "<strong>Fast, Fresh & Delicious!</strong> <br> Hot & Tasty, Made Fresh, Served With Love.",
     "location": "",
-    "time": "",
+    "time": "09th June 2026",
     "section": "Food"
   },
   {
@@ -68,14 +68,14 @@
     ],
     "Custom Sauces & Condiments": "Pima rouz <br> Pima vert <br> Ketchup <br> Mayo",
     "location": "Corridor near Art room",
-    "time": "",
+    "time": "09th June 2026",
     "section": "Food"
   },
   {
     "name": "Ti puri, curries, bajia, gateau piment etc...",
     "products": [],
     "location": "Canteen area",
-    "time": "Tuesday 9th June 2026",
+    "time": "09th June 2026",
     "section": "Food",
     "note": "WIP"
   },
@@ -125,17 +125,19 @@
     "name": "Chinese food + la boutique Sinwa",
     "products": [],
     "location": "Canteen area",
-    "time": "Tuesday 9th June 2026",
+    "time": "09th June 2026",
     "section": "Food",
     "note": "WIP"
   },
   {
     "name": "Fashion Fiesta",
     "products": [],
-    "location": "Canteen area",
-    "time": "Tuesday 9th June 2026",
+    "note": "Step into a world of fashion, creativity, elegance, and style! <br> Discover the vibrant spirit of this exciting event and celebrate fashion in all its beauty and creativity. <br> 'Fashion is the art of expressing who you are without saying a word.'",
+    "location": "Outside the Rector's Office",
+    "time": "09th June 2026",
     "section": "Creativity & Relaxation",
-    "note": "WIP"
+    "image": "../images/fashionfiesta.jpeg",
+    "image_position": "50% 10%"
   },
   {
     "name": "What's in the Box?",
@@ -147,7 +149,7 @@
     ],
     "note": "<strong style=\"color: var(--color-gold);\">Group size: </strong> <br> 2, 4 or 6 <br> <br> <strong style=\"color: var(--color-gold);\">Ticket sale: </strong> <br>Friday 5th June <br> Monday 8th June <br> Tuesday 9th June <br><br> Grab your tickets and take on the challenge! <br> Think. Guess. Discover. Win!",
     "location": "",
-    "time": "Tuesday 9th June 2026",
+    "time": "09th June 2026",
     "section": "Games",
     "image": "../images/stemposter.jpeg",
     "image_position": "50% 50%"
@@ -165,14 +167,6 @@
     "image_position": "50% 0%"
   },
   {
-    "name": "Carnival Games",
-    "products": [{ "name": "Games and prices to be confirmed", "price": "TBD" }],
-    "location": "Recreational Area",
-    "time": "TBD",
-    "section": "Games",
-    "note": "WIP"
-  },
-  {
     "name": "Kick Challenge",
     "products": [
       {
@@ -186,9 +180,33 @@
     ],
     "note": "<strong style=\"color: var(--color-gold);\">PRIZES AVAILABLE:</strong> <br> <br> <strong style=\"color: var(--color-gold);\">Penalties (5 attempts):</strong> <br> 5/5 Goals = Rs 100 <br> 4/5 Goals = Rs 60<br> 3/5 Goals = Rs 30<br> 0-2 Goals = Roasted! <br> <br><strong style=\"color: var(--color-gold);\">Free Kicks (4 attempts):</strong><br> 4/4 Goals = Rs 100<br> 3/4 Goals = Rs 60<br> 2/4 Goals = Rs 30<br> 0-1 Goals = Roasted! <br> <br><strong style=\"color: var(--color-gold);\">Dizzy Kicks (3 attempts):</strong><br> 3/3 Goals = Rs 100<br> 2/3 Goals = Rs 60<br> 1/3 Goals = Rs 30<br> 0 Goals = Roasted! <br><br> <strong style=\"color: var(--color-gold);\">ALL PRIZES WILL BE IN TOKENS!</strong>",
     "location": "",
-    "time": "",
+    "time": "09th June 2026",
     "section": "Games",
     "image": "../images/kickchallenge.jpeg",
     "image_position": "50% 0%"
+  },
+  {
+    "name": "Karaoke",
+    "products": [
+      { "name": "30-minute Session (4 Persons per Group)", "price": "Rs 125 per person" }
+    ],
+    "note": "SHOWER SINGERS TO SUPERSTARS! <br> Grab your group, pick your songs, and ready for an unforgettable time! <br><br> <strong style=\"color: var(--color-gold);\">LIMITED SLOTS! BOOK EARLY! <br> For more info: <br> +230 55013467 <br> +230 58329790</strong>",
+    "location": "Lecture Theatre",
+    "time": "09th June 2026",
+    "section": "Creativity & Relaxation",
+    "image": "../images/karaoke.jpeg",
+    "image_position": "50% 40%"
+  },
+  {
+    "name": "CPR Challenge",
+    "products": [
+      { "name": "CPR Challenge Entry", "price": "Rs 50" }
+    ],
+    "note": "Test your CPR skills on our training mannequin and compete against your friends! <br> Learn essential lifesaving skills. Head-to-head CPR competition. Open to all students. Fun, interactive, and educational. <br> Can you achieve the best CPR score?",
+    "location": "TBD",
+    "time": "09th June 2026",
+    "section": "Games",
+    "image": "../images/cprposter.jpeg",
+    "image_position": "50% 45%"
   }
 ]
