@@ -131,12 +131,14 @@
   },
   {
     "name": "Fashion Fiesta",
-    "products": [],
-    "note": "Step into a world of fashion, creativity, elegance, and style! <br> Discover the vibrant spirit of this exciting event and celebrate fashion in all its beauty and creativity. <br> 'Fashion is the art of expressing who you are without saying a word.'",
+    "products": [
+      { "name": "Scrunchies, Hair clips, Headbands, Earrings, Bracelets and many more!"}
+    ],
+    "note": "Style. Sparkle. Shine. ",
     "location": "Outside the Rector's Office",
-    "time": "09th June 2026",
+    "time": "08:30 - 13:00",
     "section": "Creativity & Relaxation",
-    "image": "../images/fashionfiesta.jpeg",
+    "image": "../images/fashionfiesta2.jpeg",
     "image_position": "50% 10%"
   },
   {
