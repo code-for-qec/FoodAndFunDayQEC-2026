@@ -141,7 +141,7 @@
     { "name": "Salmi Poulet", "price": "Rs 25" },
     { "name": "Somon", "price": "Rs 25" }
   ],
-  "location": "",
+  "location": "Art room",
   "time": "",
   "section": "Food",
   "note": "*Chouchou, Poisson, Fromage, Sao Mai"
